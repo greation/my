@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>积分规则</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+		
+		@@include('../../include/head.html',{
+		"title":"积分规则",
+		"isback":true
+	})
+	<div class="index_box" >
+		<div class="rule_content">
+			<div class="">
+				<img src="/images/rule.jpg" />
+			</div>
+			<div>
+				<p class="fs28">投资金额 X 投资天数／360=积分 <br />1.每笔投资积分取整，不满1积分不累计; <br />2.体验金标投资不计算积分。</p>
+			</div>
+		</div>
+	</div>
+
+		<script src="/js/vue.min.js"></script>
+		<script>
+            $(function(){
+                if(title=="no"){
+                    $("header").hide();
+                }
+            })
+		</script>
+	</body>
+</html>

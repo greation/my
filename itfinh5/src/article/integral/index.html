@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>玩转积分</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/../skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+	</head>
+	<body>
+
+		<style>
+			  .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+		</style>
+
+		@@include('../../include/head.html',{
+		"title":"玩转积分",
+		"isback":true
+	})
+	<style>
+		body ,html{background: #FFFFFF;}	
+	</style>
+	<div class="index_box pad-b-50" id="integral" v-cloak>
+		<div class="banner relative">
+			<div class="swiper-banner swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" v-for="ban in banData" onclick="SaFun.banner('','发现')">
+						<a :href="ban.linkUrl">
+							<img v-bind:src="ban.imgUrl" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>	
+		<div class="bg-white" v-if="data.isLogin==='Y'">
+			<div class="disflex alignitem_c justify_sb jf_title pad-r-15 pad-l-15">
+				<a href="/src/article/integral/my_integral.html"><span class="cblue">我的积分:
+				<span v-if="data.isLogin==='N'">0</span>
+				<span v-else>{{data.integral}}</span>
+				</span></a>
+				<span>
+					<a class="c9 fs28 mx_order " href="/src/article/integral/my_order.html">明细、订单</a>
+					<span class="icon_jtright"></span>
+				</span>
+			</div>
+		</div>
+		<div class="hgray"></div>
+		<div class="jf_block">
+			<div class="jf_in">
+				<a href="/src/article/integral/list.html?categoryCode=WTDGXD">
+					<img src="/images/fruit.png" />
+					<span class="fs28 c6">食品生鲜</span>
+				</a>
+			</div>
+			<div class="jf_in">
+				<a href="/src/article/integral/list.html?categoryCode=WETSAX">
+					<img src="/images/home.png" />
+					<span class="fs28 c6">家具用品</span>
+				</a>
+			</div>
+			<div class="jf_in">
+				<a href="/src/article/integral/list.html?categoryCode=BVCFGS">
+					<img src="/images/electric.png" />
+					<span class="fs28 c6">电子商品</span>
+				</a>
+			</div>
+			<div class="jf_in">
+				<a href="/src/article/integral/list.html?categoryCode=IUTBDS">
+					<img src="/images/cardicom.png" />
+					<span class="fs28 c6">虚拟卡券</span>
+				</a>
+			</div>
+		</div>
+		<div class="hgray"></div>
+		<div class="hot_title bg-white fs30 c6 clearfix">
+			<a href="/src/article/integral/list.html" style="color:#666">本周热门&nbsp;<img src="/images/arrow.png" /></a>
+		</div>
+		<div class="integralCard">
+			<ul>
+				<li v-for="item in integralData">
+					<a v-bind:href= "'/src/article/integral/goods_detail.html?id='+item.id+''">
+						<img :src="''+item.photo+''" alt=""  class="icon_bank">
+						<p class="c6 pad-l-12 fs28 layleave text_psis" v-text="item.goodsName"></p>
+						<p class="cblue pad-l-12 fs26">兑换积分：<font v-text="item.integral"></font></p>
+						<p class="disflex alignitem_c justify_sb fs26">
+							<span class="cf5 mar-l-10 layleave">市场价：<span class="thrown" v-text="item.settlementPrice"></span></span>
+							<span class="c9 mar-r-10 layleave">已兑 <font v-text="item.exchangeAmount"></font></span>
+						</p>
+					</a>
+				</li>
+			</ul>
+		<div class="h10"></div>
+		</div>
+		<div class="hgray"></div>
+		<div class="hot_title bg-white fs30 c6 clearfix mar-t-10">
+			<a href="/src/article/integral/list.html" style="color:#666">猜你喜欢&nbsp;<img src="/images/arrow.png" /></a>
+		</div>
+		<div class="swiper-container  bg-white swiper-like">
+        <div class="swiper-wrapper pad-t-20  pad-b-20">
+            <div class="swiper-slide" v-for="like in likeData">
+            	<div class="like_card fs28 pad-b-20 pad-t-20">
+					<a v-bind:href= "'/src/article/integral/goods_detail.html?id='+like.id+''">
+						<img :src="like.photo" class="icon_bank" style="height:120px;" />
+						<p class="c6 pad-l-12 fs28 layleave text_psis" v-text="like.goodsName"></p>
+						<p class="cblue pad-l-12">兑换积分：<font v-text="like.integral"></font></p>
+						<p class="disflex alignitem_c justify_sb fs26">
+							<span class="cf5 mar-l-10 layleave">市场价：<span class="thrown" v-text="like.settlementPrice"></span></span>
+							<span class="c9 mar-r-10 layleave">已兑 <font v-text="like.exchangeAmount"></font></span>
+						</p>
+					</a>
+				</div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+		
+		</div>
+
+@@include('../../include/foot.html',{
+		"curMenu":"2"
+	})
+	
+<script src="/js/vue.min.js"></script>
+<script src="/js/public.js"></script>
+<script src="/js/integral_index.js"></script>
+<script>
+	var mySwiperBanner = new Swiper('.swiper-banner', {
+            pagination : '.swiper-pagination',
+            speed: 400,
+            spaceBetween:0,
+            loop : true,
+            autoplay : 4000,
+            autoplayDisableOnInteraction : false
+        });
+ 	var mySwiperProList = new Swiper('.swiper-pro-list', {
+            nextButton:'.swiper-button-next',
+            prevButton:'.swiper-button-prev',
+            speed: 400,
+            spaceBetween: 100
+        });
+	var swiper = new Swiper('.swiper-like', {
+        slidesPerView: 2,
+        paginationClickable: true,
+        spaceBetween:10
+    	});
+</script>
+	</body>
+</html>

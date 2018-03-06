@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>选择卡券</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"选择卡券",
+		"isback":true
+	})
+		<div class="pad-b-60" id="xzCard" v-cloak>
+			<div class="list pad-l-15 pad-r-15">
+				<div class="card_xz disflex alignitem_c xian " v-for="voucherList in data.voucherList" :class="voucherList.rewardType" @click="choosCard(voucherList.id,voucherList.val,voucherList.rewardType)">
+					<i class="icon"></i>
+					<div class="content_card">
+						<p class="fs28 color-theme" v-text="voucherList.rewardName"></p>
+						<p class="fs24 c666" v-if="voucherList.rewardType==='ti'">仅用于体验金标</p>
+						<p v-else-if="voucherList.minInvest==='-1'" class="fs24 c666">投资金额无限制</p>
+						<p v-else class="fs24 c666">单笔满<span v-text="voucherList.minInvest/100"></span>元可用</p>
+						<template v-if="voucherList.rewardType==='ti'">
+							<p class="fs24 c666" >投资期限&nbsp;<span>3天</span></p>
+						</template>
+						<template v-else>
+							<p class="fs24 c666" >投资期限&nbsp;<span v-text="voucherList.rewardUseDuration==='-1'? '无限制' : voucherList.durType==='DAY'?voucherList.rewardUseDuration+'天':'满'+voucherList.rewardUseDuration+'个月可用'" ></span></p>
+						</template>
+						<!--<p class="fs24 c666" v-text="voucherList.rewardUseDuration=='-1'? '无限制' :'满'+voucherList.rewardUseDuration+'个月可用'"></p>-->
+						<p class="fs20 cbbb">有效期：{{voucherList.endtime}}</p>
+					</div>
+					<div class="money_card no_use"><span class="fs28 color-theme"><span class="fs48" v-text="voucherList.val"></span></span></div>
+				</div>
+				
+				</div>
+		</div>
+	
+	
+	<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png"/></div>
+		<script src="/js/invest.js"></script>
+		<script>
+			window.onload=function(){
+		var oTop = document.getElementById("toTop");
+  		var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  		var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  		window.onscroll = function(){
+    		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(scrolltop>100){
+				oTop.style.display ="block";
+			}else{
+				oTop.style.display ="none";
+			}
+  		}
+  		oTop.onclick = function(){
+    		document.documentElement.scrollTop = document.body.scrollTop =0;
+  		}
+	}
+			
+			iv.xzcard();
+			
+		</script>
+	</body>
+</html>

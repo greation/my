@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html class="bg-white">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>约标</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+		<script src="/js/base.js"></script>
+	</head>
+	<body class="bg-white">
+		@@include('../include/head.html',{
+		"title":"约标",
+		"isback":true
+	})
+		<div class="pad-b-60" id="caculate">
+			<div class="deal ">
+				<div class="express_name" >
+					<div >
+						<span class="c3 pull-left fs34">约标类型</span>
+						<!--icon_down-->
+						<i class="pull-right mar-t-15 mar-r-10"></i>
+						<select class="xz_yb pull-right c9" v-model="typeB" @change="TypeC()">
+							<option v-for="item in items" :value="item.makeTypeIdStr" v-text="item.makeTypeName" class="pop_type" ></option>
+						</select>
+					</div>
+				</div>
+				<div id="time_money">
+					<div class="express_name ">
+						<div class="">
+							<span class="c3 pull-left fs34">期限/收益</span>
+							<i class=" pull-right mar-t-15 mar-r-10"></i>
+							<select class="xz_yb pull-right c9" v-model="typeQ" @change="caculate()">
+								<option v-for="list in deList" :value="list.idStr" v-text="list.makeborrowDeadline +'个月' + list.makeborrowEarnings+'%'" class="pop_type"> </option>
+							</select>
+						</div>
+					</div>
+					<div class="express_name ">
+						<div >
+							<span class="c3 pull-left fs34">约标金额</span>
+							<i class=" pull-right mar-t-15 mar-r-10"></i>
+							<select class="xz_yb pull-right c9" id="moneyId" v-model="typeM" @change="caculate()">
+								<option v-for="list in moneyList" v-text="list.makeborrowMoney +'万元'":value="list.idStr"  class="pop_type"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="tip_yb">
+				<div class="wa90 ma fs24 c9 ">
+					您的余额不足，请<a href="/src/account/charge.html" class="color-blue fs24">充值</a>
+				</div>
+			</div>-->
+			<div class="deal ">
+				<div class="express_name">
+					<div class="nob_border">
+						<span class="c3 pull-left fs34">上标时间</span>
+						<i class=" pull-right mar-t-15 mar-r-10"></i>
+						<select class="xz_yb pull-right c9" id="timetext">
+							<option value="今天">今天</option>
+							<option value="明天">明天</option>
+							<option value="后天">后天</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="tip_time">
+				<div class="wa90 ma fs24 c9 ">
+					根据您的申请，若约标成功，我们会为您定制专属标的并将以短信的方式通知您！
+				</div>
+			</div>
+			<div class="deal ">
+				<div class="express_name">
+					<div class="">
+						<span class="c3 pull-left fs34">备注（选填）</span>
+					</div>
+				</div>
+			</div>
+			<div class="bz_xt ">
+				<textarea placeholder="请输入备注内容"  id="remark"></textarea>
+			</div>
+			<button class="btn-sum" @click="creatYb">一键约标</button>
+		</div>
+		
+		<script src="/js/invest.js"></script>
+		<script>
+			iv.car();
+		</script>
+		
+	</body>
+</html>

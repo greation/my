@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的投资</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="mi">
+	@@include('../include/head.html',{
+		"title":"我的投资",
+		"isback":"true;/src/account/index.html"
+	})
+	<div class="container" id="mi"  v-cloak>
+		<div class="nav disflex bg-white">
+			<div :class="{active:blockArr[0]}" @click="pageActive(0)">正在募集</div>
+			<div :class="{active:blockArr[1]}" @click="pageActive(1)">回款中</div>
+			<div :class="{active:blockArr[2]}" @click="pageActive(2)">已回款</div>
+		</div>
+		<div class="project_ls" v-show="blockArr[0]">
+			<div class="project mar-t-10" v-for="item in investSucDate" @click="linkProject(item.borrowId)">
+				<div class="top disflex"><span class="fs28 title" v-text="item.borrowName"></span><span class="time fs24 c999" v-text="item.investTime"></span>
+					<template v-if="item.borrowActivityIcon==''">
+					</template>
+					<template v-else>
+						<img  :src="item.borrowActivityIcon" class="activ_tag" alt="">
+					</template>
+					
+				</div>
+				<div class="center disflex">
+					<div class="rate">
+						<p class="fs28 color-theme"><span class="fs48" v-text="item.rewardRate==='0.0'?item.borrowRate:(parseFloat(item.borrowRate)-parseFloat(item.rewardRate)).toFixed(1)"></span>%<span v-text="item.rewardRate==='0.0'?'':'+'+item.rewardRate+'%'"></span></p>
+						<span class="c999 fs24 mar-t-5">约定年化收益率</span>
+					</div>
+					<div class="time_span">
+						<p class="fs24 mar-b-10"><span v-text="item.borrowDuration"></span><span v-text="item.durType==='DAY'?'天':'个月'"></span>投资期限</p>
+						<span class="jx fs22" v-if="item.useVoucher==='CANUSE'||item.useVoucher==='CASHCOUPON'">加息券</span>
+						<span class="xj mar-l-5 fs22" v-if="item.useVoucher==='CANUSE'||item.useVoucher==='CASHVOCHER'">现金券</span>
+					</div>
+				</div>
+				<div class="bottom bg-white" v-if="item.borrowType!=='体验金模式'">
+					<div class="data_progress">
+						<div class="progressin" :style="{width:(item.raiseMoney/item.borrowMoney*100).toFixed(2)+'%'}"></div>
+					</div>
+					<p class="fs24 c999 mar-t-10 disflex justify_sb"><span>剩余可投<span v-text="item.borrowMoney-item.raiseMoney"></span>元</span><span><span v-text="(item.raiseMoney/item.borrowMoney*100).toFixed(2)">23</span>%</span></p>
+				</div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+		<div class="project_ls" v-show="blockArr[1]">
+			<div class="project  mar-t-10" v-for="item in loadDate" @click="linkInvestDetail(item.investInfoId)">
+				<div class="top disflex"><span class="fs28 title" v-text="item.borrowName"></span><span class="time fs24 c999" v-text="item.investTime"></span>
+					<img v-if="item.borrowActivityIcon!==''" :src="item.borrowActivityIcon" class="activ_tag" alt="">
+				</div>
+				<div class="center disflex">
+					<div class="rate">
+						<p class="fs28 color-theme"><span class="fs48" v-text="item.rewardRate==='0.0'?item.borrowRate:(parseFloat(item.borrowRate)-parseFloat(item.rewardRate)).toFixed(1)"></span>%<span v-text="item.rewardRate==='0.0'?'':'+'+item.rewardRate+'%'"></span></p>
+						<span class="c999 fs24">约定年化收益率</span>
+					</div>
+					<div class="time_span text-right">
+						<p class="mar-b-10"><span v-text="item.borrowDuration"></span><span v-text="item.durType==='DAY'?'天':'个月'"></span></p>
+						<p class="c999 fs24">投资期限</p>
+					</div>
+					<div class="time_span text-right">
+						<p class="mar-b-10" v-text="item.countInvested+'/'+item.countInvest"></p>
+						<p class="c999 fs24">回款中</p>
+					</div>
+				</div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+		<div class="project_ls" v-show="blockArr[2]">
+			<div class="project  mar-t-10" v-for="item in endDate" @click="linkInvestDetail(item.investInfoId)">
+				<div class="top disflex"><span class="fs28 title" v-text="item.borrowName"></span><span class="time fs24 c999" v-text="item.investTime"></span>
+					<img v-if="item.borrowActivityIcon!==''" :src="item.borrowActivityIcon" class="activ_tag" alt="">
+				</div>
+				<div class="center disflex">
+					<div class="rate">
+						<p class="fs28 color-theme"><span class="fs48" v-text="item.rewardRate==='0.0'?item.borrowRate:(parseFloat(item.borrowRate)-parseFloat(item.rewardRate)).toFixed(1)"></span>%<span v-text="item.rewardRate==='0.0'?'':'+'+item.rewardRate+'%'"></span></p>
+						<span class="c999 fs24">约定年化收益率</span>
+					</div>
+					<div class="time_span text-right">
+						<p class="mar-b-10"><span v-text="item.borrowDuration"></span><span v-text="item.durType==='DAY'?'天':'个月'"></span></p>
+						<p class="c999 fs24">投资期限</p>
+					</div>
+					<div class="time_span text-right">
+						<p class="mar-b-10" v-text="item.countInvested+'/'+item.countInvest"></p>
+						<p class="c999 fs24">已回款</p>
+					</div>
+				</div>
+				
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.myinvest();
+	$('header .back_a').attr('href',"/src/account/index.html");
+</script>
+</body>
+</html>

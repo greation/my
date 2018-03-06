@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>红包福利领不停</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	</head>
+	<style>
+/*新手活动*/
+.nu .box01 img, .nu .box02 img {
+	display: block;
+}
+
+.nu .box02 {
+	margin-top:0px;
+}
+
+.nu .a-btn {
+	position: absolute;
+    width: 60%;
+    height: 50px;
+    right: 4%;
+    z-index: 200;
+}
+
+
+.nu .box01 .btn01 {
+	top: 86%;
+}
+
+.nu .box02 .btn02 {
+	top: 40%;
+}
+
+.nu .box02 .btn03 {
+	top: 88%;
+}
+
+.nu .box02 .btn04 {
+	top: 87%;
+}
+
+.nu .box02 .btn05 {
+	position: absolute;
+	width: 80%;
+	height: 50px;
+	right: 8%;
+	bottom: 13%;
+}
+
+.weui_dialog_bd {
+	padding: 0 20px;
+	font-size: 15px;
+	color: #888;
+	word-wrap: break-word;
+	word-break: break-all;
+	height: 300px;
+	overflow: auto;
+	text-align: left;
+}
+body{
+	background:#ffefe6;
+	padding-bottom:15px;
+}
+.weui_dialog, .weui_toast {
+	top: 10%;
+}
+.rule{
+	width:90%;
+	margin-left:5%;
+	box-sizing:border-box;
+	padding:15px;
+	background:#fff;
+	border-radius:15px;
+	color: #882600;
+}
+.rule .title{width: 100%;padding: 10px;text-align: center;display: inline-block;font-size: 1.2rem;}
+.cp_txt{text-align: center;padding:18px 0;color: #882600;width: 90%; margin-left: 5%;font-size: .8rem;}
+</style>
+	<body class="nu">
+	@@include('../include/head.html',{
+"title":"红包福利送不停",
+"isback":true
+})
+	<div class="container" id="newUser">
+	<img src="/images/new_user_banner.jpg" alt="">
+			<div class="box01 relative">
+				<img src="/images/new_user_img01.jpg" alt="">
+
+				<!--判断登录 -->
+				<template v-if="data.isLogin==='Y'">
+					<a @click="goloin"  class="a-btn btn01"></a>
+				</template>
+				<template v-else>
+				<a @click="goloin" class="a-btn btn01"></a>
+				</template>
+
+
+			</div>
+			<div class="box02 relative">
+				<img src="/images/new_user_img02.jpg" alt="">
+
+				<!--是否开户-->
+				<template v-if="data.isLogin==='N'">
+					<a @click="gorealname" class="a-btn btn02"></a>
+				</template>
+
+				<template v-if="data.userInfo.realName===null">
+					<a @click="gorealname" class="a-btn btn02"></a>
+				</template>
+				
+				<template v-if="data.userInfo.realName!=''">
+					<a @click="gorealname" class="a-btn btn02"></a>
+				</template>
+
+				<!--充值 -->
+				<!-- <a href="/src/account/charge.html" class="a-btn btn03"></a> -->
+				
+				<a @click="gocharge" class="a-btn btn03"></a>
+
+			</div>
+
+<!--			<div class="box01 relative">
+				<img src="/images/new_user_img01.jpg" alt="">
+					<a href="/src/base/login.html" class="a-btn btn01"></a>
+					&lt;!&ndash;<a href="javascript:void(0);" class="a-btn btn01"></a>&ndash;&gt;
+				
+			</div>
+			<div class="box02 relative">
+				<img src="/images/new_user_img02.jpg" alt="">
+				
+					&lt;!&ndash;<a href="/member/opensina.htm" class="a-btn btn02"></a>&ndash;&gt;
+					<a href="/src/base/login.html" class="a-btn btn02"></a>
+					&lt;!&ndash;<a href="/member/opensina.htm" class="a-btn btn02"></a>&ndash;&gt;
+				
+				<a	href="/src/account/charge.html" class="a-btn btn03"></a>
+				
+			</div>-->
+		
+		
+		<div class="rule"><span class="title">活动规则</span>
+		
+1、以上活动每个用户仅限参加一次。<br />
+2、体验金券的有效期为发放后7天、现金券的有效期为发放后7天，现金券每次投资只能使用一张，获得后在我的卡券内查看。 <br />
+3、体验金仅适用于投资体验金专享标，到期后获得利息收益，收益直接进入账户余额，可以投资和提现。<br />
+4、体验金投资所得收益部分归客户所有，本金部分由平台收回。<br />
+5、18元现金券，单笔投资满2000元使用；<br />
+28元现金券，单笔投资6000元使用；<br />
+88元现金券，单笔投资8000元、期限3个月及以上标的适用;<br />
+128元现金券，单笔投资10000元、期限3个月及以上标的适用;<br />
+218元现金券，单笔投资8000元、期限6个月及以上标的适用;<br />
+518元现金券，单笔投资15000元、期限6个月及以上标的适用;<br />
+6、对活动如有任何疑问，敬请咨询客服热线：400-109-2626<br />
+		</div>
+		<div class="cp_txt">借贷有风险，理财需谨慎<br />如对本活动有疑问，请拨打客服电话：400-109-2626</div>
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/account.js"></script>
+	<script>
+        vms.newUser();
+        $(function(){
+            if(title=="no"){
+                $("header").hide();
+            }
+        })
+        
+	</script>
+</body>
+
+</html>

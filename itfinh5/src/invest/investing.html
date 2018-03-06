@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/tongdun.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+
+<body>
+	<div class="pad-b-60">
+		@@include('../include/head.html',{ "title":"", "isback":true })
+		<div id="investh">
+			<div class="express bg-white">
+				<div class="express_name">
+					<div class="">
+						<span class="c3 pull-left fs34">可用余额</span>
+						<span class="pull-left co mar-l-10 fs30" v-text="raiseMoney+'元'"></span>
+						<span class="pull-right mar-r-20 fs28"><a class="cblue" href="javascript:void(0)" @click="linkChargeWith">充值</a></span>
+					</div>
+				</div>
+				<div class="express_content">
+					<div class="pad-t-20">
+						<span class="c3 pull-left fs34">剩余可投</span>
+						<span class="pull-left c3 mar-l-10 fs30" v-text="(data.borrow.borrowMoney-data.borrow.raiseMoney)/100+'元'"></span>
+						<span class="pull-right fs28" @click="allIn"><a class="cblue" >全投</a></span>
+					</div>
+					<div class="add_invest">
+						<span class="set-minus" @click="moneyminus">-</span>
+						<template v-if="borrowType==='MAKE' || borrowType==='MAKECAR'">
+							<span class="ybmoney" v-text="(data.borrow.minInvest)/100" id="moneyyb"></span>
+						</template>
+						<template v-else>
+							<input type="text" v-model="money" @change="inputMony" name="" id="money" :placeholder="'起投金额'+(data.borrow.minInvest)/100+'元，增量金额'+(data.borrow.incMoney)/100+'元'"
+							 pattern="[0-9]*" step="100" />
+						</template>
+						<span class="set-add" @click="moneyadd">+</span>
+					</div>
+				</div>
+			</div>
+			<div class="express bg-white">
+				<div class="express_name">
+					<div>
+						<span class="c3 pull-left fs34">预期收益</span>
+						<!--<span class="pull-left co mar-l-10 fs30" id="yuqiGet" v-text="data.yuqiGet"></span>-->
+						<span class="pull-left co mar-l-10 fs30" id="yuqiGet"></span>
+					</div>
+				</div>
+				<div class="express_name ">
+					<div class="">
+						<span class="c3 pull-left fs34">可获积分</span>
+						<span class="pull-left co mar-l-10 fs30" id="integralGet" v-text="data.integralGet"></span>
+					</div>
+				</div>
+
+			</div>
+			<div class="tips_invest" id="investTips" style="display: none;">
+				<div>
+					<span class="c9 fs28 mar-l-20 wa90  db">投资成功后将立即获得20元现金，赶快到账户余额产看吧</span>
+				</div>
+			</div>
+			<div class="cardc bg-white" @click="carDto">
+				<div class="wa90 ">
+					<input type="hidden" id="token" :value="data.token">
+					<span class="c9 fs34 pull-left">选择卡券</span>
+					<a class="pull-right c9 fs28" id="voucherId" @click="carDto(borrowId,investMoney)" data-id="">></a>
+				</div>
+			</div>
+			<input type="hidden" id="token">
+			<div class="tips_invest">
+				<div class="wa90 ">
+					<input type="checkbox" id="xieyi" name="xieyi" class="checkXy" v-model="isXieYi" />
+					<label for="xieyi"><a class="cblue fs28" href="/src/invest/investxy.html">同意《宜泉资本投资协议》</a><a class="cblue fs28" href="/src/invest/cfca.html">《电子合同托管协议》</a></label>
+				</div>
+			</div>
+			<a class="btn_invest wa90 fs34 text-center" @click="rightInvest(borrowId)">确认投资</a>
+		</div>
+	</div>
+	<script src="/js/investcout.js" charset="UTF-8"></script>
+	<script>
+		vms.investing();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<title>回款详情</title>
+		<link rel="stylesheet" href="/skins/default/css/public.css">
+		<link rel="stylesheet" href="/skins/default/css/account.css">
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+
+	<body class="hd">
+		@@include('../include/head.html',{ "title":"", "isback":true })
+		<div class="container" id="hd" v-cloak>
+			<div class="ljsy disflex bg-white direc_co justify_c relative bor_b_dashed">
+				<span class="fs60" v-text="investInfo.sumrecMoney"></span>
+				<p class="fs24">累计收益（元）</p>
+				<template v-if="investInfo.borrowActivityIcon===''">
+				</template>
+				<template v-else>
+					<img :src="investInfo.borrowActivityIcon" alt="" class="pro_tag">
+				</template>
+
+			</div>
+			<div class="info_list fs24 bg-white">
+				<div class="disflex justify_sb"><span class="cbbb">预期年化收益率</span><span class="c666" v-text="investInfo.borrowRate+'%'">10%</span></div>
+				<div class="disflex justify_sb"><span class="cbbb">投资金额</span><span class="c666" v-text="investInfo.investMoney"></span></div>
+				<div class="disflex justify_sb"><span class="cbbb">投资期限</span>
+					<!--标的类型判断-->
+					<template v-if="investInfo.rewardType==='EXPERIENCE_VOUCHER'">
+						<span class="c666" v-text="'3天'"></span>
+					</template>
+					<template v-else>
+						<span class="c666" v-text="investInfo.borrowDuration+'个月'"></span>
+					</template>
+				</div>
+				<div class="disflex justify_sb bor_b_dashed"><span class="cbbb">起息日/到期日</span><span class="c666" v-text="investInfo.loanTime+' / '+investInfo.repaymentedTime"></span></div>
+				<div class="disflex justify_sb"><span class="cbbb">应收本息</span><span class="c666" v-text="investInfo.baseMoney"></span></div>
+				<div class="disflex justify_sb"><span class="cbbb">已收本金</span><span class="c666" v-text="investInfo.receivedBaseMoney"></span></div>
+				<div class="disflex justify_sb bor_b_dashed"><span class="cbbb">已收利息</span><span class="c666" v-text="investInfo.receivedInterestMoney"></span></div>
+				<div class="disflex justify_sb"><span class="cbbb">待收本金</span><span class="c666" v-text="investInfo.recBaseMoney"></span></div>
+				<div class="disflex justify_sb bor_b_dashed"><span class="cbbb">待收利息</span><span class="c666" v-text="investInfo.recInterestMoney"></span></div>
+				<div class="disflex justify_sb" v-if="investInfo.rewardType!=='EXPERIENCE_VOUCHER'&&investInfo.rewardType!==null">
+					<span class="cbbb" v-text="investInfo.rewardType==='CASH_VOUCHER'?'现金券':'加息券年化利率'"></span>
+					<span class="c666" v-text="investInfo.voucher"></span>
+				</div>
+				<div class="disflex justify_sb" v-if="investInfo.rewardType!=='EXPERIENCE_VOUCHER'">
+					<span class="cbbb">投资获得积分</span>
+					<span class="c666" v-text="investInfo.integral"></span>
+				</div>
+				<!-- <template v-if="investInfo.rewardType==='EXPERIENCE_VOUCHER'">
+				<div class="disflex justify_sb" >
+					<span class="cbbb" v-text="investInfo.borrowName"></span>
+					<span class="c666" v-text="investInfo.voucher"></span>
+				</div>
+			</template> -->
+
+			</div>
+			<div class="plan_ht mar-t-10 bg-white">
+				<a :href="isApp?'receive_money_plan.html?investId='+investInfo.investInfoId+'&userId='+userId+'&title=no':'receive_money_plan.html?investId='+investInfo.investInfoId" class="item plan alignitem_c fs30">
+					<span>回款计划</span>
+					<span class="disflex alignitem_c">
+					<span  v-text="investInfo.countInvested+'/'+investInfo.countInvest"></span>
+					<span class="icon_jtright pull-right"></span>
+					</span>
+				</a>
+				<template v-if="investInfo.rewardType!='EXPERIENCE_VOUCHER'">
+					<template v-if="investInfo.contractUrl===''">
+						<a class="item ht fs30" @click="linkContract">
+							<span>投资合同</span>
+							<span class="icon_jtright pull-right"></span>
+						</a>
+					</template>
+					<template v-else>
+						<!--<a class="item ht fs30" @click="linkCont" :href="investInfo.contractUrl">-->
+						<a class="item ht fs30" @click="linkCont">
+							<span>投资合同</span>
+							<span class="icon_jtright pull-right"></span>
+						</a>
+					</template>
+				</template>
+			</div>
+		</div>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/account.js"></script>
+		<script>
+			vms.investDetail();
+			$( function () {
+				if ( title == "no" ) {
+					$( "header" )
+						.hide();
+				}
+			} )
+		</script>
+	</body>
+
+</html>

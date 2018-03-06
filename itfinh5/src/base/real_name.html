@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>实名认证</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/base.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="re rn">
+	@@include('../include/head.html',{
+		"title":"实名认证",
+		"isback":"true;/src/account/index.html"
+	})
+	<div class="container" id="rn">
+			<div class="icons disflex bg-white mar-t-10">
+				<div><img src="/images/logo_blue.png" alt=""><p class="mar-t-5">宜泉资本</p></div>
+				<div><img src="/images/icon_sina.jpg" alt=""><p>新浪支付</p></div>
+			</div>
+			<div class="banner mar-t-10">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="banner in bannerList">
+							<a :href="banner.LinkUrl">
+								<img :src="banner.imgUrl" alt="">
+							</a>
+						</div>
+					
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="form">
+				<div class="disflex relative">
+					<span class="name_text">姓名</span>
+					<input type="text" v-model="inpName" placeholder="请输入您的真实姓名" class="inp_phone inp_name">
+				</div>
+				<div class="disflex relative mar-t-10">
+					<span class="id_text">身份证</span>
+					<input type="text" placeholder="请输入您身份证号码" class="inp_psw inp_id" v-model="inpId"/>
+				</div>
+			</div>
+			<p class="fs24 cbbb text-center">实名认证后将为你开通新浪支付存管账户，理财更安心</p>
+			<div class="pad-l-15 pad-r-15">
+				<input type="button" value="立即认证" class="btn_next" @click="realNameMain"/>
+			</div>
+	</div>
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/base.js"></script>
+	<script>
+	vms.realName();
+	var mySwiperBanner = new Swiper('.banner .swiper-container', {
+		pagination : '.banner .swiper-pagination',
+		speed: 400,
+		loop : true,
+		autoplay : 4000,
+		spaceBetween: 0,
+		autoplayDisableOnInteraction : false
+	})
+	
+</script>
+</html>

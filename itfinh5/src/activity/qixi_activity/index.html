@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>秋韵焕新季，礼遇新升级</title>
+    <link rel="stylesheet" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" href="css/activity.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <script src="/js/zepto.min.js"></script>
+    <script src=http://libs.baidu.com/jquery/2.1.1/jquery.min.js></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/public.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        util.wxShareMain({
+            //如果如要debug加添参数debug为true
+            title: '秋韵焕新季，礼遇新升级',
+            desc: '初秋好礼，周大福钻戒等大奖惊喜呈现',
+            link: Helper.webPath + '/src/activity/qixi_activity/index.html',
+            imgUrl: Helper.webPath + '/src/activity/qixi_activity/images/wxshare.jpg',
+            successEvt: function() {
+                //shareed();
+            },
+            cancelEvt: function() {
+                //
+            }
+        });
+        (function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+
+<body>
+    <div class='main' id="index" v-bind:class="{ 'over': ruleShow}">
+        <div class="top">
+
+            <div class="ruleBtn">
+                <div style="position: relative;">
+                    <div style="position: absolute; width: 80px;height: 50px;top: 3rem;right: 9px;" onclick="_hmt.push(['_trackEvent','秋韵焕新季，礼遇新升级', 'click', '活动规则']);" @click="showRule(1)"></div>
+                </div>
+            </div>
+
+            <div id="lottery" class="lottery">
+                <span class="gift gift0"></span>
+                <span class="gift gift1 c"></span>
+                <span class="gift gift2"></span>
+                <span class="gift gift7"></span>
+                <span class="c"></span>
+                <span class="gift gift3"></span>
+                <span class="gift gift6"></span>
+                <span class="gift gift5 c"></span>
+                <span class="gift gift4"></span>
+                <img class="gifts" src="images/gifts.png">
+                <i class="start" onclick="_hmt.push(['_trackEvent','秋韵焕新季，礼遇新升级', 'click', '立即抽奖']);" @click="drawGo()"></i>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="list">   
+                <div class="listCon swiper-container swiper-lucky">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="list in luckyUser">
+                            <ul>
+                                <li class="listDetail" v-for="user in list"><span class="user_phone" v-text="user[0]"></span><span v-text="'抽中'+user[1]"></span> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investInfo">
+                <p>您在活动期间的当前累计投资金额为</p>
+                <div class="con" v-if="isLogin">{{investNum}}元</div>
+                <div class="btn" v-if="!isLogin" onclick="_hmt.push(['_trackEvent','秋韵焕新季，礼遇新升级', 'click', '立即查看']);"  @click="loginNow()">立即查看</div>
+            </div>
+            <div class="play"><div class="ruleLink" onclick="_hmt.push(['_trackEvent','秋韵焕新季，礼遇新升级', 'click', '详情请见活动规则']);
+" @click="showRule(1)"></div></div>
+            <div class="tips">
+                <p>借贷有风险，理财需谨慎</p>
+                <div class="con">如对本活动有疑问，请拨打客服电话：400-109-2626</div>
+            </div>
+        </div>
+        <div class="modal-rule" v-show="ruleShow" >
+            <div class="txt-cont">
+                <div class="clearfix closeBtn"  @click="showRule(0)">
+                    <img src="images/btn_close.png" class="btn-close"
+                         width="44" height="44">
+                </div>
+                <h3 class="text-center title">活动规则</h3>
+                <div class="txt-gz">
+                    <p>一、2017年8月15日10：00-9月15日10：00期间，用户单笔投资金额≥5000元且投资标的期限≥6个月，即可获得一次抽奖机会。奖品包含【宜泉资本】平台0.77%加息券、77元现金券、1314积分、爱奇艺VIP会员3个月、格瓦拉电影券黄券2张、价值500元携程旅行卡、价值1200元Tiffany项链，奖品数量有限，送完为止；</p>
+                    <p>二、活动期间累计投资金额最高的用户可获得价值2300元周大福钻戒一枚；</p>
+                    <p>三、本次活动仅供投资6个月及12个月的房月盈产品的用户参与，体验金标及预约标不参与本次活动；</p>   
+                    <p>四、用户投资成功并参与活动获得的【宜泉资本】平台加息券、现金券可在用户账户“我的卡券”中查询；积分可在玩转积分“我的积分”中查询；爱奇艺VIP会员激活码、格瓦拉电影券黄券兑换码将会在获得奖品后的2个工作日内以短信形式发送到用户投资所绑定的手机上；携程旅行卡、Tiffany项链领取链接将会在抽中奖品后的10个工作日内以短信形式发送到用户投资所绑定的手机上，用户可点击领取奖品链接填写收货信息领取奖品；周大福钻戒获得者将会在活动结束3个工作日内由客服通知并安排发货，并在【宜泉观察】订阅号公布中奖名单；奖品一经发放，不可折现，不可退换，请用户谨慎操作；</p>
+                    <p>五、如出现恶意注册，故意刷量，商业贿赂，非正常投资等任何异常行为，将扣除活动期间所有奖励。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/vue.min.js"></script>
+    <script src="js/activity.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?49c126b307f83320148a07d567a78249";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的二维码</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body class="me">
+	@@include('../include/head.html',{
+		"title":"我的二维码",
+		"isback":true
+	})
+	<div class="container p-b-15" id="me">
+		<div class="base_info">
+			<p class="text-center mar-t-20"><img src="/images/user_img.png" alt=""> </p>
+			<p class="text-center fs24 mar-t-10" v-text="data.mobile">*****</p>
+			<p class="text-center mar-t-20" v-text="data.recommendCode">*****</p>
+		</div>
+		<div class="ewm_box">
+			<img :src="data.qrCodeUrl" alt="">
+		</div>
+		<p class="fs24 cbbb pad-l-15 pad-r-15 text-center">
+			你的好友可以扫二维码完成注册，也可以填写您的手机号码或者邀请码完成注册
+		</p>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.myewm();
+	/*获取用户的推荐码*/
+	$.ajax({
+		url: Helper.basePath+'member/share.htm',
+		type: 'POST',
+		dataType: 'json',
+		xhrFields: {
+      withCredentials: true
+   	}
+	})
+	.done(function(data) {
+		var myfriends = JSON.parse(data);
+		/*微信分享函数调用*/
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title : '我正在宜泉资本平台理财，邀请你一起加入',
+			desc : '新手专享：10000元体验金+累计998元现金券大礼包',
+			link : Helper.webPath+'/src/base/share_register.html?un='+myfriends.recommendCode,
+			imgUrl : Helper.webPath+'/images/share_200.jpg',
+			successEvt:function(){
+				//
+			},
+			cancelEvt:function(){
+				//
+			}
+		});
+	})
+	.fail(function() {
+		console.log("error");
+	});
+</script>
+</body>
+</html>

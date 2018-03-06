@@ -1,0 +1,294 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+
+/*注册*/
+.container{background: #ffd5ab;}
+.container1{background: #de353b;}
+img{vertical-align: bottom;
+vertical-align: top;}
+.re .form{
+	padding: 40px 15px 0 15px;
+}
+.c4e{color: #4e73b4 !important;}
+/*.one,.two{background: #ffd5ab;}
+.one1,.two1{background:#de353b;}*/
+.cff{color: #fff !important;}
+.re .inp_phone,.re .inp_psw,.re .active .inp_phone,.re .active .inp_psw{
+	flex:auto;
+	border:#ff7700 2px solid;
+	height: 45px;
+	padding-left: 40px;
+	-webkit-appearance:none;
+}
+
+.re .active .inp_phone,.re .active .inp_psw{
+	border:#f70 2px solid;
+}
+.re .border2{
+	border:#ff7700 2px solid;
+	background: #fff;
+}
+.re .btn_next{
+	width: 100%;
+	height: 46px;
+	background: #1e82ff;
+	color:#fff;
+	margin-top:26px;
+	border-radius:5px;
+	-webkit-appearance:none;
+}
+.re .link_login{
+	width: 100%;
+	margin-top: 60px;
+}
+.re .logo_box{
+	width:27%;
+	margin:0 auto;
+}
+.re .icon_user,.re .icon_psw,.re .icon_yqm,.re .icon_img,.re .icon_tell{
+	position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 21px; 
+  height: 30px;
+  background-size: 100% 100%!important;
+}
+.re .icon_user{
+	background: url(images/icon_phone.png) no-repeat center center;
+}
+/*.re .page .active .icon_user{
+	background:url(../images/icon_user.png) no-repeat center center;
+}*/
+.re .icon_psw{
+	background:url(images/icon_psw.png) no-repeat center center;
+}
+.re .icon_img{
+	background:url(images/icon_picture_code.png) no-repeat center center;
+}
+.re .icon_tell{
+	background:url(images/icon_phone_code.png) no-repeat center center;
+}
+/*.re .page .active .icon_psw{
+	background:url(../images/icon_psw.png) no-repeat center center;
+}*/
+.re .icon_yqm{
+	background: url(images/icon_picture_code.png) no-repeat center center;
+}
+.re .page .active .icon_yqm{
+	background:url(../images/icon_yq.png) no-repeat center center;
+}
+.re .two {
+	padding: 0 15px;
+}
+.re .eye{
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 40px;
+  height: 1.5rem;
+  background: url(/src/activity/headlines/css/images/icono.png);
+  background-size: 100% 100%;
+}
+.re .clear_psw{
+  position: absolute;
+  right: 100px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(/src/activity/headlines/css/images/clear_text.png);
+  background-size: 100% 100%;
+}
+.re .clear_phone{
+  position: absolute;
+  right: 60px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(/src/activity/headlines/css/images/clear_text.png);
+  background-size: 100% 100%;
+}
+.re .eye.eye_open{
+  background: url(/src/activity/headlines/css/images/iconc.png);
+  background-size: 100% 100%;
+}
+.re .two .btn_sub{
+	width: 100%;
+	height: 46px;
+	background: #1e82ff;
+	color:#fff;
+	margin-top:26px;
+	border-radius:5px;
+}
+.re .two .code>input[type="text"]{
+	flex:6 0 0px;
+	border-radius: 0px;
+	border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  padding-left: 40px;
+}
+.re .two .code .btn_getcode{
+	flex:2 0 0;
+	height: 45px;
+	line-height: 45px;
+	background: #1e82ff;
+	color:#fff;
+	text-align: center;
+	border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.re .two .inp_yqm{
+	flex:auto;
+	height: 45px;
+	border:#e5e5e5 1px solid;
+	border-radius: 5px;
+	padding-left: 15px;
+	box-sizing:border-box;
+	padding-left: 40px;
+}
+.re .icon_clear{background:url(/src/activity/headlines/css/images/clear_text.png)no-repeat ;position: absolute;right: 12px;top: 15px;background-size:100% 100%;width: 18px;height: 18px;}
+/*分享注册*/
+.sr .btn_register{
+	width: 60%;
+	height: 46px;
+	    background: url(/src/activity/headlines/css/images/btnbg.jpg)repeat-x;
+    background-size: 100% 100%;
+	color:#fff;
+	margin: 30px auto;
+	display: block;
+	border-radius:5px;
+}
+.sr .btn_register1{
+	width: 60%;
+	height: 46px;
+	    background: url(/src/activity/headlines/css/images/btnbg1.png)repeat-x;
+    background-size: 100% 100%;
+	color:#fff;
+	margin: 30px auto;
+	display: block;
+	border-radius:5px;
+}
+.sr .two .code .btn_getcode{
+	flex:2 0 0;
+	height: 20px;
+	line-height: 20px;
+	background:#ff7700;
+	color:#fff;
+	text-align: center;
+	border-radius: 20px;
+	padding: 5px;
+	margin: 8px;
+}
+.sr .form {
+  padding: 20px 15px 0 15px;
+}
+.sr .color01{
+	color:#8abeff;
+}
+.sr .two .code input[type="button"] {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  text-align:center;
+}
+.sr .two .code>input[type="text"] {
+  flex:6 0 0px;
+	border-radius: 0px;
+  padding-left: 40px;
+}
+.sr .picture_code_img{
+	flex:2 0 0;
+	height: 33px;
+	color:#fff;
+	padding: 7px;
+}
+.re .active .inp_phone,.re .active .inp_psw{
+	border:#f70 2px solid;
+}
+.btnlink{position: relative;height: 0;width: 100%;}
+.btnlinka{width: 30%;position: relative;height: 60px;left: 0;top: -15px;display: block;z-index: 9;}
+.rightget{width: 60%;position: relative;height: 60px;left: 36%;top: -40px;display: block;z-index: 9;}
+.rightget1{width: 60%;position: relative;height: 60px;left: 20%;top: -93px;display: block;z-index: 9;}
+/*util相关*/
+.util_alert_bg{
+	position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity:0.6;
+}
+.weui_dialog {
+  position: fixed;
+  z-index: 13;
+  width: 76%;
+  top: 30%;
+  left: 12%;
+  background-color: #fafafc;
+  text-align: center;
+  border-radius: 3px;
+}
+.weui_dialog_hd {
+  padding: 1.2em 0 .5em;
+}
+.weui_dialog_title {
+    font-weight: 400;
+    font-size: 17px;
+}
+.weui_dialog_bd {
+  padding: 30px 30px 20px 30px;
+  color: #888;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: center;
+}
+.weui_dialog_ft {
+  position: relative;
+  line-height: 42px;
+  border-top:#e5e5e5 1px solid;
+  display: flex;
+}
+.weui_btn_dialog.primary:nth-child(2) {
+  color: #1e82ff;
+  border-left:#e5e5e5 1px solid;
+}
+.weui_dialog_ft a {
+  display: block;
+  flex: 1;
+  text-decoration: none;
+  color:#1e82ff;
+}
+.layer_bg{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	background: #fff;
+	z-index: 1000;
+	opacity: 0;
+}
+.util_toast_box{
+	position: fixed;
+	width: 100%;
+	z-index: 111111;
+    bottom: 50%;
+    left: 0;
+	display: flex;
+	justify-content:center;
+	transition:opacity 0.5s;
+}
+
+.util_toast{
+  max-width: 80%;
+  padding:10px;
+  background: #000;
+  opacity:0.6;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.errorphone{width: 80%;}.errorphone1{width:55%;}.errorphone2{width: 55%;}.errorphone3{width: 80%;}
+.errortip{color: red;position: absolute;top:5px;font-size: 0.875rem;background: #fff;height:40px;line-height: 40px;left: 40px;}

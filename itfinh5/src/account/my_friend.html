@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>拼人脉，攒财运！</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+<style>
+.imgcom{width: 100%;clear: both;height: auto;}
+.imgcom img{width: 100%;}
+.time{height:0px;width:100%;position:relative;top:-17px;text-align:center;}
+.time span{color:#ffc0bd;z-index:99;font-size:0.8rem;height:30px;line-height:30px;}
+.gz{height:0px;width:100%;position:relative;top:-235px;}
+.gz p{z-index:99;font-size:0.7rem;display:block;position:relative;width:70%;margin-left:-35%;left:50%;line-height: 0.9rem;}
+.e50{color:#e5004f;}
+.btn{height:0px;width:100%;position:relative;}
+.btn a{width:90%;height:80px;border-radius:50px;display:block;position:relative;left:50%;margin-left:-45%;z-index:9;}
+.btn1{top:-130px;}
+.colorfb{color: #fbdb30;font-size: 1.5rem;}
+img{vertical-align: top;}
+.cyjl{width: 80%;position: absolute;top:23rem;left: 50%;margin-left: -40%;text-align: center;color: #FFFFFF;font-family: "微软雅黑";line-height: 26px;}
+</style>
+<body >
+
+	@@include('../include/head.html',{
+"title":"拼人脉，攒财运！",
+"isback":true
+})
+<div id="myFriends">
+<div>
+	<div class="img1 imgcom">
+		<img alt="" src="/images/pin_01.jpg">
+	</div>
+	<div class="img2 imgcom">
+		<img alt="" src="/images/pin_02.jpg">
+	</div>
+	
+	<div class="img3 imgcom">
+		<img alt="" src="/images/pin_03.jpg">
+		 
+	</div>
+	<div class="img4 imgcom">
+		<img alt="" src="/images/pin_04.jpg">
+	</div>
+	<div class="img5 imgcom">
+		<img alt="" src="/images/pin_05.jpg">
+	</div>
+	<div class="img6 imgcom">
+		<img alt="" src="/images/pin_06.jpg">
+	</div>
+	<div class="img7 imgcom">
+		<img alt="" src="/images/pin_07.jpg">
+			<div class="btn btn1" >
+		 	<a class="share" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.xianquan.yiquan"></a>
+		 </div>
+	</div>
+	<div class="img8 imgcom">
+		<img alt="" src="/images/pin_08.jpg">
+	</div>
+	<!--<input type="hidden" id="recommendCode" name="recommendCode" :value="data.recommendCode" v-model="data.recommendCode"/>--> 
+	<!-- <div id="recommendCode" >{{data.recommendCode}}</div>-->
+</div>
+<div class="cyjl">
+	<p style="font-size: 0.875rem;">恭喜你超越平台<span class="colorfb" id="winUserPercentage"></span>的用户<br />
+		在宜泉资本平台<br />
+		共邀请好友<span class="colorfb" id="totalPersons"></span>人<br />
+		共获得返利累计<span class="colorfb" id="totalRebate"></span>元
+	</p>
+</div>
+</div>
+
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+
+<script>
+	vms.cFriend();
+	$(function(){
+		if(title=="no"){
+			$("header").hide();
+		}
+	});
+  $.ajax({
+		url: Helper.basePath+'member/share.htm',
+		type: 'POST',
+		dataType: 'json',
+		xhrFields: {
+      withCredentials: true
+   	}
+	})
+	.done(function(data) {
+		var myfriends = JSON.parse(data);
+		/*微信分享函数调用*/
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title : '拼人脉，攒财运！',
+			desc : '我是宜泉资本平台邀请达人，动动手指邀请好友，即可获得现金返利，一起加入我们吧！',
+			link : Helper.webPath+'/src/base/share_register.html?un='+myfriends.recommendCode,
+			imgUrl : Helper.webPath+'/images/share_friend.jpg',
+			successEvt:function(){
+				//
+			},
+			cancelEvt:function(){
+				//
+			}
+		});
+	})
+	.fail(function() {
+		console.log("error");
+	});
+</script>
+</body>
+</html>

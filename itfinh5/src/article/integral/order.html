@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>确认兑换</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+		
+		@@include('../../include/head.html',{
+		"title":"确认兑换",
+		"isback":true
+	})
+	<div class="index_box pad-b-60" id="order" v-cloak>
+		<div class="bg-white mar-b-10" v-if="orderData.goodsInfo.goodsType=='PHYSICALGOODS'">
+			<div class="order_address disflex alignitem_c justify_sb" v-if="addressGetData!==''" @click="addres">
+				<span  >
+					<p class="disflex alignitem_c justify_sb">
+						<span class="c3 fs28">收货人:<font v-text="addressGetData.receiver"></font></span>
+						<span class="c3 fs28" v-text="addressGetData.mobile"></span>
+					</p>
+					<p class="fs28 c3">收货地址:{{addressGetData.provinceName}}{{addressGetData.cityName}}{{addressGetData.areaName}}，{{addressGetData.zipCode}}</p>
+				</span>
+				<span ><img src="/skins/default/images/back.png"/></span>
+			</div>
+			<p class="p-t" v-else><span>收货地址</span><span style="float:right;display: block" @click="addres">请选择收货地址</span></p>
+		</div>
+		<div class="bg-white">
+			<div class="order disflex alignitem_c b_boder">
+				<span class="list_class1"><img style="height:90px;" v-bind:src="orderData.goodsInfo.photo"/></span>
+				<span class="list_class2 fs28">
+					<p class="c6 pad-l-12 " v-text="orderData.goodsInfo.goodsName"></p>
+					<p class="c9 pad-l-12" v-text="orderData.goodsProperties"></p>
+					<p>&nbsp;</p>
+					<p class="disflex alignitem_c justify_sb ">
+						<span class="c9 mar-l-10">积分兑换：<span v-text="orderData.needIntegralNum"></span></span>
+					</p>
+					<!-- <p class="disflex alignitem_c justify_sb ">
+						<span class="cblue mar-l-10">市场价：<span v-text="orderData.goodsInfo.settlementPrice"></span></span>
+					</p> -->
+				</span>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb order_dh b_boder">
+				<span class="c3 fs30">兑换数量</span>
+				<span class="c6 fs28" v-text="orderData.goodNumber"></span>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb order_dh b_boder">
+				<span class="c3 fs30">规格</span>
+				<span class="c6 fs28" v-text="orderData.goodsProperties"></span>
+			</div>
+		</div>
+		<div class="bg-white" v-if="orderData.goodsInfo.goodsType=='PHYSICALGOODS'">
+			<div class="disflex alignitem_c justify_sb order_dh b_boder">
+				<span class="c3 fs30">运费</span><!-- v-text="orderData.expressFee" -->
+				<span class="c6 fs28">0</span>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb order_dh b_boder">
+				<span class="c3 fs30 lcs">备注：</span>
+				<textarea  class="c6 fs28 lcc message_leaft pad-t-15" id="message_txt" placeholder="给商家留言" rows="1"></textarea>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb order_dh ">
+				<span class="c3 fs30">合计：<span class="cf5"><font v-text="orderData.needIntegralNum*orderData.goodNumber"></font> 积分</span></span>
+			</div>
+		</div>	
+		<div class="">
+			<div class="disflex alignitem_c justify_sb order_dh ">
+			</div>
+		</div>
+		<a class="btn_rightnow text-center" @click="subtForm">立即兑换</a>
+		
+		</div>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/toexchenge.js"></script>
+		<style type="text/css">
+			.p-t{
+				padding: 10px;
+			}
+		</style>
+	</body>
+</html>

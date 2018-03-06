@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>我的积分</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+		
+		@@include('../../include/head.html',{
+		"title":"我的积分",
+		"isback":true
+	})
+	<div class="index_box" id="integral" v-cloak>
+		<div class="bg-white">
+			<div class="order_detail disflex alignitem_c justify_sb">
+				<span></span>
+				<a class="cblue fs30 rule" href="rule.html" title="积分规则"><img src="/images/rule.png" /> &nbsp;积分规则</a>
+			</div>
+			<div class=" order_jf  disflex alignitem_c justify_c">
+				<div class="justify_c text-center">
+					<p class="c3 fs60 alignitem_c" v-text="datas.integral"></p>
+					<p class="c6 fs28 alignitem_c">积分</p>
+				</div>
+				
+			</div>
+			<!-- <div class="order_detail disflex alignitem_c justify_sb ">
+				<a class="c6 fs30 lcs pad-l-20 cblue" href="/src/article/integral/index.html"><img src="/images/shop.png"/>&nbsp;积分商城</a>
+				<a class="c6 fs30 lcs cblue" href="/src/article/integral/my_order.html"><img src="/images/order.png"/>&nbsp;我的订单</a>
+			</div> -->
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c  b_boder justify_c pad-t-10 pad-b-10 mar-t-20">
+				<span class="c9 fs30">
+					积分明细
+				</span>
+			</div>
+			<div class="order_detail disflex alignitem_c justify_sb b_boder" v-for="item in integralData">
+				<span class="c6 fs28">
+					<p class="fs30 c3" v-text="item.recordDesc"></p>
+					<p class="fs24 c9">时间： <font v-text="item.getTime"></font></p>
+				</span>
+				<template v-if="item.interGalTransType==='GET'">
+					<span class="cblue fs30"  v-text="'+'+item.intergalNum+''"></span>
+				</template>
+
+				<template v-else="item.interGalTransType==='USE'">
+					<span class="fs30"  v-text="'-'+item.intergalNum+''"></span>
+				</template>
+
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">	
+		</div>
+		
+	</div>
+
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/my_integral.js"></script>
+	</body>
+</html>

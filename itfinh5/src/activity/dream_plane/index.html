@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>梦想理财计划——理财有方，梦想不慌</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/src/activity/dream_plane/css/base.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<script>
+	(function(para) {
+			  var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script',x = null,y = null;
+			  w['sensorsDataAnalytic201505'] = n;
+			  w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};
+			  var ifs = ['track','quick','register','registerPage','registerOnce','clearAllRegister','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','trackLink','clearAllRegister','getAppStatus'];
+			  for (var i = 0; i < ifs.length; i++) {
+			    w[n][ifs[i]] = w[n].call(null, ifs[i]);
+			  }
+			  if (!w[n]._t) {
+			    x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+			    x.async = 1;
+			    x.src = p;
+			    y.parentNode.insertBefore(x, y);
+			    w[n].para = para;
+			  }
+			})({
+			  sdk_url: 'https://static.sensorsdata.cn/sdk/1.8.11/sensorsdata.min.js',
+			  name: 'sa',
+			  server_url: 'https://data.ekeyfund.com:4006/sa?project=' + Helper.settingPath
+			});
+			sa.quick('autoTrack');
+		 
+	var current_url = Helper.webPath + '/src/activity/dream_plane/index.html';
+	 function createBg() {
+        $('body').append('<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:2"></div>');
+    }
+    function showGz() {
+    	sa.track('int_click',{campaignName:'9月梦想计划',lpUrl:current_url,elementId:$(".btn-rule-box").attr('id'),elementContent:'活动规则',elementName:'活动规则'});
+        createBg();
+        $('.modal-rule').show();
+    }
+    function hideGz() {
+        $('.modal-rule').hide();
+        $('#modal-bg').remove();
+    }
+    $('.btn-rule-box').bind('click', function() {
+        showGz();
+    })
+    $('.btn-close').bind('click', function() {
+        hideGz();
+    })
+</script>
+<style type="text/css">
+	.modal-rule {
+    position: fixed;
+    width: 86%;
+    height: 70%;
+    left: 7%;
+    top: 10%;
+    z-index: 9;
+}
+.modal-rule .txt-cont {
+    height: 80%;
+    background: #fff;
+    padding: 15px;
+    line-height: 2.2;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    border-radius: 15px;
+}
+.modal-rule .txt-gz {
+    height: 90%;
+    overflow: auto;
+}
+.btn-rule-box {
+    width: 23%;
+    height: 40px;
+    position: absolute;
+    top: 72px;
+    right: 20px;
+}
+@media only screen and (min-width: 400px) and (max-width:640px) {
+	.btn-rule-box {
+    width: 23%;
+    height: 40px;
+    position: absolute;
+    top: 82px;
+    right: 20px;
+}
+}
+.dreamimg{width: 100%;}
+</style>
+<body class="re sr">
+	
+	<div class="container1" id="re" v-cloak>
+		<img src="/src/activity/dream_plane/images/dream_01.jpg"  class="dreamimg"/>
+		<div class="relative">
+			<img src="/src/activity/dream_plane/images/dream_02.jpg" class="dreamimg"/>
+			<span class="btn-rule-box" id="btn-rule-box" onclick="showGz()"></span>
+		</div>
+		<img src="/src/activity/dream_plane/images/dream_03.jpg" class="dreamimg"/>
+		<div class="relative iosad">
+			<img src="/src/activity/dream_plane/images/dream_04.jpg" class="dreamimg"/>
+			<span class="yblinkbtn yblinkbg1 ybtnL" id="ybtnL1" @click="ybLink1"></span>
+			<span class="yblinkbtn yblinkbg2 ybtnL" id="ybtnL2"  @click="ybLink2"></span>
+			<span class="yblinkbtn yblinkbg3 ybtnL" id="ybtnL3"  @click="ybLink3"></span>
+		</div>
+		<img src="/src/activity/dream_plane/images/dream_05.jpg" class="dreamimg"/>
+		<div class="relative iosad">
+			<img src="/src/activity/dream_plane/images/dream_06.jpg" class="dreamimg"/>
+			<span class="yblinkbtn1 yblinkbg4 ybtnL" id="ybtnL4"  @click="ybLink4"></span>
+			<span class="yblinkbtn1 yblinkbg5 ybtnL" id="ybtnL5"  @click="ybLink5"></span>
+		</div>
+		
+		<div class="modal-rule hide">
+			<div class="clearfix">
+				<img src="/src/activity/dream_plane/images/btn_close.png" class="btn-close pull-right" alt=""
+					 width="44" height="44" onclick="hideGz()"/>
+			</div>
+			<div class="txt-cont">
+				<h3 class="text-center">活动规则</h3>
+				<div class="txt-gz">
+				一、2017年10月19日-11月5日，通过约标并成功投资相应金额的投资用户，即可免费获得相应奖品，投资金额为实际支付金额，不包含体验金、现金券、加息券。<br/>
+					<img src="images/aword_tip.jpg" alt="">
+		二、本次活动仅限通过约标方式的用户参与，其他线上产品不参与此次活动； <br/>
+					三、如出现恶意注册，故意刷量，商业贿赂，非正常投资等任何异常行为，将扣除活动期间所有奖励；
+		<br/>
+					四、以上奖品兑换码均以短信的方式在投资成功后10个工作日内发送至投资用户所绑定的手机。京东E卡请登录/注册【京东】使用，兑换流程：进入京东首页-登录/注册京东-点击“我的京东”-点击“京东卡/E卡”-输入京东E卡卡密-输入验证码-绑定；携程礼品卡请登录/注册【携程】使用，兑换流程：进入携程礼品卡官网-登录/注册携程-点击礼品卡账户“领用礼品卡”-输入券号、密码-立即领用；<br/>
+
+					五、奖品一经发放，不可退换，不可折现，请用户谨慎操作；
+		<br/>
+		六、奖品兑换过程中如有任何疑问可拨打客服热线：400-892-9898。<br/>
+		<br/>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/dream_plane/js/activity.js"></script>
+	<script type="text/javascript">
+		var nowurl = window.location.href;
+			nowurl=encodeURI(nowurl);
+  		var pid=util.getRequest(nowurl,"pid");
+  		var userid=util.getRequest(nowurl,"userid");
+	var wxshare  = {};
+	var appId = '';
+		$.ajax({
+			url: Helper.basePath+'weixinCore/getjsapiTikcet.htm',
+			type: 'POST',
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			},
+			async:false,
+			data: {
+			url : window.location.href
+			}
+		})
+		.done(function(data) {
+			var data = JSON.parse(data);
+			//console.log(data);
+			wxshare = data;
+		})
+		.fail(function() {
+			console.log("error");
+		})
+
+	wx.config({
+		debug : false, //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+		appId : wxshare.appId,
+		timestamp :  wxshare.timestamp,
+		nonceStr :  wxshare.nonceStr,
+		signature :  wxshare.signature,
+		jsApiList : [ //需要使用的网页服务接口
+		      		'onMenuShareTimeline',
+		      		'onMenuShareAppMessage',
+		    		'showMenuItems',
+		    		'hideMenuItems'
+		]
+	});
+
+	wx.ready(function() {
+		// 批量隐藏菜单项
+		wx.hideMenuItems({
+			menuList : [ 'menuItem:readMode', // 阅读模式
+			'menuItem:copyUrl',// 复制链接
+			'menuItem:openWithSafari', 'menuItem:share:email',
+					'menuItem:openWithQQBrowser', 'menuItem:delete',
+					'menuItem:share:qq', 'menuItem:share:weiboApp',
+					'menuItem:share:facebook', 'menuItem:share:QZone',
+					'menuItem:exposeArticle', 'menuItem:share:appMessage',
+					'menuItem:share:timeline', 'menuItem:setFont' ],
+			success : function(res) {
+
+			},
+			fail : function(res) {
+
+			}
+		});
+		// 批量显示菜单项
+		wx.showMenuItems({
+			menuList : [
+			"menuItem:share:timeline",//分享到朋友圈
+			"menuItem:share:appMessage",//分享给好友
+			'menuItem:favorite', // 收藏
+			'menuItem:profile', // 查看公众号（已添加）
+			'menuItem:addContact' // 查看公众号（未添加）
+			],
+			success : function(res) {
+			},
+			fail : function(res) {
+			}
+		});
+
+	});
+
+    wx.ready(function() {
+			wx.onMenuShareAppMessage({
+				title : '梦想理财计划——理财有方，梦想不慌',
+				desc : '梦想秒实现，帮你轻松清空购物车',
+				link : Helper.webPath+'/src/activity/dream_plane/index.html?pid='+pid+'&userid='+userid,
+				imgUrl : Helper.webPath+'/src/activity/dream_plane/images/share.jpg',
+				success : function(res) {
+						window.location.href=Helper.webPath+'/src/activity/dream_plane/index.html?pid='+pid+'&userid='+userid;
+
+							},
+							cancel : function(res) {
+								alert('已取消');
+							}
+						});
+				//2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+				wx.onMenuShareTimeline({
+					title : '梦想理财计划——理财有方，梦想不慌',
+					link : Helper.webPath+'/src/activity/dream_plane/index.html?pid='+pid+'&userid='+userid,
+					imgUrl : Helper.webPath+'/src/activity/dream_plane/images/share.jpg',
+					success : function(res) {
+							window.location.href=Helper.webPath+'/src/activity/dream_plane/index.html?pid='+pid+'&userid='+userid;
+							},
+							cancel : function(res) {
+								alert('已取消');
+							}
+						});
+			});
+</script>
+	<script>
+		vm.re();
+	</script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3e10643c7c1585fbd50bdd693594cd33";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</html>

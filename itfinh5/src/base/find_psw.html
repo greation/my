@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>忘记密码</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/base.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="re fp bg-white">
+	@@include('../include/head.html',{
+	"title":"忘记密码",
+	"isback":true
+})
+<div class="container" id="fp">
+	<div class="form page" v-show="isStep">
+		<div class="disflex relative" :class="{active:inPsActive[0]}"><i class="icon_user"></i>
+			<input type="tel" placeholder="请输入手机号" maxlength="11" class="inp_phone" @focus="inpFocus(0)" v-model="inpPhone">
+			<input type="button" v-model="countTime" class="get_code fs28" :class="{ 'bg-gray': isPhoneCode }" @click="getPhoneCode">
+		</div>
+		<div class="disflex relative mar-t-10" :class="{active:inPsActive[1]}">
+			<i class="icon_psw"></i>
+			<input type="tel" placeholder="请输入验证码" class="inp_psw" @focus="inpFocus(1)" v-model="phoneCode"  maxlength="4">
+		</div>
+		<div class="">
+			<input type="button" value="下一步" class="btn_next" @click="nextStep">
+		</div>
+	</div>
+
+	<div class="form two page" v-show="!isStep">
+		<div class="code disflex justify_sb bg-white relative" :class="{active:inPsActive[2]}">
+			<i class="icon_psw"></i>
+			<input type="password" placeholder="6-16位数字字母组合，区分大小写" class="inp_psw outline_no" v-model="inpPsw01" @focus="inpFocus(2)" maxlength="16">
+		</div>
+		<div class="yqm_box disflex mar-t-10 relative" :class="{active:inPsActive[3]}">
+			<i class="icon_psw"></i>
+			<input type="password" placeholder="请再次输入密码" class="inp_psw" v-model="inpPsw02" @focus="inpFocus(3)" maxlength="16">
+		</div>
+		<div class="">
+			<input type="button" value="完成" class="btn_sub" @click="findPswMain">
+		</div>
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/base.js"></script>
+<script>
+	vms.findPsw();
+</script>
+</body>
+</html>

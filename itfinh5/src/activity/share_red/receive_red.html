@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>258元现金券等你来抢</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/share_red/css/activity.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='/js/act_sensore_sdk.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '258元现金券等你来抢',
+			desc: '一起来抢红包雨~',
+			link: window.location.href,
+			imgUrl: Helper.webPath + '/src/activity/share_red/images/wxshare2.jpg',
+			successEvt: function () {
+				//window.location.href = '/src/activity/share_red/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+</head>
+<style>
+	.link_downapp{
+		top:44%;
+	}
+</style>
+<body>
+	<div class="container" id="receive">
+		<div class="imgs">
+			<img src="images/receive_01.jpg" alt="">
+			<img src="images/receive_02.jpg" alt="">
+			<img src="images/index_05.jpg" alt="">
+			<img src="images/index_06_02.jpg" alt="">
+			<div class="reward_box fs34 hide">
+				恭喜您，获得
+				<span class="text_style01" v-text="reward[randomNum]"></span>
+			</div>
+			<div class="receive_form">
+				<img src="images/rule_box_imgt.jpg" alt="">
+				<div class="form_box" v-show="!isEmpty">
+					<div class="relative">
+						<input type="text" class="inp_phone" placeholder="请输入手机号" v-model="inp_phone" maxlength="11">
+						<span class="error_tip hide"></span>
+					</div>
+					<input type="button" class="btn_submit" value="立即领取" @click="receiveRed" id="receive_reward">
+				</div>
+				<div class="finish_box relative" v-show="isEmpty">
+					<img src="images/finished.jpg" class="show" alt="">
+					<a href="http://m.ekeyfund.com/Website/download-app.jsp" class="link_downapp" id="download"></a>
+				</div>
+				<img src="images/rule_box_img.jpg" alt="">
+			</div>
+
+			<img src="images/index_07.jpg" alt="">
+			<div class="rule_box">
+				<div class="text_rule" v-html="ruleData">
+					
+				</div>
+				<img src="images/rule_box_img.jpg" alt="">
+			</div>
+			<img src="images/index_08.jpg" alt="">
+		</div>
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="js/activity.js"></script>
+	<script>
+		vms.receive();
+		$('.error_tip').click(function(){
+			$(this).hide().siblings('input').focus();
+		})
+	</script>
+</body>
+</html>

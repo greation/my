@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+</head>
+<body>
+	@@include('../include/head.html',{
+		"title":"个人中心", <!-- title名字 -->
+		"isback":"false"  <!-- 是否显示后退按钮 -->
+	})
+	
+	<!-- 这里写网页内容 -->
+
+	@@include('../include/foot.html',{
+		"curMenu":"1"  <!-- 当前菜单下标，从0开始，比如“我的”为3 -->
+	})
+</body>
+</html>

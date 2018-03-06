@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>玩转积分</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<body>
+	<style>
+		.top_nav{position:fixed;top:0;-webkit-transform: translateZ(0);border-bottom: 1px solid #E5E5E5;}
+	</style>
+		@@include('../../include/head.html',{
+		"title":"玩转积分",
+		"isback":true
+	})
+	<div class="" id="list">
+			<div class="list_nav disflex alignitem_c text-center fs28" id="to_fiex">
+				<a class="jf_class" v-bind:class="{ ' cblue': cls==''}" @click="tabNav('')">全部</a>
+				<a class="jf_class c9" v-bind:class="{ ' cblue': cls=='WTDGXD'}" @click="tabNav('WTDGXD')">食品生鲜</a>
+				<a class="jf_class c9" v-bind:class="{ ' cblue': cls=='WETSAX'}" @click="tabNav('WETSAX')">家具用品</a>
+				<a class="jf_class c9" v-bind:class="{ ' cblue': cls=='BVCFGS'}" @click="tabNav('BVCFGS')">电子商品</a>
+				<a class="jf_class c9" v-bind:class="{ ' cblue': cls=='IUTBDS'}" @click="tabNav('IUTBDS')">虚拟卡券</a>
+			</div>
+		<div class="list_content bg-white mar-t-10">
+			<div class="jf_list disflex alignitem_c " v-for="item in listData">
+				<span class="list_class1">
+					<a v-bind:href= "'/src/article/integral/goods_detail.html?id='+item.id+''">
+						<img :src="item.photo"/>
+					</a>
+				</span>
+				<span class="list_class2 fs28" @click="urlId(item.id)">
+					<p class="c6 pad-l-12 " v-text="item.goodsName"></p>
+					<p class="cblue pad-l-12">兑换积分：<font v-text="item.integral"></font></p>
+					<p class="disflex alignitem_c justify_sb ">
+						<span class="cf5 mar-l-10">市场价：<span class="thrown" v-text="item.settlementPrice"></span></span>
+						<span class="c9 mar-r-10">已兑 <font v-text="item.exchangeAmount"></font></span>
+					</p>
+				</span>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+	</div>
+	<script src="/js/list.js"></script>
+	<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png"/></div>
+
+<script>
+	window.onload=function(){
+		var oTop = document.getElementById("toTop");
+		var list_nav =document.getElementById("to_fiex");
+  		var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  		var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  		window.onscroll = function(){
+    		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(scrolltop>100){
+				oTop.style.display ="block";
+				list_nav.classList.add("top_nav");
+			}else{
+				oTop.style.display ="none";
+				list_nav.classList.remove("top_nav");
+			}
+  		}
+  		oTop.onclick = function(){
+    		document.documentElement.scrollTop = document.body.scrollTop =0;
+  		}
+	}
+	
+</script>
+	</body>
+</html>

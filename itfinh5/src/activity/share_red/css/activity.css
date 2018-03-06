@@ -1,0 +1,112 @@
+.imgs{
+  max-width: 750px;
+  margin:auto;
+}
+.imgs>img{
+  display: block;
+}
+.rule_box,.form_box{
+  background: url(images/rule_box_bg.jpg);
+  background-size:100% 1px;
+}
+.text_rule{
+  word-wrap: break-word;
+  width: 90%;
+  margin-left: 5%;
+  padding: 12px;
+  box-sizing: border-box;
+}
+.link_invest_list{
+  position: absolute;
+  width: 65%;
+  height: 44%;
+  top: 0px;
+  left: 17%;
+}
+.link_downapp{
+  position: absolute;
+  width: 81%;
+  height: 33%;
+  top: 32%;
+  left: 9%;
+}
+.reward_box{
+  width:100%;
+  background: #aa2828;
+  color:#fff;
+  text-align: center;
+  padding-bottom: 12px;
+}
+.text_style01{
+  color:#fff100;
+  font-size: 1.3125rem; /* 42px */
+}
+.receive_form>img{
+  display: block;
+}
+.form_box{
+  box-sizing: border-box;
+  padding:5% 8%;
+}
+.inp_phone,.btn_submit{
+  width:100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+input.inp_phone{
+  height: 44px;
+  line-height: 44px;
+  border:#aa2828 3px solid;
+  padding-left: 20px;
+}
+input.btn_submit{
+  height: 44px;
+  background: #ff0000;
+  color:#fff;
+  margin-top:20px;
+}
+.receive_list_box{
+  background: url(images/rule_box_bg.jpg);
+  background-size:100% 1px;
+}
+.list_box{
+  width:90%;
+  margin-left:5%;
+  padding:10px 15px;
+  box-sizing:border-box;
+}
+.list_box li{
+  width:100%;
+  height:30px;
+  padding-left:15px;
+  box-sizing:border-box;
+  color:#aa2828;
+  line-height: 30px;
+  background: #ffdbc9;
+  margin-bottom: 10px;
+}
+.list_box li.list_item{
+  display: flex;
+}
+.list_box li .phone{
+  flex:8;
+}
+.list_box li .text_reward{
+  flex:4;
+}
+.kawayi{
+  position: absolute;
+  right: 1%;
+  bottom: 0;
+  width: 51px;
+}
+.error_tip{
+  position: absolute;
+  width:85%;
+  height:36px;
+  line-height: 36px;
+  left:18px;
+  top:4px;
+  background: #fff;
+  color:#f00;
+}

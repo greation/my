@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>消息中心</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/index.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"消息中心",
+		"isback":true
+	})
+		<div class="mesase_list bg-white" id="messageslist" v-cloak>
+			<div class="message_in">
+				<a href="notice.html">
+					<div class="mesase_list_d">
+						<div class="msg_icon text-center">
+							<img src="/skins/default/images/message_icon1.png"/>
+							<!-- <i class="red_dote" v-if="data.noticeStatus ==='Y'"></i> -->
+						</div>
+						<div class="msg_name">
+							<div class="msg_name_d">
+								<span class="pull-left mar-l-10">平台公告</span>
+								<span class="pull-right c9 font00rem mar-t-5" v-text="data.noticeVo.publishTime">12-13</span>
+							</div>
+							<div class="msg_name_d ">
+								<span class="mar-l-10 c9 font01rem text_split" style="width: 90%;" v-text="data.noticeVo.title">正在加载...</span>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="message_tips.html"><!-- -->
+					<div class="mesase_list_d">
+						<div class="msg_icon text-center">
+							<img style="width: 70%;margin: 5px;" src="/skins/default/images/messge_icon.png"/>
+							<i class="red_dote" v-if="data.isLogin==='Y'& data.messageStatus ==='Y'"></i>
+						</div>
+						<div class="msg_name">
+							<div class="msg_name_d">
+								<span class="pull-left mar-l-10">消息提示</span>
+								<span class="pull-right c9 font00rem mar-t-5" v-text="data.messageVo.sendTime">12-13</span>
+							</div>
+							<div class="msg_name_d " :id="data.messageVo.messageId">
+								<span class="mar-l-10 c9 font01rem text_split" style="width: 90%;" v-text="data.messageVo.context">正在加载...</span>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			
+			
+		</div>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/index.js"></script>
+		<script>
+			ga.message();
+		</script>
+	</body>
+</html>

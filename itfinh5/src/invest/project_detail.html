@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>体验金标</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"体验金标",
+		"isback":true
+	})
+		<div class="pad-b-60" id="proDetail">
+			<div class="project_exhibition bg-white">
+				<div class="exhibition_title text-center">
+					<span class="yb_name fs34">体验金专享标</span>
+				</div>
+				<div class="exhibition_data">
+					<div class="exhibition_data_left">
+						<div class="cblue">
+							<span class="font05rem">6.8</span>%
+						</div>
+						<div class="c9">约定年化收益率</div>
+					</div>
+					<div class="exhibition_data_right">
+						<div class="cblue"> 
+							<span class="font05rem">3</span>
+							<span>天</span>
+						</div>
+						<div class="c9">投资期限</div>
+					</div>
+				</div>
+				
+			</div>
+			<input type="hidden" v-model="token" />
+			<div class="express bg-white">
+				<div class="express_name">
+					<div class="c3 fs34">产品介绍</div>
+				</div>
+				<div class="express_content">
+					<div class="c9 fs28">客户注册后可获得赠送的体验金红包, 内含平台赠送的体验金。体验标是平台设立的专门针对新注册未投资客户的投资体验产品，体验标不对接金融产品。目的是让新注册客户体验充值、投资、本息返回的理财流程，为投资金融产品做好准备。</div>
+				</div>
+			</div>
+			<div class="express bg-white">
+				<div class="express_name">
+					<div class="c3 fs34">产品说明</div>
+				</div>
+				<div class="express_content">
+					<div class="c9 fs28">1、适用人群：已注册但从未投资的所有类型投资人； 
+2、产品属性：不对接金融产品，发放平台福利的通道； 
+3、不支持现金券、加息券及预约投标；
+4、用户仅获得利息收益，体验金本金由平台回收。</div>
+				</div>
+			</div>		
+			<a class="invest_btn fs30 text-center" @click="expresInvest">立即投资</a>
+		</div>
+		
+		<script src="/js/invest.js"></script>
+		<script>
+			iv.expressB();
+		</script>
+	</body>
+</html>

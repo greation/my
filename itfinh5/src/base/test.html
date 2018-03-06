@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>分享注册</title>
+
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+	<body class="re sr bg-blue">
+	<h2>请求测试</h2>
+	</body>
+	<script>
+		$.ajax({
+			url: 'http://192.168.1.133:8091/member/getUser.htm',
+			type: 'POST',
+			dataType: 'json',
+			crossDomain:true,
+			xhrFields: {
+				withCredentials: true
+			},
+			header:{
+
+			}
+		})
+		.done(function(){
+
+		})
+	</script>
+</html>

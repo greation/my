@@ -1,0 +1,19 @@
+<header>
+	<div class="item back">
+	</div>
+	<div class="item title" id="title_label">@@title</div>
+	<div class="item operation"></div>
+</header>
+<script>
+$(function(){
+	var backArr = '@@isback'.split(';');
+	if(backArr[0]==='true'){
+		$('header .back').html('<a class="back_a show" href="javascript:history.go(-1)"><span class="icon_back">&nbsp;</span></a>');
+		if(backArr.length>1){
+			$('header .back').html('<a class="back_a show" href="'+backArr[1]+'"><span class="icon_back">&nbsp;</span></a>');
+		}
+	}
+})	
+</script>
+
+

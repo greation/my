@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>帮助中心</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="he">
+	@@include('../include/head.html',{
+		"title":"帮助中心",
+		"isback":true
+	})
+
+
+	<div class="container" id="he">
+		<div class="question mar-t-10 bg-white">
+
+			<template  v-for="(item,index) in data">
+				<div class="item disflex justify_sb alignitem_c pad-l-15 pad-r-15" @click="toggle(item)">
+					<span v-text="item.title"></span><span class="icon_jtright"></span>
+				</div>
+				<div class="result fs24 pad-15" v-show="item.show"><!--hide-->
+					<p class="c333" v-html="item.context"></p>
+				</div>
+			</template>
+
+		</div>
+	</div>
+
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.help();
+  $(function(){
+      if(title=="no"){
+          $("header").hide();
+      }
+  })
+	</script>
+</body>
+</html>

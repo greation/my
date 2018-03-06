@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>宜泉资本-新手指南</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/vue-resource.min.js"></script>
+		<script src="/js/public.js"></script>
+	<body>
+		@@include('../include/head.html',{ "title":"宜泉资本-新手指南", "isback":true })
+
+		<style>
+
+			 html, body {
+        position: relative;
+        height: 100%;
+        background: #fff;overflow-x: hidden;  }
+    .swiper-slide {  text-align: center;font-size: 18px;  background: #fff;  display: -webkit-box;  display: -ms-flexbox;  display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}
+			.container{width: 100%;	height: calc(100% - 44px);}
+			.containerh{width: 100%;height:100%;}
+			.swiper-slide img{height: 100%;width: 100%;}
+.guidimg img{ width: 100%;}
+.guid img{width: 60%;display: block;margin: 0 auto;}
+.minimg li{display: none;}
+.minimg li img{width: 90%;display: block;margin: 0 auto;}
+.active{display: block !important;}
+.guidimgb .swiper-slide img{width: 70%;display: block;margin: 0 auto;}
+.swiper-button-guidl{background-image: url(/images/guidl.png)}
+.swiper-button-guidr{background-image: url(/images/guidr.png);}
+.swiper-button-guidbl{background-image: url(/images/guidil.png);}
+.swiper-button-guidbr{background-image: url(/images/guidir.png);}
+.swiper-container .swiper-button-next,.swiper-container .swiper-button-prev {
+	 position: absolute;top: 50%;  width: 44px;  height: 44px;  margin-top: -22px;  z-index: 10;  cursor: pointer;-moz-background-size: 27px 44px;  -webkit-background-size: 27px 44px;  background-size: 44px 44px;  background-position: center;  background-repeat: no-repeat;
+}
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    opacity: 0;  cursor: auto;pointer-events: none;
+}
+.guidb{position: relative;margin: 30px 0;}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: -25px;
+    left: 0;
+    width: 100%;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #1e82ff;
+}
+.guidbtn{width:40%;height:60px;display: block;position: absolute;left: 50%;margin-left: -20%;bottom:50px;}
+		</style>
+<div class="relative guidimg">
+		<img src="/images/guidh_01.jpg" />
+</div>
+<div class="relative guidimg">
+		<img src="/images/guidh_02.jpg" />
+</div>
+<div class="relative guidimg">
+		<img src="/images/guidh_03.jpg" />
+</div>
+<div class="relative guidimg">
+		<img src="/images/guidh_04.jpg" />
+</div>
+<div class="relative guidimg">
+		<img src="/images/guidh_05.jpg" />
+</div>
+<div class="swiper-container" id="guid">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<span class="guidbtn" @click="rigister"></span>
+			<img src="/images/guidy1.png" />
+		</div>
+		<div class="swiper-slide">
+			<span class="guidbtn" @click="linkBank"></span>
+			<img src="/images/guidy2.png" />
+		</div>
+		<div class="swiper-slide">
+			<span class="guidbtn" @click="charge"></span>
+			<img src="/images/guidy3.png" />
+		</div>
+	</div>
+	<div class="swiper-button-prev swiper-button-guidl"></div>
+  <div class="swiper-button-next swiper-button-guidr"></div>
+</div>
+<div class="relative guid mar-t-20">
+		<img src="/images/guidh.jpg" />
+</div>
+		<div class="guidb">
+			<div style="width: 100%;clear: both;height:40px;">
+				<ul class="minimg">
+					<li class="active"><div class="bg-box"></div><img src="/images/guida1.png" /></li>
+					<li class=""><div class="bg-box"></div><img src="/images/guida2.png" /></li>
+					<li class=""><div class="bg-box"></div><img src="/images/guida3.png" /></li>
+					<li class=""><div class="bg-box"></div><img src="/images/guida4.png" /></li>
+					<li class=""><div class="bg-box"></div><img src="/images/guida5.png" /></li>
+				</ul>
+			</div>
+			<div class="swiper-wrapper guidimgb">
+				<div class="swiper-slide">
+					<img src="/images/guidimg1.png"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="/images/guidimg2.png"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="/images/guidimg3.png"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="/images/guidimg4.png"/>
+				</div>
+				<div class="swiper-slide">
+					<img src="/images/guidimg5.png"/>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-prev swiper-button-guidbl"></div>
+		  <div class="swiper-button-next swiper-button-guidbr"></div>
+		</div>
+ <script>
+        $(function(){
+            if(title=="no"){
+                $("header").hide();
+            }
+            var mySwiper = new Swiper( '.swiper-container', {
+				direction: 'horizontal',
+				spaceBetween: 0,
+				paginationClickable: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				parallax: true,
+			} )
+			var mySwiperImg = new Swiper( '.guidb', {
+				direction: 'horizontal',
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				parallax: true,
+				pagination : '.swiper-pagination',
+				onSlideChangeEnd: function(swiper){
+		      //Swiper初始化了
+						$('.minimg li').eq(swiper.activeIndex).addClass('active').siblings().removeClass('active');
+		    }
+			} )
+			$('.minimg li').each(function(index){
+				$(this).click(function(){
+					mySwiperImg.slideTo(index+1);
+				})
+			});
+        })
+				new Vue({
+				  el: '#guid',
+				  data: {
+
+				  },
+					created:function(){
+						var _this=this;
+						$.ajax({
+								url: Helper.basePath + 'member/getUser.htm',
+								type: 'POST',
+								dataType: 'json',
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								data: {}
+							})
+							.done(function(data) {
+								var data = JSON.parse(data);
+								if (data.isLogin !== 'N') {
+									_this.userInfo = data.userInfo;
+								}
+							})
+							.fail(function() {})
+					},
+					methods:{
+							rigister:function(){
+									window.location.href = '/src/base/register.html';
+							},
+							linkBank:function(){
+								//等待上海银行链接过来再放入
+							},
+							charge:function(){
+									window.location.href = '/src/account/charge.html';
+							}
+					}
+})
+		</script>
+
+
+	</body>
+
+</html>

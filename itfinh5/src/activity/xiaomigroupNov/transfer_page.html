@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/js/zepto.min.js?v=ab08f94bf4"></script>
+	<script src="/js/public.js?v=11fb0b58ef"></script>
+  <title>宜泉资本</title>
+</head>
+<body>
+  
+</body>
+<script>
+  $.ajax({
+      url: Helper.basePath + 'member/getUser.htm',
+      type: 'POST',
+      dataType: 'json',
+      async: false,
+      xhrFields: {
+        withCredentials: true
+      }
+    }).done(function (data) {
+      userJson = JSON.parse(data);
+      if (userJson.isLogin !== 'N') {
+				if (userJson.activityType !== 'XIAOMIGROUPNOV') {
+					window.location.href = '/src/index/index.html';
+				}else{
+          window.location.href = '/src/activity/xiaomigroupNov/index.html';
+        }
+			}else{
+        window.location.href = '/src/base/login.html?bUrl=/src/activity/xiaomigroupNov/index.html';
+      }
+    })
+    
+</script>
+</html>

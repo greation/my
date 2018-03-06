@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>百万红包等你瓜分</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/share_red/css/activity.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='/js/act_sensore_sdk.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '百万红包等你瓜分',
+			desc: '好运不停歇，呼朋唤友抢红包！',
+			link: Helper.webPath + '/src/activity/share_red/index.html',
+			imgUrl: Helper.webPath + '/src/activity/share_red/images/wxshare.jpg',
+			successEvt: function () {
+				//window.location.href = '/src/activity/share_red/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="imgs">
+			<img src="images/index_01.jpg" alt="">
+			<img src="images/index_02.jpg" alt="">
+			<img src="images/index_03.jpg" alt="">
+			<div class="relative show">
+				<img src="images/index_04.jpg" alt="" class="show">
+				<a href="javascript:void(0)" class="link_invest_list" id="link_invest_list"></a>
+			</div>
+			<img src="images/index_05.jpg" alt="">
+			<img src="images/index_06.jpg" alt="">
+			<img src="images/index_07.jpg" alt="">
+			<div class="rule_box">
+				<div class="text_rule">
+					
+				</div>
+				<img src="images/rule_box_img.jpg" alt="">
+			</div>
+			<img src="images/index_08.jpg" alt="">
+		</div>
+	</div>
+	<script>
+		//活动规则
+		var current_url = location.href;
+		$.ajax({
+			url: Helper.basePath + 'activityTurntable/activity.htm',
+			type: 'POST',
+			dataType: 'json',
+			async: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			data: {
+				activityTypeStr: 'SHARE_RED_PACKET'
+			}
+		})
+		.done(function (data) {
+			var data = JSON.parse(data);
+			if (data.code !== '000') {
+				util.alert(data.message, function () {
+					window.location.href = '/src/index/index.html';
+				})
+				return ;
+			}
+			$('.text_rule').html(data.rule);
+		})
+		var hrefData = util.hrefSplit(window.location.href);
+		$('.link_invest_list').click(function(){
+			if (hrefData.app === 'IPHONE') {
+					window.webkit.messageHandlers.goInvest.postMessage('');
+				} else if (hrefData.app === 'ANDROID') {
+					android.goInvest();
+				} else {
+					window.location.href = '/src/invest/list.html';
+				}
+				sa.track('element_click', {
+					campaignName: '红包分享活动',
+					lpUrl: current_url,
+					elementId: $(this).attr('id'),
+					elementContent: '立即抢红包',
+					elementName: '抢红包'
+				});
+		})
+	</script>
+</body>
+</html>

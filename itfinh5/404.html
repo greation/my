@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta http-equiv="refresh" content="5;url=/src/index/">
+		<title>404错误</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<script src="/js/public.js"></script>
+	</head>
+	<style>
+		html,body{background: #F0EFF5;color: #999;}
+		img{display: block;margin:100px auto 20px auto;}
+		p{text-align: center;margin: 0 auto;}
+	</style>
+	<body>
+		<img src="/images/404.png" alt="" />
+		<p>页面未找到，系统正为您返回首页</p>
+
+		<script>
+		sa.track('page_notfound',{
+			error_name:'404错误'
+		})
+		</script>
+	</body>
+</html>

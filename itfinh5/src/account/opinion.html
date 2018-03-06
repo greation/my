@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>意见反馈</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="op">
+	@@include('../include/head.html',{
+		"title":"意见反馈",
+		"isback":true
+	})
+	<div class="container" id="op">
+		<div class="top pad-15">
+			<textarea class="fs28" v-model='inpCont' id="inpCont" placeholder="说什么都可以,抱怨也可以"></textarea>
+		</div>
+		<div class="delail_list pad-l-15 pad-r-15 disflex direc_co">
+			<p class="fs28 mar-b-15">联系电话</p>
+			<input type="tel" maxlength="11" placeholder="请输入您的电话号码" v-model='inpPhone' class="inp_phone fs28">
+			<input type="button" value="提交" @click="add()"  class="btn_sub mar-t-20 ">
+		</div>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+    <script>
+		vms.opinion();
+	</script>
+</body>
+</html>

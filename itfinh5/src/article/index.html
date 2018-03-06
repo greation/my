@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>发现</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/article.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="in pb60">
+	@@include('../include/head.html',{
+		"title":"发现",
+		"isback":"false"
+	})
+	
+	<div class="container" id="re">
+		<div v-text="listData.iconList[1].linkUrl" style="width: 80%;word-wrap:break-word;display: none"></div>
+		<div class="nav">
+		 	<a class="nav_l activily disflex justify_sb alignitem_c" :href="listData.iconList[0].linkUrl">
+		 		<div class="nav_l_l">
+		 			<span class="fs24" v-text="listData.iconList[0].title"></span>
+		 			<span class="fs24 cbbb" v-text="listData.iconList[0].iconSummary"></span>
+		 		</div>
+		 		<i class="nav_l_r" :style="{background:'url('+listData.iconList[0].iconUrl+') no-repeat center center'}"></i>
+		 	</a>
+		 	<a class="nav_r jf disflex justify_sb alignitem_c" :href="listData.iconList[1].linkUrl">
+		 		<div class="nav_l_l">
+		 			<span class="fs24" v-text="listData.iconList[1].title">玩转积分</span>
+		 			<span class="fs24 cbbb" v-text="listData.iconList[1].iconSummary"></span>
+		 		</div>
+		 		<i class="nav_l_r" :style="{background:'url('+listData.iconList[1].iconUrl+') no-repeat center center'}"></i>
+		 	</a>
+		</div>
+		<div class="nav">
+		 	<a class="nav_l activily disflex justify_sb alignitem_c" :href="listData.iconList[2].linkUrl">
+		 		<div class="nav_l_l">
+		 			<span class="fs24" v-text="listData.iconList[2].title"></span>
+		 			<span class="fs24 cbbb" v-text="listData.iconList[2].iconSummary"></span>
+		 		</div>
+		 		<i class="nav_l_r" :style="{background:'url('+listData.iconList[2].iconUrl+') no-repeat center center'}"></i>
+		 	</a>
+		 	<a class="nav_r jf disflex justify_sb alignitem_c" :href="listData.iconList[3].linkUrl">
+		 		<div class="nav_l_l">
+		 			<span class="fs24" v-text="listData.iconList[3].title">玩转积分</span>
+		 			<span class="fs24 cbbb" v-text="listData.iconList[3].iconSummary"></span>
+		 		</div>
+		 		<i class="nav_l_r" :style="{background:'url('+listData.iconList[3].iconUrl+') no-repeat center center'}"></i>
+		 	</a>
+		</div>
+		 <div class="banner">
+		 		<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="banner in listData.bannerList" onclick="SaFun.banner('','发现banner')"><a :href="banner.linkUrl===''? 'javascript:void(0)':banner.linkUrl"><img v-bind:src="banner.imgUrl" /></a></div>
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+				</div>
+		 </div>
+		 <div class="articles">
+		 	<div class="title"><a href="/src/article/hotnew.html"><span class="fs30">热门资讯</span><span class="icon_jtright"></span></a></div>
+		 	<template v-for="re in listData.newsList" >
+			 	<div class="article_style ar01" @click="hotlink(re.noticeId)" v-if="re.imgUrl.length===1">
+			 		<div class="content">
+			 			<p class="fs24 c000 tr_split_two" v-text="re.title"></p>
+			 			<p class="fs20 cbbb mar-t-10">时间：<font v-text="re.publishTime"></font></p>
+			 		</div>
+			 		<div class="img" v-if="re.imgUrl===''">
+			 			<img src="/images/no_img.png" alt="">
+			 		</div>
+					<div class="img" v-else>
+						<img v-bind:src="re.imgUrl[0]">
+					</div>
+		 		</div>
+			 	<div class="article_style ar02" @click="hotlink(re.noticeId)" v-else>
+			 		<div class="content">
+			 			<p class="fs24 c000" v-text="re.title"></p>
+			 		</div>
+			 		<div class="img" v-if="re.imgUrl===''">
+			 			<img src="/images/no_img.png" alt="">
+			 		</div>
+					<div class="img" v-else>
+						<div v-for="(imgitem,index) in re.imgUrl" :class="{'mar-l-8':index===1,'mar-r-8':index===1}">
+							<img v-bind:src="imgitem">
+						</div>
+					</div>
+			 		<p class="fs20 cbbb mar-t-10"><font v-text="re.publishTime"></font></p>
+			 	</div>
+		 	</template>
+		 	
+		 	<div class="title mar-t-10"><a href="/src/article/medianew.html"><span class="fs30">媒体报道</span><span class="icon_jtright"></span></a></div>
+			<div class="article_style ar03" v-for="item in listData.articleList" @click="medialink(item.noticeId)">
+		 		<div class="img"><img v-bind:src="item.imgUrl" alt=""></div>
+		 		<div class="content">
+		 			<p class="fs24 c000" style="width:90%" v-text="item.title"></p>
+                    <div class="fs22 cbbb tr_split_one" style="padding-top:.3rem;width:90%" v-html="item.context"></div>
+		 			<p class="fs20 cbbb mar-t-10"><span class="mar-r-10">
+                    <template v-if="item.noticeSource===''">来自本站</template>
+                    <template v-else>{{item.noticeSource}}</template>
+                    </span>时间：<font v-text="item.publishTime"></font></p>
+		 		</div>
+		 	</div>
+		 </div>
+	</div>
+	@@include('../include/foot.html',{
+		"curMenu":"2"
+	})
+	</body>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/base.js"></script>
+	<script src="/js/article.js"></script>
+	<script>
+		active.index();
+		var mySwiperBanner = new Swiper('.banner .swiper-container', {
+			pagination : '.banner .swiper-pagination',
+			speed: 400,
+			loop : true,
+			autoplay : 4000,
+			spaceBetween: 0,
+			autoplayDisableOnInteraction : false
+		});
+	</script>
+
+
+</html>

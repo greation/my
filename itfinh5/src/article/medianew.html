@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>媒体报道</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/article.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	</head>
+	<body class="in">
+		@@include('../include/head.html',{
+		"title":"媒体报道",
+		"isback":true
+	})
+		<div id="mediaNew">
+			<div class="">
+				<div class="disflex alignitem_c justify_sb bg-white pad-b-20 border_b" v-for="item in items" @click="newin(item.noticeId)">
+					<div class="imgnew pad-t-20 pad-l-20">
+						<img :src="item.imgUrl" alt="" />
+					</div>
+					<div class="newcont pad-l-20 pad-r-20">
+						<p class="fs30 c3 layleave" v-text="item.title">金融世界是sof及搜房是家乐福是家乐福</p>
+						<p class="c9 fs28 layleave" v-text="item.context">我的哎就想么事粉丝滤镜飞机失联家里
+						</p>
+						<p class="fs26 c9 disflex alignitem_c justify_sb">
+							<span>来自<font v-text="item.noticeSource"></font></span>
+							<span>时间：<span v-text="item.publishTime"></font></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+			<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png"/></div>
+		</div>
+		
+		
+		
+		
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+	<script>
+		window.onload=function(){
+		var oTop = document.getElementById("toTop");
+  		var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  		var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  		window.onscroll = function(){
+    		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(scrolltop>100){
+				oTop.style.display ="block";
+			}else{
+				oTop.style.display ="none";
+			}
+  		}
+  		oTop.onclick = function(){
+    		document.documentElement.scrollTop = document.body.scrollTop =0;
+  		}
+	}
+		active.media();
+		
+		 $(function(){
+		      if(title=="no"){
+		          $("header").hide();
+		      }
+  		})
+	</script>
+</html>

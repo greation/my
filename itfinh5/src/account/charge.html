@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>充值</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="ch">
+@@include('../include/head.html',{
+"title":"充值",
+"isback":true
+})
+<div class="container" id="charge">
+	<div class="card_info mar-t-15 bg-white">
+		<img :src="'http://source.ekeyfund.com/upload/bank/'+data.cardInfo.bankId+'.jpg'" alt=""  class="icon_bank">
+
+		<span class="bank_name mar-l-20" v-text="data.cardInfo.bankName">中国工商银行</span>
+		<span class="c999">尾号(<span v-text="data.cardInfo.cardId"></span>)</span>
+	</div>
+	<div class="phone_info mar-t-10 bg-white">
+		<span>手机号码</span>
+		<span class="pull-right c999" v-text="data.mobile"></span>
+	</div>
+	<div class="usable_balance">
+		<span class="fs28">可用余额：<span class="color-orange02" v-text="data.canusMoney">0.00</span>元</span>
+	</div>
+	<div class="charge_inp bg-white">
+		<span>充值金额</span>
+		<input type="text" class="inp_money fs36" v-model='inpMoney' id="inpMoney">
+	</div>
+	<div class="disflex">
+		<input type="button" value="立即充值" @click="linkChargeBt()" class="btn_charge flexauto">
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+    vms.infoCharge();
+</script>
+</body>
+</html>

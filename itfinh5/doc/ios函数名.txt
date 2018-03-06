@@ -1,0 +1,31 @@
+
+
+[UserContentController addScriptMessageHandler:self name:@"login"];//1.登录
+[UserContentController addScriptMessageHandler:self name:@"goRegister"];//2.注册
+[UserContentController addScriptMessageHandler:self name:@"goAuthentication"];//3.实名认证
+[UserContentController addScriptMessageHandler:self name:@"bandCard"];//4.绑定安全卡
+[UserContentController addScriptMessageHandler:self name:@"setPayPwd"];//5.设置支付密码
+[UserContentController addScriptMessageHandler:self name:@"goRecharge"];//6.充值
+[UserContentController addScriptMessageHandler:self name:@"goWithdrawals"];//7.提现
+[UserContentController addScriptMessageHandler:self name:@"goInvest"];//8.投资列表
+[UserContentController addScriptMessageHandler:self name:@"goBorrow"];//9.具体标的
+[UserContentController addScriptMessageHandler:self name:@"goProductsHome"];//10.积分商城首页
+[UserContentController addScriptMessageHandler:self name:@"goProductsList"];//11.跳到积分商城具体列表
+[UserContentController addScriptMessageHandler:self name:@"invest"];//12.跳到积分商城商品详情页
+[UserContentController addScriptMessageHandler:self name:@"exchange"];//13.兑换
+[UserContentController addScriptMessageHandler:self name:@"goFind"];//14.发现首页
+[UserContentController addScriptMessageHandler:self name:@"share"];//15.分享
+[UserContentController addScriptMessageHandler:self name:@"shareToWXMoments"];//16.分享到朋友圈
+[UserContentController addScriptMessageHandler:self name:@"shareToFriends"];//17.分享到好友
+[UserContentController addScriptMessageHandler:self name:@"goMyCenter"];//18.个人中心
+[UserContentController addScriptMessageHandler:self name:@"goAppstore"];//19.跳转appstoure
+[UserContentController addScriptMessageHandler:self name:@"reserveWithType"];//20约标
+[UserContentController addScriptMessageHandler:self name:@"closeMall"];//21关闭
+
+[UserContentController addScriptMessageHandler:self name:@"goIndex"];//22首页
+
+[UserContentController addScriptMessageHandler:self name:@"openShoppingMall"];//23 积分商城新版本---首页
+
+
+方法使用：
+window.webkit.messageHandlers.exchange.postMessage([参数名称]);

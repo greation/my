@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>收货地址</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="ad">
+	@@include('../include/head.html',{
+	"title":"收货地址",
+	"isback":"true;/src/account/account_info.html"
+})
+<div class="container" id="ad">
+	<div class="address_list">
+		<div class="item" v-for="item in data" @click="chooseAddress(item.id)">
+			<div class="info">
+				<div class="detail">
+					<p class="fs28"><span v-text="item.receiver"></span>   <span v-text="item.mobile"></span></p>
+					<p class="fs24 cbbb mar-t-5">
+					<span v-text="item.provinceName"></span>
+					<span v-text="item.cityName"></span>
+					<span v-text="item.areaName"></span>
+					<span v-text="item.detailAddress"></span>
+					</p>
+				</div>
+				<div class="edit"><i class="icon_edit"></i><a :href="'address_edit.html?addressId='+item.id+''" class="fs20 cbbb">编辑</a></div>
+			</div>
+			<div class="setting" v-if="item.status==='1'">
+				<p class="fs24 disflex alignitem_c">
+					<i class="icon_default"></i>
+					<label for="mr_address">默认地址</label></p>
+			</div>
+		</div>
+		<!-- <div class="item">
+			<div class="info">
+				<div class="detail">
+					<p class="fs28">邓丽丽  女士   15000820789</p>
+					<p class="fs24 cbbb mar-t-5">中山北路3000号长城大厦3701</p>
+				</div>
+				<div class="edit"><i class="icon_edit"></i><a class="fs20 cbbb">编辑</a></div>
+			</div>
+			
+		</div> -->
+		<div class="text-center pad-t-80 hide" :style="{display:isAddress}">
+			<img src="/images/address_gray.png" alt="" width="80" height="80">
+			<p class="c999 mar-t-5">暂无地址信息</p>
+		</div>
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.address();
+	$('header .operation').text('添加');
+	$('header .operation').click(function(){
+		window.location.href='add_address.html';
+	})
+</script>
+</body>
+</html>

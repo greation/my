@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/* CSS Document */
+.c9{color: #999;}
+.c6{color: #666;}
+.c3{color: #333;}
+.cblue{color: #1e82ff;}
+.index_box{width: 100%;clear: both;}
+.icon_jtright {display: inline-block;height: 8px;width: 23px;background: url(../images/jt_right.png) no-repeat center center;}
+.jf_title{height: 50px;}
+.jf_block{display: flex; padding: 5px 0;width: 100%;background: #FFFFFF;}
+.jf_in{flex: auto;text-align: center;}
+.jf_in a{display: block;} 
+.jf_in a img{display: block;margin: 0 auto;width:40%;}
+.swiper-slide img{width: 100%;}
+.hot_title {text-align: center;margin: 0 auto;padding: 10px 0;border-bottom: 1px solid #E5E5E5;width: 100%;clear: both;}
+.jf_card{width: 100%; margin: 0 auto;padding: 10px 0;justify-content:space-around;}
+.jf_cardin{border: 1px solid #E5E5E5;display: block;width: 45%;}
+.cf5{color: #ff5a5a;}
+.thrown{text-decoration: line-through;}
+.like_card{width:94%;border: 1px solid #E5E5E5;}
+.integralCard{width: 100%;clear: both;}
+.integralCard ul {height: 100%;}
+.integralCard ul li{width: 45%;float: left;margin-left: 3%;border: 1px solid #E5E5E5;margin-top: 10px;}
+.integralCard ul li img{width: 80%;margin: 10px auto;display: block;height: 120px;}
+.h10{height: 10px;width: 100%;clear: both;}
+.layleave{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+/*list*/
+.list_nav{padding: 5px 0;width: 100%;background: #FFFFFF;}
+.jf_class{flex: auto;padding: 5px 0;}
+.jf_list{border:1px solid #E5E5E5;width: 90%;margin:10px auto;}
+.list_content{background: #FFFFFF;width: 100%;padding: 10px 0;}
+.jf_list .list_class1 img{width: 70%;margin-left: 5px;height: 100px;}
+.list_class1{flex: 1 0 0;padding: 5px 0;}
+.list_class2{flex:1.5 0 0;padding: 5px 0;}
+.list_class0{flex:0 0 auto;align-self:baseline;}
+.btn_rightnow{height: 50px;background: #1e82ff;color: #fff;position: fixed;bottom: 0;width: 100%;line-height: 50px;z-index: 999;}
+.bnt_yxj{background: #c4c5c5}
+/*商品详情*/
+.goods_block{height:40px;width:90%;margin: 0 auto;}
+.b_boder{border-bottom: 1px solid #E5E5E5;}
+.goods_lc{min-height: 40px;width: 90%;margin: 0 auto;}
+.lcs{flex: 1 0 0;}
+.lcc{flex: 3 0 0;}
+.lcr{flex: 1.5 0 0;}
+.change_num{flex: 1 0 0;width: 30px;border: 1px solid #E5E5E5 !important;outline: none;border-radius: 2px;background: none;height: 30px;}
+.num_integral{flex:2 0 0;width:60px;border: 1px solid #E5E5E5 !important;outline: none;margin: 0 5px;height: 30px;border-radius: 2px;}
+.xzgg{position: fixed;bottom:48px;height:auto;background: #fff;border: 1px solid #E5E5E5;z-index: 999;width: 100%;display: none;padding-bottom: 15px;}
+.pop_pro{width: 90%;margin: 10px auto;height: 100px;clear: both;position: relative;}
+.pop_pro .list_class1 img{width:65%;}
+.numfor{width: 100%;clear: both;}
+.c_btn{padding: 2px 5px;border-radius: 2px;border: 1px solid #E5E5E5;justify-content:space-between;}
+.n_btn{padding: 2px 5px;border-radius: 2px;border: 1px solid #fef1e1;background: #fef1e1;justify-content:space-between;}
+.pop_block{min-height:30px;width:90%;margin: 0 auto;}
+.mask{width:100%;height:100%;position: fixed;background: rgba( 0,0,0,0.4);z-index: 11; display: none;left: 0;top: 0;}
+.order{width: 90%;margin:0 auto;height:120px;clear: both;position: relative;}
+.order .list_class1 img{width:65%;height: 80px;}
+.message_leaft{height:50%;outline: none;}
+.order_address{width: 90%;margin:0 auto;height:100px;clear: both;position: relative;}
+.order_dh{height:60px;width:90%;margin: 0 auto;}
+.order_detail{width: 90%;margin:0 auto;height:50px;clear: both;position: relative;}
+.bd_boder{border-bottom:1px dotted #E5E5E5;}
+.order_nav{height:40px;width:90%;margin: 0 auto;}
+.my_order{width: 90%;margin:0 auto;clear: both;position: relative;padding: 10px 0}
+.my_order .list_class1 img{width:70%;height:80px;}
+.sh_btn{padding: 2px 5px;background: #1e82ff;color: #FFF;border-radius: 2px;}
+.order_detail .lcs img{width:13%;}
+.order_jf{height:140px;width:90%;margin: 0 auto;}
+.rule img{width: 20%;}
+.rule_content{height: 26rem;width: 100%;background: #FFFFFF;}
+.rule_content img{width: 100%; display: block; margin: 0 auto;}
+.rule_content p{display: block;padding: 20px 10px;width: 80%;background: #508cf0;margin: 20px auto;color: #fff;border-radius: 4px;}
+.hgray{background: #f0eff5;height: 10px;width: 100%;clear: both;}
+.text_psis{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.gz_xz{flex-wrap: wrap;}
+.gz_xz span{margin: 5px 10px 5px 0;}
+
+
+
+
+
+

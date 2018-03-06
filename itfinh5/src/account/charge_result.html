@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>充值结果</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="ch">
+	@@include('../include/head.html',{
+		"title":"充值结果",
+		"isback":true
+	})
+	<div class="container ch" id="charge_result">
+		<div class="info_msg text-center">
+			<div v-if="info.type"> 
+				<img src="../../skins/default/images/succ_large.png" height="65" width="65" alt="">
+				<p>恭喜您，充值成功！</p>
+			</div>
+			<div v-if="!info.type">
+				<img src="../../skins/default/images/fail_large.png" height="65" width="65" alt="">
+				<p>充值失败！</p>
+				<p class="font14 color-99">充值遇到问题，请尝试重新支付</p>
+			</div>
+		</div>
+		<div class="info_dec">
+			<ul class="clearfix info_item">
+				<li class="pull-left">{{info.bankName}}</li>
+				<li class="pull-right color-99">尾号({{info.cardId}})</li>
+			</ul>
+			<ul class="clearfix info_item no_boder">
+				<li class="pull-left">充值金额</li>
+				<li class="pull-right color-99">¥{{info.inpMoney}}元</li>
+			</ul>
+		</div>
+
+		<div class="btn_box">
+			<a v-if="info.type" href="./index.html" class="btn_recharge text-center">完成充值</a>
+			<a v-if="!info.type" href="./charge.html" class="btn_recharge text-center">重新充值</a>
+		</div>
+
+		<p class="font14 color-99 text-center contact_num" v-if="!info.type">客服热线：400-109-2626</p>
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/account.js"></script>
+	<script>
+        vms.charge_result();
+	</script>
+</body>
+</html>

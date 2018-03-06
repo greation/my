@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>订单详情</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+		
+		@@include('../../include/head.html',{
+		"title":"订单详情",
+		"isback":true
+	})
+	<div class="index_box" id="orderDetail">
+		<div class="bg-white mar-t-10">
+			<div class="order_detail disflex alignitem_c justify_sb ">
+				<span class="c6 fs28">订单编号</span>
+				<span class="c9 fs24" v-text="orderData.orderInfo.orderId"></span>
+			</div>
+			<div class="order_detail disflex alignitem_c justify_sb ">
+				<span class="c6 fs28">下单时间</span>
+				<span class="c9 fs24" v-text="orderData.orderInfo.orderTime"></span>
+			</div>
+		
+			<div class="order_detail disflex alignitem_c justify_sb bd_boder">
+				<span class="c6 fs28">订单状态</span>
+				<span class="cblue fs24">
+					<font v-if="orderData.orderInfo.orderStatus=='WAIT'">待发货</font>
+					<font v-if="orderData.orderInfo.orderStatus=='SHIPPED'">已发货</font>
+					<font v-if="orderData.orderInfo.orderStatus=='SUCCESS'">已完成</font>
+				</span>
+			</div>
+
+    
+			<template  v-if="orderData.orderInfo.categoryCode!='RATE_VOUCHER' && orderData.orderInfo.categoryCode!='CASH_VOUCHER' && orderData.orderInfo.categoryCode!='INVEST_MOVIE' && orderData.orderInfo.categoryCode!='AQY_VIP'">
+			
+			<div class="order_address disflex alignitem_c justify_sb bd_boder">
+				<span class="c6 fs28" style="float:left;">配送地址</span>
+				<span class="c6 fs28" style="width:78%">
+					
+					
+					<div style="padding-top:6px;float:right">
+					<span v-text="orderData.orderInfo.receiverName"></span>
+					<span v-text="orderData.orderInfo.mobile"></span>
+
+						<span class="tr_split_two " style="padding-top:8px;" v-text="orderData.orderInfo.receiverAddress"></span>
+					</div>
+				</span>
+			</div>
+			<div class="order_detail disflex alignitem_c justify_sb ">
+				<span class="c6 fs28">物流单号</span>
+				<span class="c9 fs24" v-text="orderData.orderInfo.expressOrdernum"></span>
+			</div>
+			<div class="order_detail disflex alignitem_c justify_sb ">
+				<span class="c6 fs28">物流公司</span>
+				<span class="c9 fs24" v-text="orderData.orderInfo.expressSource"></span>
+			</div>
+		
+			<div class="order_detail disflex alignitem_c justify_sb ">
+				<span class="c6 fs28">运费(元)</span><!-- v-text="orderData.orderInfo.expressFee" -->
+				<span class="fs24">0</span>
+			</div>
+			</template>
+
+
+		</div>
+		<div class="bg-white mar-t-10">
+			<div class="order disflex alignitem_c mar-t-10">
+				<span class="list_class1"><img :src="orderData.orderInfo.detailImgUrl"/></span>
+				<span class="list_class2 fs28">
+					<p class="c6 pad-l-12 " v-text="orderData.orderInfo.goodsName"></p>
+					<!-- <p class="c9 pad-l-12"><span>1.5m</span> <span>蓝色</span></p> -->
+					<p>&nbsp;</p>
+					<p class="disflex alignitem_c justify_sb ">
+						<span class="c9 mar-l-10">积分兑换：
+						<font v-text="orderData.orderInfo.usepointNum/orderData.orderInfo.buyNum"></font>×<font v-text="orderData.orderInfo.buyNum"></font>
+						</span>
+					</p>
+					<p class="disflex alignitem_c justify_sb ">
+						<span class="cblue mar-l-10">兑换总积分：<font v-text="orderData.orderInfo.usepointNum"></font></span>
+					</p>
+				</span>
+			</div> 
+		</div>
+		<div class="bg-white mar-t-10" v-if="orderData.swapCode">
+			<div class="order_detail disflex alignitem_c justify_sb">
+				<span class="c6 fs28">兑换码</span>
+				<span class="cblue fs24">
+					<font v-text="orderData.swapCode"></font>
+				</span>
+			</div>
+		</div>
+		<div v-if="orderData.orderInfo.orderStatus=='SHIPPED'"  style="height: 60px;width: 100%;clear: both;"></div>
+		<a v-if="orderData.orderInfo.orderStatus=='SHIPPED'" class="btn_rightnow text-center" @click="bntTrue">确认收货</a>
+	</div>		
+
+		<script src="/js/order_detail.js"></script>
+	</body>
+</html>

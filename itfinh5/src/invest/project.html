@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>标的详情</title>
+  <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/public.js"></script>
+  <style>
+/* ipad横屏 */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1280px){
+	body{background:#fff;}
+	.fs34{font-size:18px;}
+	.project{height:2rem;line-height:2rem;}
+	.fx_icon_list li.item{font-size:16px;}
+	.project_line p{font-size:14px;}
+}
+  </style>
+</head>
+
+<body>
+  @@include('../include/head.html',{ "title":"标的详情", "isback":true })
+  <div id="newPro" v-cloak>
+    <div>
+      <div class="pad-b-60">
+        <div class="nav_bar bg-white" id="pad_nav">
+          <div class="wa90">
+            <a href="javascript:void(0)" class="col-xs-6 cblue text-center" @click="saProductTab('项目描述')">项目描述</a>
+            <a class="col-xs-6 c9 text-center" @click="RecLink(data.borrow.awardTemplateId);saProductTab('投资记录')">投资记录</a>
+            <!-- <a class="col-xs-4 c9 text-right" v-if="data.borrow.awardTemplateId==''" @click="HorLink();saProductTab('荣誉榜')">荣誉榜</a> -->
+          </div>
+        </div>
+        <div class="project mar-t-10 bg-white">
+          <span class="c3 mar-l-15 fs34">风险控制</span>
+        </div>
+        <div class="bg-white pad-l-15">
+          <ul class="fx_icon_list">
+            <template v-if="(data.borrow.borrowType==='GYHOUSE'||data.borrow.borrowType==='MAKE'||data.borrow.borrowType==='NEWUSER')&&data.borrowUserType!=='ENTERPRISE'">
+              <li class="item"><img src="/images/fx_ql.png" alt=""><span>不动产权利人</span></li>
+              <li class="item"><img src="/images/fx_db.png" alt=""><span>置业公司担保</span></li>
+              <li class="item"><img src="/images/fx_ls.png" alt=""><span>律师见证</span></li>
+            </template>
+            <template v-if="(data.borrow.borrowType==='GYHOUSE'||data.borrow.borrowType==='MAKE'||data.borrow.borrowType==='NEWUSER')&&data.borrowUserType==='ENTERPRISE'">
+              <li class="item"><img src="/images/fx_db.png" alt=""><span>不动产担保</span></li>
+              <li class="item"><img src="/images/fx_ls.png" alt=""><span>律师见证</span></li>
+              <li class="item"><img src="/images/fx_wt.png" alt=""><span>全权委托</span></li>
+            </template>
+            <template v-if="data.borrow.borrowType==='GYCAR'||data.borrow.borrowType==='MAKECAR'">
+              <li class="item"><img src="/images/car_fx01.png" alt=""><span>足额抵押担保</span></li>
+              <li class="item"><img src="/images/car_fx02.png" alt=""><span>严格风控保障</span></li>
+              <li class="item"><img src="/images/car_fx03.png" alt=""><span>专业技术保障</span></li>
+              <li class="item"><img src="/images/car_fx04.png" alt=""><span>法律保障</span></li>
+            </template>
+          </ul>
+        </div>
+        <template v-if="data.borrow.borrowType==='GYHOUSE'||data.borrow.borrowType==='MAKE'">
+          <div class="project mar-t-10 bg-white">
+            <span class="c3 mar-l-15 fs34">产品亮点</span>
+          </div>
+          <div class="project_line bg-white fs28 c6 pad-t-10 pad-b-10">
+            <p>上海本地房产资产配置，收益稳健</p>
+            <p>律所及公证处权威公证，权益保障</p>
+          </div>
+        </template>
+        
+        <template v-if="urlJson.pad!=='no'">
+          <div class="project mar-t-10 bg-white" v-if="data.borrow.borrowType==='GYCAR'||data.borrow.borrowType==='MAKECAR'||data.userFor!==''||data.credite!==''">
+            <span class="c3 mar-l-15 fs34">融资详情</span>
+          </div>
+          <div class="bg-white pad-l-15">
+            <ul class="fx_icon_list rzxq_list">
+              <template v-if="data.borrow.borrowType==='GYCAR'||data.borrow.borrowType==='MAKECAR'">
+                <template v-if="data.borrowUserType!=='ENTERPRISE'">
+                  <li class="item">
+                    <span>融资方信息</span><span class="icon_jtdwon mar-r-10"></span>
+                  </li>
+                  <li class="content fs28">
+                    <div class="car_info" v-if="data.borrowUserName!==''"><span class="info_key">姓名</span><span class="info_value" v-text="data.borrowUserName"></span></div>
+                    <div class="car_info" v-if="data.borrowUserSex!==''"><span class="info_key">性别</span><span class="info_value" v-text="data.borrowUserSex"></span></div>
+                    <div class="car_info" v-if="data.borrowUserAge!==''"><span class="info_key">年龄</span><span class="info_value" v-text="data.borrowUserAge"></span></div>
+                    <div class="car_info" v-if="data.borrowUserMaritalStatus!==''"><span class="info_key">婚姻状况</span><span class="info_value" v-text="data.borrowUserMaritalStatus"></span></div>
+                    <div class="car_info" v-if="data.borrowUserCardNumber!==''"><span class="info_key">身份证</span><span class="info_value" v-text="data.borrowUserCardNumber"></span></div>
+                    <div class="car_info" v-if="data.borrowUserIncome!==''"><span class="info_key">年收入</span><span class="info_value" v-text="data.borrowUserIncome"></span></div>
+                  </li>
+               </template>
+                <li class="item">
+                  <span>车辆信息</span><span class="icon_jtdwon mar-r-10"></span>
+                </li>
+                <li class="content fs28">
+                  <div class="car_info"><span class="info_key">车辆型号</span><span class="info_value" v-text="data.carModel">奔驰GL 450 4MATIC4.7T 手自一体 美规版本。。。。</span></div>
+                  <div class="car_info"><span class="info_key">车辆牌照</span><span class="info_value" v-text="data.carLicence">豫s88888</span></div>
+                  <div class="car_info"><span class="info_key">首次上牌时间</span><span class="info_value" v-text="data.carFirstTime">2017-10-12</span></div>
+                  <div class="car_info"><span class="info_key">车辆购买价</span><span class="info_value" v-text="data.carBuyPrices">200000</span></div>
+                  <div class="car_info"><span class="info_key">车辆评估价</span><span class="info_value" v-text="data.carFuturePrices">120000</span></div>
+                  <div class="car_info"><span class="info_key">已行驶里程数</span><span class="info_value" v-text="data.carODO">60万公里</span></div>
+                </li>
+
+              </template>
+              <template v-if="data.userFor!==''">
+                <li class="item">
+                  <span>借款用途</span><span class="icon_jtdwon mar-r-10"></span>
+                </li>
+                <li class="content fs28" v-text="data.userFor">
+                  <!-- 短期资金周转，通过投储在线借款10万元。本人信用记录 良好，工资稳定，有能力偿还借款！现有一辆奥迪牌汽车 作为抵押。请大家帮忙，谢谢！-->
+                </li>
+              </template>
+              <template v-if="data.credite!==''">
+                <li class="item">
+                  <span>征信情况</span><span class="icon_jtdwon mar-r-10"></span>
+                </li>
+                <li class="content fs28" v-text="data.credite">
+                  <!-- 这里是征信情况 -->
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+        <div class="project mar-t-10 bg-white">
+          <span class="c3 mar-l-15 fs34">产品介绍</span>
+        </div>
+        <div class="project_line bg-white fs28 c6 pad-t-10 pad-b-10">
+          <p v-text="removeHTMLTag(data.borrow.productDesc)">
+            <!-- 短期资金周转，通过投储在线借款10万元。本人信用记录 良好，工资稳定，有能力偿还借款！现有一辆奥迪牌汽车 作为抵押。请大家帮忙，谢谢！ -->
+          </p>
+        </div>
+        <template v-if="data.borrow.borrowerDesc!==''">
+          <div class="project mar-t-10 bg-white">
+            <span class="c3 mar-l-15 fs34">融资方介绍</span>
+          </div>
+          <div class="project_line bg-white fs28 c6 pad-t-10 pad-b-10">
+            <p v-text="removeHTMLTag(data.borrow.borrowerDesc)">
+              <!-- 融资方介绍 -->
+            </p>
+          </div>
+        </template>
+
+        <div id="pad_pro">
+          <div class="project mar-t-10 bg-white">
+            <span class="c3 mar-l-15 fs34">审核资料</span>
+          </div>
+          <div class="delete_lase_border">
+          <div class="datum bg-white" @click="saProductTab(item.name)" v-for="item in data.checkInfoList">
+            <a :href="item.url">
+              <div class="datum_list">
+                <span class="pull-left c6" v-text="strOverflow(item.name,16)"></span>
+                <span class="icon_jtright"></span>
+              </div>
+            </a>
+          </div>
+        </div>
+          <template v-if="data.otherInfoList!==undefined&&data.otherInfoList.length>0">
+            <div class="project mar-t-10 bg-white">
+              <span class="c3 mar-l-15 fs34">其他资料</span>
+            </div>
+            <div class="delete_lase_border">
+            <div class="datum bg-white" @click="saProductTab(item.name)" v-for="item in data.otherInfoList">
+              <div class="datum_list">
+                <span class="pull-left c6" v-text="strOverflow(item.name,16)"></span>
+                <span class="mar-r-10 cb">通过</span>
+              </div>
+            </div>
+            </div>
+          </template>
+          <div class="project mar-t-10 bg-white">
+            <span class="c3 mar-l-15 fs34">其他</span>
+          </div>
+          <template v-if="data.borrowUserType==='PERSON'" @click="saProductTab('电子协议')">
+            <div class="datum bg-white">
+              <a href="javascript:void(0)" @click="openUrl('/src/invest/grebook.html')">
+                <div class="datum_list">
+                  <span class="pull-left c6">电子协议</span>
+                  <span class="icon_jtright"></span>
+                </div>
+              </a>
+            </div>
+          </template>
+          <template v-else>
+            <div class="datum bg-white" @click="saProductTab('电子协议')">
+              <a href="javascript:void(0)" @click="openUrl('/src/invest/ebook.html')">
+                <div class="datum_list">
+                  <span class="pull-left c6">电子协议</span>
+                  <span class="icon_jtright"></span>
+                </div>
+              </a>
+            </div>
+          </template>
+
+          <div class="datum bg-white" @click="saProductTab('风险揭示书')">
+            <a href="javascript:void(0)" @click="openUrl('/src/invest/fxbook.html')">
+              <div class="datum_list" style="border-bottom:0">
+                <span class="pull-left c6">风险揭示书</span>
+                <span class="icon_jtright"></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <template v-if="data.borrow.borrowStatus==='END'">
+      <a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">筹款结束</a>
+    </template>
+
+    <template v-if="data.borrow.borrowStatus==='REPAYMENTED'">
+      <a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">已还清</a>
+    </template>
+
+    <template v-if="data.borrow.borrowStatus==='REPAYMENTING'">
+      <a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">还款中</a>
+    </template>
+
+    <template v-if="data.borrow.borrowStatus==='LOSSED'">
+      <a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">已流标</a>
+    </template>
+
+    <template v-if="data.borrow.borrowStatus==='RAISE'">
+      <a class="invest_btn btn_pad fs30 text-center" @click="btnLj(data.borrow.borrowId)">立即投资</a>
+    </template>
+    <!-- <a id="tz_pro" class="invest_btn fs30 text-center" @click="btnLj(data.borrow.borrowId)">立即投资</a> -->
+  </div>
+
+  </div>
+  <script src="/js/invest.js" charset="UTF-8"></script>
+  <script>
+    iv.newPro();
+    var pad = Request["pad"];
+    $(function () {
+      if (title == "no") {
+        $("header").hide();
+      }
+      if (pad == "no") {
+        $("#pad_nav,.btn_pad").hide();
+        $("#pad_pro").hide();
+      }
+    })
+    $('.rzxq_list .item ').click(function () {
+      $(this).find('.icon_jtdwon').toggleClass('open').parent().next().toggle();
+    })
+  </script>
+</body>
+
+</html>

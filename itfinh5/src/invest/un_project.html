@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>标的详情</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"标的详情",
+		"isback":true
+	})
+	<div id="proMS" v-cloak>
+		<div >
+			<div class="pad-b-60">
+			<div class="nav_bar bg-white" id="pad_nav">
+			<div class="wa90">
+				<a class="col-xs-4 cblue text-left"  @click="ProLink();saProductTab('项目描述')">项目描述</a>
+				<a class="col-xs-4 c9 text-center"  @click="RecLink(data.borrow.awardTemplateId);saProductTab('投资记录')">投资记录</a>
+				<a class="col-xs-4 c9 text-right" v-if="data.borrow.awardTemplateId==''" @click="HorLink();saProductTab('荣誉榜')">荣誉榜</a>
+			</div>
+		</div>
+		<div class="project mar-t-10 bg-white">
+			<span class="c3 mar-l-20 fs34">风险控制</span>
+		</div>
+		<template v-if="data.borrowUserType==='PERSON'">
+			<div class="project_control bg-white">
+			<a class="col-xs-5 text-center c6 fs28">
+				<br />
+				<img src="/skins/default/images/qlr.png" /><br /><br />
+				<span>上海本地资产权利人</span>
+			</a>
+			<a class="col-xs-4 text-center c6 fs28">
+				<br />
+				<img src="/skins/default/images/fw.png" /><br /><br />
+				<span>真实房屋买卖背景</span>
+			</a>
+			<a class="col-xs-3 text-center c6 fs28">
+				<br />
+				<img src="/skins/default/images/db.png" /><br /><br />
+				<span>置业公司担保</span>
+			</a>
+		</div>
+		</template>
+		<template v-else>
+			<div class="project_control bg-white">
+			<a class="col-xs-4 text-center c6 fs26">
+				<br />
+				<img src="/skins/default/images/bdc.png" /><br /><br />
+				<span>不动产担保</span>
+			</a>
+			<a class="col-xs-4 text-center c6 fs26">
+				<br />
+				<img src="/skins/default/images/law.png" /><br /><br />
+				<span>律师见证</span>
+			</a>
+			<a class="col-xs-4 text-center c6 fs26">
+				<br />
+				<img src="/skins/default/images/power.png" /><br /><br />
+				<span>全权委托</span>
+			</a>
+		</div>
+		</template>
+		
+		<div class="project mar-t-10 bg-white">
+			<span class="c3 mar-l-20 fs34">产品亮点</span>
+		</div>
+		<template v-if="data.borrowUserType==='PERSON'">
+			<div class="project_line bg-white fs28 c6">
+			<p>置业公司担保，收益稳健<br /> 上海不动产买卖，背景真实</p>
+		</div>
+		</template>
+		<template v-else>
+			<div class="project_line bg-white fs28 c6">
+			<p>上海本地房产资产配置，收益稳健<br /> 律所及公证处权威公证，权益保障</p>
+		</div>
+		</template>
+		
+		<div class="project mar-t-10 bg-white">
+			<span class="c3 mar-l-20 fs34">产品介绍</span>
+		</div>
+		<div class="project_line bg-white fs28 c6">
+			<p>
+			产品介绍：<span v-html="data.borrow.productDesc"></span><br /> 
+			融资方介绍：<span v-html="data.borrow.borrowerDesc"></span></p>
+		</div>
+
+		<div id="pad_pro">
+		<div class="project mar-t-10 bg-white">
+			<span class="c3 mar-l-20 fs34">相关资料</span>
+		</div>
+		
+		<div class="datum bg-white" @click="saProductTab(item.name)" v-for="item in data.borrow.relevantInfos">
+
+			<a :href="item.url">
+				<div class="datum_list">
+					<span class="pull-left c6" v-text="item.name"></span>
+					<span class="pull-right mar-r-10 cb">></span>
+				</div>
+			</a>
+		</div>
+
+		<div class="project mar-t-10 bg-white">
+			<span class="c3 mar-l-20 fs34">其他</span>
+		</div>
+		<template v-if="data.borrowUserType==='PERSON'">
+			<div class="datum bg-white">
+			<a href="/src/invest/grebook.html">
+				<div class="datum_list">
+					<span class="pull-left c6">电子协议</span>
+					<span class="pull-right mar-r-10 cb">></span>
+				</div>
+			</a>
+			</div>
+		</template>
+		<template v-else>
+			<div class="datum bg-white" @click="saProductTab('电子协议')">
+			<a href="/src/invest/ebook.html">
+				<div class="datum_list">
+					<span class="pull-left c6">电子协议</span>
+					<span class="pull-right mar-r-10 cb">></span>
+				</div>
+			</a>
+		</div>
+		</template>
+		
+		<div class="datum bg-white" @click="saProductTab('风险揭示书')">
+			<a href="/src/invest/fxbook.html">
+				<div class="datum_list">
+					<span class="pull-left c6">风险揭示书</span>
+					<span class="pull-right mar-r-10 cb">></span>
+				</div>
+			</a>
+		</div>
+		</div>
+		</div>
+		</div>
+<template v-if="data.borrow.borrowStatus==='END'">
+			<a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">筹款结束</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='REPAYMENTED'">
+			<a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">已还清</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='REPAYMENTING'">
+			<a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">还款中</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='LOSSED'">
+			<a href="javascript:void(0)" class="invest_btngray btn_pad fs30 text-center">已流标</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='RAISE'">
+			<a class="invest_btn btn_pad fs30 text-center" @click="btnLj(data.borrow.borrowId)">立即投资</a>
+		</template>
+		<!-- <a id="tz_pro" class="invest_btn fs30 text-center" @click="btnLj(data.borrow.borrowId)">立即投资</a> -->
+		</div>
+		
+	</div>
+		<script src="/js/invest.js" charset="UTF-8"></script>
+		<script>
+			iv.proMS();
+			var pad=Request["pad"];
+			 $(function(){
+                if(title=="no"){
+                    $("header").hide();
+                }
+				if(pad=="no"){
+                    $("#pad_nav,.btn_pad").hide();
+                    $("#pad_pro").hide();
+                }
+
+            })
+		</script>
+	</body>
+</html>

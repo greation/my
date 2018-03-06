@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>活动说明</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/growth_value/css/activity.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='/js/act_sensore_sdk.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+			util.wxShareMain({
+				//如果如要debug加添参数debug为true
+				title: '榜上有名，要“礼”好看',
+				desc: '投资送豪礼，黄金等你拿！',
+				link: Helper.webPath + '/src/activity/growth_value/index.html',
+				imgUrl: Helper.webPath + '/src/activity/growth_value/images/wxshare.jpg',
+				successEvt: function () {
+					//window.location.href = '/src/activity/growth_value/index.html?random=' + parseInt(Math.random() * 100000);
+				},
+				cancelEvt: function () {
+					//
+				}
+			});
+		</script>
+</head>
+<style>
+  body{
+    background: #94ccee;
+  }
+  .rule_box{
+    padding:15px;
+  }
+</style>
+<body>
+	<div class="container" id="rule">
+    <div class="logo_box">
+      <img :src="actData.imgH5Url" alt="">
+    </div>
+    <div class="rule_box" v-html="actData.rule">
+			
+    </div>
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="js/activity.js"></script>
+	<script>
+		vms.rule();
+
+	</script>
+</body>
+
+</html>

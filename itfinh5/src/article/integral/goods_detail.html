@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+	<style>
+	.swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-slide img{width: 100%;max-height: 320px;}
+    .swidth table,.swidth img,.swidth img{width: 100% !important;}
+		</style>
+		@@include('../../include/head.html',{
+		"title":"",
+		"isback":"true"
+	})
+	<div class="index_box" id="app_goods_detal" v-cloak>
+		<div class="banner relative">
+			<div class="swiper-banner swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img v-bind:src="detailData.goodsInfo.photo" alt=""></div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+		<div class="bg-white pad-t-15">
+			<div class="disflex alignitem_c justify_sb goods_block ">
+				<span class="c3 fs30" v-text="detailData.goodsInfo.goodsName"></span>
+				<span>
+				</span>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb goods_block  fs28">
+				<span class="c3 cblue lcs">兑换积分：<font v-text="detailData.goodsInfo.integral"></font></span>
+				<span class="cf5 lcs">市场价：<span class="thrown" v-text="detailData.goodsInfo.settlementPrice"></span></span>
+				
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="b_boder disflex alignitem_c justify_sb goods_block  fs28">
+				<span class="c9">已兑 <font v-text="detailData.goodsInfo.exchangeAmount"></font></span>
+				<span class="c9">剩余：<font v-text="detailData.goodsInfo.stockAmount"></font></span>
+				<span class="c9" v-text="detailData.goodsInfo.goodsType =='VIRTUALGOODS'?'虚拟商品':'实物商品'"></span>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb goods_block b_boder">
+				<span class="c3 fs28 ">兑换数量</span>
+				<span class="c9 disflex alignitem_c justify_sb c6">
+
+				
+					<template v-if="detailData.goodsInfo.goodsType =='PHYSICALGOODS'">
+						<input value="-" type="button" class="change_num" @click="minus"/>
+					</template>
+
+
+					<template v-if="detailData.goodsInfo.goodsType =='PHYSICALGOODS'">
+					<input class="num_integral text-center" pattern="[0-9]*" value="1" type="number"  onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"/>
+					</template>
+
+					<template v-if="detailData.goodsInfo.goodsType =='VIRTUALGOODS'">
+					<input class="num_integral text-center" value="1" type="number" readonly="true" disabled="disabled" style="background:#fff;border:0px !important;color:#333 !important;" />
+					</template>
+
+
+					<template v-if="detailData.goodsInfo.goodsType =='PHYSICALGOODS'">
+					<input value="+" type="button" class="change_num" @click="plus"/>
+					</template>
+
+					<template else></template>
+
+					
+				</span>
+			</div>
+		</div>
+
+		<!-- <template v-if="detailData.goodsInfo.goodsType =='PHYSICALGOODS'"> -->
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb goods_block">
+				<span class="c3 fs28">规格</span>
+				<span @click="choosePop">
+					<span class="c9 fs28 mx_order ">请选择</span>
+					<span class="icon_jtright"></span>
+				</span>
+			</div>
+		</div>
+		<!-- </template> -->
+
+		<!-- <template else></template> -->
+
+
+
+		<div class="bg-white mar-t-10">
+			<div class="disflex alignitem_c justify_sb goods_lc pad-r-15 pad-l-15 fs28">
+				<span class="c6 lcs">兑换流程：</span>
+				<p class="c6 lcc" v-html="detailData.goodsInfo.exchangeRule"></p>
+			</div>
+		</div>
+		<div class="bg-white">
+			<div class="disflex alignitem_c justify_sb goods_lc pad-r-15 pad-l-15 fs28">
+				<span class="c6">商品详情：</span>
+			</div>
+			<div class="goods_lc pad-r-15 pad-l-15 fs28">
+				<p class="c6 swidth" v-html="detailData.goodsInfo.goodsDesc"></p>
+			</div>
+		</div>
+		<div style="height:50px;"></div>
+		<a class="btn_rightnow text-center" v-if="isClick>0" @click="subtForm">立即兑换</a>
+		<a class="btn_rightnow bnt_yxj text-center" v-if="isClick<=0">已售罄</a>
+		<div class="mask"></div>
+		<div class="xzgg" >
+			<div class="pop_pro disflex alignitem_c b_boder pad-t-15">
+				<span class="list_class1"><img :src="detailData.goodsInfo.photo"/></span>
+				<span class="list_class2 fs24">
+					<p class="c6  tr_split_two" v-text="popData.goodsName"></p>
+					<p class="cblue ">兑换积分：<font v-text="popData.integral"></font></p>
+					<p class="disflex alignitem_c justify_sb fs24">
+						<span class="cf5  ">市场价：<span class="thrown" v-text="popData.settlementPrice"></span></span>
+						<span class="c9 ">已兑 <font v-text="popData.exchangeAmount"></font></span>
+					</p>
+				</span>
+				
+				<a class="list_class0" ><img @click="chooseGz" src="/images/close.png"/></a>
+			</div>
+			<div v-for="(data,index) in standardArr">
+				<div class="disflex alignitem_c justify_sb pop_block">
+					<span class="c3 fs28" v-text="data.keys"></span>
+				</div>
+				<div class="disflex alignitem_c pop_block b_boder gz_xz">
+					<!--<span class="c6 fs28 c_btn" v-bind:class="{ ' n_btn': inx==0,' mar-l-10':inx!=0}" v-for="(m,inx) in data.vals" @click="switchFun(m,index)">{{m}}</span>-->
+					<span class="c6 fs28 c_btn" v-for="(m,inx) in data.vals" @click="switchFun(m,index)">{{m}}</span>
+				</div>
+			</div>
+			
+			<template v-if="detailData.goodsInfo.goodsType =='PHYSICALGOODS'">
+			<div class="disflex alignitem_c justify_sb pop_block b_boder">
+				<span class="c3 fs28 ">兑换数量</span>
+				<span class="c9 disflex alignitem_c justify_sb c6">
+					<input value="-" type="button" class="change_num" @click="minus"/>
+					<input class="num_integral text-center" pattern="[0-9]*" type="number" value="1"  onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"/>
+					<input value="+" type="button" class="change_num" @click="plus"/>
+				</span>
+			</div>
+			</template>
+
+		</div>
+		<div v-title style="display:none">{{detailData.goodsInfo.goodsName}}</div>
+		</div>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/goods_detail.js"></script>
+	<script>
+		var mySwiperBanner = new Swiper('.swiper-banner', {
+				pagination : '.swiper-pagination',
+				speed: 400,
+				spaceBetween:0,
+				loop : true,
+				autoplay : 4000,
+				autoplayDisableOnInteraction : false
+		   });
+	</script>
+
+	<script>
+		$(function(){
+			if(title=="no"){
+				$("header").hide();
+			}
+		})
+	</script>
+	</body>
+</html>

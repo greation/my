@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>通关有礼，步步生金</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/step_gold/css/activity.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '通关有礼，步步生金',
+			desc: '通关不用打BOSS，轻松几步清空购物车！',
+			link: Helper.webPath + '/src/activity/step_gold/index.html',
+			imgUrl: Helper.webPath + '/src/activity/step_gold/images/wxshare.jpg',
+			successEvt: function () {
+				wxShareSuc();
+				//window.location.href = '/src/activity/step_gold/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div class="container" id="index">
+		<div class="t_imgs relative">
+			<img src="images/step_01.jpg" alt="">
+			<div class="relative">
+				<img src="images/step_02.jpg" alt="">
+				<span class="btn_rule btn_rule_one" id="btn-rule"></span>
+			</div>
+			<img src="images/step_03.jpg" alt="">
+			<div class="relative">
+				<img src="images/step_04.jpg" alt="">
+				<div class="step_one_box" :class="{received:views.one.done}">
+					<img src="images/step_bg3.png" alt="">
+					<div class="step_one relative text-center fs20">
+						<p class="color_red">
+							10,000元
+						</p>
+						<p class="color_red">理财金</p>
+						<p>注册成为会员</p>
+						<div class="btn_register" :class="{btn_received:views.one.done}" @click="goRegister">
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<img src="images/step_05.jpg" alt="">
+				<div class="step_two_box" :class="{received:views.two.done}">
+					<img src="images/step_bg2.png" alt="">
+					<div class="step_two relative text-center fs20">
+						<p class="color_red">
+							216元现金红包
+						</p>
+						<p>完成开户</p>
+						<div class="btn_open_account" :class="{btn_received:views.two.done}" @click="goRealName">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<img src="images/step_06.jpg" alt="">
+				<div class="step_three_box" :class="{received:views.three.received}">
+					<img src="images/step_bg.png" alt="">
+					<div class="step_three relative text-center fs20">
+						<p class="color_red">
+							1%加息券
+						</p>
+						<p>邀请一名好友</p>
+						<div class="btn_invite" :class="{btn_receive:views.three.done,btn_received:views.three.received}" @click="goInviteAWard">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<img src="images/step_07.jpg" alt="">
+				<div class="step_four_box" :class="{received:views.four.received}">
+					<img src="images/step_bg.png" alt="">
+					<div class="step_four relative text-center fs20">
+						<p class="color_red">
+							1次抽奖机会
+						</p>
+						<p>分享1次活动</p>
+						<div class="btn_share" :class="{btn_luck:views.four.done,btn_received:views.four.received}" @click="drawLuck01">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<img src="images/step_08.jpg" alt="">
+				<div class="step_five_box" :class="{received:views.five.received}">
+					<img src="images/step_bg.png" alt="">
+					<div class="step_five rePlative text-center fs20">
+						<p class="color_red">
+							1次抽奖机会
+						</p>
+						<p>单笔投资≥500元
+						</p>
+						<p>且标的期限≥3个月</p>
+						<div class="btn_invest" :class="{btn_luck:views.five.done,btn_received:views.five.received}" @click="drawLuck02">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<img src="images/step_09.jpg" alt="">
+				<div class="step_six_box" :class="{received:views.six.received}">
+					<img src="images/step_bg.png" alt="">
+					<div class="step_six rePlative text-center fs20">
+						<p class="color_red">
+							500元京东E卡
+						</p>
+						<p>
+							单笔投资≥50,000元
+						</p>
+						<p>
+							且标的期限≥6个月
+						</p>
+						<div class="btn_invest" :class="{btn_receive:views.six.done,btn_received:views.six.received}" @click="goInvestOne">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<img src="images/step_10.jpg" alt="">
+				<div class="step_seven_box" :class="{unlock:AllReceive,received:views.seven.received}">
+					<img src="images/step_bg.png" alt="">
+					<div class="step_seven rePlative text-center fs20">
+						<p class="color_red">
+							5,000元京东E卡
+						</p>
+						<p>
+							活动期间累计
+						</p>
+						<p>年化投资额≥20万</p>
+						<div class="btn_invest" :class="{btn_receive:views.seven.done,btn_received:views.seven.received}" @click="goInvestTwo">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="relative">
+				<p class="count_fund fs30">您当前累计年化投资<span v-text="isLogin?investMoneyByYear:'0'"></span>元<img class="invest_tip" src="images/invest_tip.png" alt=""></p>
+				<div  class="tip_img hide">
+					<img src="images/invest_tip_img.png" alt="">
+				</div>
+				<img src="images/step_11.jpg" alt="">
+			</div>
+
+		</div>
+
+		<div class="modal-rule hide">
+			<div class="clearfix">
+				<img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+			</div>
+			<div class="txt-cont">
+				<h3 class="text-center">活动规则</h3>
+				<div class="txt-gz hide" v-html="ruleData">
+					
+				</div>
+			</div>
+		</div>
+		<div class="luck_01_box">
+
+			<div class="content relative">
+				<div class="close_luck01"><img src="images/btn_close_tip.png" alt=""></div>
+				<div class="pint_box" @click="drawRotateGo"><img src="images/pointer.png"></div>
+				<div class="draw_area" :class="{two:isTwo}">
+					<div class="plate"></div>
+				</div>
+			</div>
+		</div>
+		<div class="luck_02_box">
+			<div class="content relative">
+				<div class="close_luck02"><img src="images/btn_close_tip.png" alt=""></div>
+				<!-- 背景闪烁区域 -->
+				<div class="draw_area" :class="{two:isTwo}" class="relative">
+					<img src="images/transparent_bg.png" alt="">
+				</div>
+				<!-- 抽奖按钮 -->
+				<div class="pint_box" @click="drawTigerGo" id="btn_lucking"></div>
+				<!-- 摇杆 -->
+				<div class="hand_box"></div>
+				<!-- 滚动区域 -->
+				<!-- <div class="arrow_box"></div> -->
+				<div class="award_roll_area relative">
+					<div class="award_show_box">
+						<div class="line line1">
+							<img src="images/award01.png" width="100%" alt="">
+							<img src="images/award02.png" width="100%" alt="">
+							<img src="images/award03.png" width="100%" alt="">
+							<img src="images/award01.png" width="100%" alt="">
+						</div>
+						<div class="line line2">
+							<img src="images/award02.png" width="100%" alt="">
+							<img src="images/award01.png" width="100%" alt="">
+							<img src="images/award03.png" width="100%" alt="">
+							<img src="images/award02.png" width="100%" alt="">
+						</div>
+						<div class="line line3">
+							<img src="images/award03.png" width="100%" alt="">
+							<img src="images/award02.png" width="100%" alt="">
+							<img src="images/award01.png" width="100%" alt="">
+							<img src="images/award03.png" width="100%" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wxmask"><img src="/images/share_tf.png"></div>
+
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/step_gold/js/activity.js"></script>
+	<script src="/src/activity/step_gold/js/fastclick.min.js"></script>
+	<script>
+		vm.index();
+		var awardImgHeight;
+		//活动规则相关处理
+		function createBg() {
+			$('body').append(
+				'<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:8"></div>'
+			);
+		}
+		function showGz(num) {
+			createBg();
+			$('.modal-rule').show();
+			$('.modal-rule .txt-gz').eq(num).show();
+			$('html,body').addClass('ovfHiden');
+		}
+
+		function hideGz() {
+			$('.modal-rule').hide();
+			$('.modal-rule .txt-gz').hide();
+			$('#modal-bg').remove();
+			$('html,body').removeClass('ovfHiden');
+		}
+		$('.btn_rule_one').bind('click', function () {
+			showGz(0);
+		})
+		$('.btn-close').bind('click', function () {
+			hideGz();
+		})
+		//显示转盘抽奖
+		function showLuck1() {
+			createBg();
+			$('.luck_01_box').css('left','0');
+		}
+		//关闭转盘抽奖
+		function hideLuck1() {
+			$('#modal-bg').remove();
+			$('.luck_01_box').css('left','200%');
+		}
+		//显示老虎机
+		function showLuck2() {
+			createBg();
+			$('.luck_02_box').css('left','0%');
+		}
+		//showLuck2();
+		//关闭老虎机
+		function hideLuck2() {
+			$('#modal-bg').remove();
+			$('.luck_02_box').css('left','200%');
+		}
+		$('.close_luck01').click(function () {
+			hideLuck1();
+		})
+		$('.close_luck02').click(function () {
+			hideLuck2();
+		})
+		//初始化老虎机图片高度
+		window.onload = function(){
+			awardImgHeight = $('.award_show_box').height();
+			$('.line img').height(awardImgHeight);
+		}
+		//微信分享tip关闭函数
+		$('.wxmask').click(function(){
+			$(this).hide();
+		})
+		//年化率提示
+		$('.invest_tip').click(function(){
+			$('.tip_img').toggle()
+		})
+	</script>
+</body>
+
+</html>

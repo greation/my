@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>回款详情</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="hd">
+	@@include('../include/head.html',{
+		"title":"回款标的名称",
+		"isback":true
+	})
+	<div class="container">
+		<div class="ljsy disflex bg-white direc_co justify_c relative bor_b_dashed">
+			<span class="fs60">1000.00</span>
+			<p class="fs24">累计收益（元）</p>
+			<img src="/images/activity_tag.png" alt="" class="pro_tag">
+		</div>
+		<div class="info_list fs24 bg-white">
+			<div class="disflex justify_sb"><span class="cbbb">预期年化收益率</span><span class="c666">10%</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">投资金额</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">投资期限</span><span class="c666">12个月</span></div>
+			<div class="disflex justify_sb bor_b_dashed"><span class="cbbb">起息日/到期日</span><span class="c666">2016/12/1－2016/12/1</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">应收本息</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">已收本金</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb bor_b_dashed"><span class="cbbb">已收利息</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">待收本金</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb bor_b_dashed"><span class="cbbb">待收利息</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">加息券年化收益率</span><span class="c666">2%</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">现金券</span><span class="c666">1000元</span></div>
+			<div class="disflex justify_sb"><span class="cbbb">投资获得积分</span><span class="c666">1000</span></div>
+		</div>
+		<div class="plan_ht mar-t-10 bg-white">
+			<div class="plan disflex justify_sb alignitem_c fs30">
+				<span>回款计划</span>
+				<span class="disflex alignitem_c">0/1<span class="icon_jtright pull-right"></span></span>
+			</div>
+			<div class="ht disflex justify_sb alignitem_c fs30">
+				<span>投资合同</span>
+				<span class="icon_jtright pull-right"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

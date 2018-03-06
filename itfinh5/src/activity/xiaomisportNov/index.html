@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>狂欢11月，小米最IN单品放肆送</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/xiaomisportNov/css/activity.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='js/sensore.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '狂欢11月，小米最IN单品放肆送',
+			desc: '小米6抢鲜“0元”享',
+			link: Helper.webPath + '/src/activity/xiaomisportNov/index.html',
+			imgUrl: Helper.webPath + '/src/activity/xiaomisportNov/images/wxshare.jpg',
+			successEvt: function () {
+				window.location.href = '/src/activity/xiaomisportNov/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+	<script type="text/javascript">
+var current_url = Helper.webPath + '/src/activity/xiaomigroupOct/index.html';
+	var lottery = {
+        index : 1, //当前转动到哪个位置，起点位置
+        count : 7, //总共有多少个位置
+        timer : 0, //setTimeout的ID，用clearTimeout清除
+        speed : 20, //初始转动速度
+        times : 0, //转动次数
+        cycle : 30, //转动基本次数：即至少需要转动多少次再进入抽奖环节
+        prize : -1, //中奖位置
+        prizeData:1,
+        init : function(id) {
+        	
+            if ($("#" + id).find(".lottery-unit").length > 0) {
+                $lottery = $("#" + id);
+                $units = $lottery.find(".lottery-unit");
+                this.obj = $lottery;
+                this.count = $units.length;
+                $lottery.find(".lottery-unit-" + this.index).addClass(
+                    "active");
+            }
+            ;
+        },
+        roll : function() {
+            var index = this.index;
+            var count = this.count;
+            var lottery = this.obj;
+            $(lottery).find(".lottery-unit-" + index).removeClass("active");
+            index += 1;
+            if (index > count - 1) {
+                index = 0;
+            }
+            ;
+            $(lottery).find(".lottery-unit-" + index).addClass("active");
+            this.index = index;
+            return false;
+        },
+        stop : function(index) {
+            this.prize = index;
+            return false;
+        }
+    };
+
+    function roll() {
+        lottery.times += 1;
+        lottery.roll();//转动过程调用的是lottery的roll方法，这里是第一次调用初始化
+        if (lottery.times > lottery.cycle + 10&& lottery.prize == lottery.index) {
+            clearTimeout(lottery.timer);
+            lottery.prize = -1;
+            lottery.times = 0;
+            click = false;
+        } else {
+            if (lottery.times < lottery.cycle) {
+                lottery.speed -= 10;
+            } else if (lottery.times == lottery.cycle) {
+                 
+                var awrd1=[0,3,5];
+				var awrd2=[1,4];
+				var awrd3=[2,6]; 
+				if(lottery.prizeData===3||lottery.prizeData===0){
+				    lottery.prize =awrd1[Math.floor((Math.random()*awrd1.length))] ;
+				}
+				if(lottery.prizeData===2){
+
+				    lottery.prize =awrd3[Math.floor((Math.random()*awrd3.length))] ;
+				}
+				if(lottery.prizeData===1){
+				     lottery.prize =awrd2[Math.floor((Math.random()*awrd2.length))] ;
+				}
+				if(lottery.prize===-1){
+				     lottery.prize = awrd1[Math.floor((Math.random()*awrd1.length))] ;
+				}
+
+            } else {
+                if (lottery.times > lottery.cycle + 10
+                    && ((lottery.prize == 0 && lottery.index == 7) || lottery.prize == lottery.index + 1)) {
+                    lottery.speed += 110;
+                } else {
+                    lottery.speed += 20;
+                }
+            }
+            if (lottery.speed < 20) {
+                lottery.speed = 20;
+            }
+            ;
+            //console.log(lottery.times+'^^^^^^'+lottery.speed+'^^^^^^^'+lottery.prize);
+            lottery.timer = setTimeout(roll, lottery.speed);//循环调用
+        }
+        return false;
+    }
+
+    $(function(){
+        	lottery.init('lottery');
+        })
+    	
+</script>
+</head>
+
+<body>
+
+	<div class="container" id="index">
+		<div class="t_imgs relative">
+			<img src="images/xiaomi_t.jpg" height="200" width="750" alt="">
+			<span class="btn_rule btn_rule_one" id="btn-rule"></span>
+		</div>
+		<div class="content relative">
+			<!-- 背景闪烁区域 -->
+			<div class="draw_area" :class="{two:isTwo}" class="relative">
+				<img src="images/transparent_bg.png" alt="" id="transparent_box">
+			</div>
+			<!-- 抽奖按钮 -->
+			<div class="award_roll_area relative">
+				<div class="award_show_box">
+					<div id="lottery" class="bbskd">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%"
+							   height="100%">
+							<tr style="height: 60px;">
+								<td class="lottery-unit lottery-unit-0"><div class="admask"></div></td>
+								<td class="lottery-unit lottery-unit-1"><div class="admask"></div></td>
+								<td class="lottery-unit lottery-unit-2"><div class="admask"></div></td>
+							</tr>
+							<tr style="height: 60px;">
+								<td class="lottery-unit lottery-unit-7"><div class="admask"></div></td>
+								<td><a href="#" id="cjrewardId" @click="cjreward()"></a></td>
+								<td class="lottery-unit lottery-unit-3"><div class="admask"></div></td>
+							</tr>
+							<tr style="height: 60px;">
+								<td class="lottery-unit lottery-unit-6"><div class=" admask"></div></td>
+								<td class="lottery-unit lottery-unit-5"><div class=" admask"></div></td>
+								<td class="lottery-unit lottery-unit-4"><div class=" admask"></div></td>
+							</tr>
+						</table>
+					</div>
+					
+					
+					
+				</div>
+			</div>
+		</div>
+		<div class="relative" v-if="isLogin&&rewardName!==''">
+				<img src="images/white_line.jpg" class="show" alt="">
+				<p class="rewardText"><span v-text="rewardName" class="nametext"></span></p>
+		</div>
+		<div class="form logined" id="logining" v-if="isLogin">
+			<div class="text-center user_img_box pad-t-10"><img src="images/user_img.png" alt=""></div>
+			<p class="text-center mar-t-20 mar-b-30" style="color:#362e2b"><span id="welcome">尊敬的<span v-text="phoneRepalceMask(userData.userInfo.mobile,4,4)"></span>，您好！</span><a href="javascript:void(0)"
+				  class="outsign" id="outsign" @click="linkLogot()">退出</a>
+			</p>
+			<input type="button" onclick="location='/src/account/index.html'" id="link_account" value="进入个人中心" class="btn-base0">
+			<input type="button" onclick="location='http://m.ekeyfund.com/Website/download-app.jsp'" id="download" value="下载APP" class="btn-base1 mar-t-20">
+			<P class="text-center mar-t-10 fs30" style="color:#fff;font-weight:600">下载宜泉资本APP，更多精彩活动等着你！</P>
+		</div>
+		<div class="b_imgs" v-if="isLogin">
+			<div class="">
+				<img src="images/xiaomi_b_01.jpg" height="185" width="750" alt="">
+				<img src="images/xiaomi_b_02.jpg" height="185" width="750" alt="">
+				<img src="images/xiaomi_b_03.jpg" height="185" width="750" alt="">
+				<img src="images/xiaomi_b_04.jpg" height="185" width="750" alt="">
+			</div>
+			<div class="relative">
+				<img src="images/xiaomi_b_05.jpg" height="214" width="750" alt="">
+				<a href="/src/invest/list.html" class="link_invest" id="link_invest_list"></a>
+			</div>
+			<img src="images/xiaomi_b_06.jpg" height="204" width="750" alt="">
+			<img src="images/xiaomi_b_07.jpg" height="158" width="750" alt="">
+			<img src="images/xiaomi_b_08.jpg" height="163" width="750" alt="">
+			
+		</div>
+		<div v-if="!isLogin"><img src="images/xiaomi_b_out.jpg" height="200" width="750" alt="" class="show" style="position: relative;top: -1px;"></div>
+		<div class="modal-rule hide">
+			<div class="clearfix">
+				<img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+			</div>
+			<div class="txt-cont">
+				<h3 class="text-center">活动规则</h3>
+				<div class="txt-gz hide" v-html="ruleData">
+					
+				</div>
+			</div>
+		</div>
+		<div class="bot_box" v-show="!isLogin">
+			<div class="reg_one" v-if="!checkPhoneYes">
+				<span class="error_tip hide"></span>
+				<span class="text_box js-text inp_phone01 pad-l-12 header_top" v-text="inpPhone===''?'请您输入手机号码':inpPhone"></span>
+				<input type="tel" class="inp_phone01 pad-l-12 header_fixed" placeholder="请您输入手机号码" id="inpPhone_qq" v-model="inpPhone" maxlength="11">
+				<input type="button" value="立即抽奖" class="btn_next" @click="check_phone" id="checkPhone">
+			</div>
+			<div class="reg_two hide" v-show="checkPhoneYes">
+				<div class="clearfix mar-t-10 mar-b-10" v-if="checkPhoneYes"><img src="images/btn_close.png" alt="" width="44" height="44" class="btn-close-register pull-right" @click="closeRegisBox()"></div>
+				<div class="form page">
+					<div class="disflex relative">
+						<i class="icon_user"></i>
+						<input type="tel" v-model="inpPhone" placeholder="请输入您的手机号码" class="inp_phone" maxlength="11">
+						<div class="clearData iconx" @click="clearInpData('inpPhone')"></div>
+					</div>
+					<div class="code disflex justify_sb mar-t-15 bg-white relative">
+						<i class="icon_picture"></i>
+						<input type="text" placeholder="图片验证码" class="inp_code inp_pictrue_code outline_no" v-model="pictureCode" maxlength="4">
+						<img v-bind:src="pictureUrl" class="picture_code_img" @click="refreshPicture()" id="checkcode_img">
+						<div class="clearData iconx r32b" @click="clearInpData('pictureCode')"></div>
+					</div>
+					<div class="code disflex justify_sb mar-t-15 relative">
+						<i class="phone_code"></i>
+						<input type="text" placeholder="短信验证码" class="inp_code outline_no inp_phone_code" v-model="phoneCode" maxlength="4">
+						<span type="button" v-text="countTime" id="sms_validCode_btn_id" class="fs24 disflex justify_c alignitem_c btn_getcode" :class="{ 'bg-gray': isPhoneCode }"
+						  @click="getPhoneCode"></span>
+						  <div class="clearData iconx r32b" @click="clearInpData('phoneCode')"></div>
+					</div>
+					<div class="disflex relative mar-t-10">
+						<i class="icon_psw" v-cloak></i>
+						<input type="password" placeholder="密码为6-16位数字/字母" class="inp_psw" v-model="inpPsw">
+						<div class="clearData iconx r55p" @click="clearInpData('inpPsw')"></div>
+						<div class="changeType eye_close"></div>
+					</div>
+					<p class="disflex alignitem_c color-white mar-t-10 mar-b-10">
+						<input type="checkbox" name="xieyi" id="xieyi" v-model="isXieYi">
+						<label for="xieyi" class="fs24">我已阅读并同意</label><span class="fs24 c999 color-white btn_xieyi" @click="openXieyi()">《宜泉资本注册服务及隐私保护协议》</span>
+
+					</p>
+					<div class="">
+						<input type="button" value="确认抽奖" id="register_btn_id" class="btn_register" @click="regisMain()">
+					</div>
+					<p class="text-center fs20 mar-t-10"><a href="/src/base/login.html?bUrl=/src/activity/xiaomisportNov/transfer_page.html" class="color-white">已是宜泉用户</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="xieyi_box hide">
+			<iframe src="/src/base/regisxy2.html" frameborder="0" width="100%" height="100%" id="iframe_xieyi"></iframe>
+			<div class="close_xieyi"></div>
+		</div>
+
+	</div>
+
+	<div class="mask1"></div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/xiaomisportNov/js/activity.js"></script>
+	<script src="/src/activity/xiaomisportNov/js/fastclick.min.js"></script>
+	<script>
+		window.addEventListener('load', function () {
+			FastClick.attach(document.body);
+		}, false);
+		window.onload = function () {
+			var awardImgHeight = $('.award_show_box').height();
+			$('.line img').height(awardImgHeight);
+				var $html = document.querySelector('html'),
+					$headerTop = document.querySelector('.header_top'),
+					$headerFixed = document.querySelector('.header_fixed'),
+					$input = document.querySelector('.header_fixed'),
+					$mask = document.querySelector('.mask1');
+				document.querySelector('.js-text').onclick = function () {
+					$html.classList.add('win_lock');
+					$headerTop.classList.add('hide');
+					$headerFixed.classList.add('show');
+					$input.focus();
+					$mask.classList.add('show');
+				}
+				$input.onblur = function () {
+					$html.classList.remove('win_lock');
+					$headerTop.classList.remove('hide');
+					$headerFixed.classList.remove('show');
+					$mask.classList.remove('show');
+				}
+			}
+
+		vm.index();
+		function createBg() {
+			$('body').append(
+				'<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:8"></div>'
+			);
+		}
+		function showGz(num) {
+			createBg();
+			$('.modal-rule').show();
+			$('.modal-rule .txt-gz').eq(num).show();
+			$('html,body').addClass('ovfHiden');
+		}
+
+		function hideGz() {
+			$('.modal-rule').hide();
+			$('.modal-rule .txt-gz').hide();
+			$('#modal-bg').remove();
+			$('html,body').removeClass('ovfHiden');
+		}
+		$('.btn_rule_one').bind('click', function () {
+			showGz(0);
+		})
+		$('.btn-close').bind('click', function () {
+			hideGz();
+		})
+		//悬浮层 注册协议
+		$('.close_xieyi').click(function () {
+			$('.xieyi_box').hide();
+		})
+		//安卓下注册第二部bug处理
+		if (!util.isOsType()) {
+			$('.inp_phone,.inp_code,.icon_psw').focus(function () {
+				setTimeout(function () {
+					$('.reg_two').height($(window).height() - 40);
+				}, 1000)
+
+			})
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>标的详情</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+		<script src="/js/vue-resource.min.js"></script>
+<style>
+	/* ipad横屏 */
+	@media only screen
+	and (min-device-width : 768px)
+	and (max-device-width : 1280px){
+		body{background:#fff;}
+		.invest_t{line-height:2rem;height:2rem;font-size:16px;}
+		.fs28,.fs20{font-size:16px;}
+		.invest_money{line-height:3rem;font-size:16px;}
+		.investborder{height:3rem;}
+		.invest_list_in{height:3rem;}
+		.btn_load_more{font-size:14px;}
+	}
+</style>
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"标的详情",
+		"isback":true
+	})
+	<div id="iNrecord" v-cloak>
+		<div class="nav_bar bg-white" id="pad_nav">
+			<div class="wa90">
+				<a class="col-xs-6 c9 text-center"  @click="ProLink()">项目描述</a>
+				<a href="javascript:void(0)" class="col-xs-6 cblue text-center">投资记录</a>
+				<!-- <a class="col-xs-4 c9 text-right" v-if="data.awardTemplateId==''||data.awardTemplateId===null"  @click="HorLink()">荣誉榜</a> -->
+			</div>
+		</div>
+		<div class="invest_list bg-white" >
+			<div class="invest_t">
+				<div class="wa90">
+					<span class="pull-left c6">投资人/投资时间</span>
+					<span class="pull-right c6">投资金额(元)</span>
+				</div>
+			</div>
+			<div class="invest_list_in bg_white" v-for="list in items" :id="list.borrowInfoId">
+				<div class="wa90 investborder">
+					<div class="pull-left pad-t-5">
+						<span class="c3 fs28">{{list.investUserName}}</span><br />
+						<span class="cb fs20">{{list.investHisTime}}</span>
+					</div>
+					<div class="pull-right cblue invest_money">{{list.investMoney |capitalize}}</div>
+				</div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+	</div>
+		<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png"/></div>
+		<script src="/js/invest.js"></script>
+		<script>
+			window.onload=function(){
+		var oTop = document.getElementById("toTop");
+  		var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  		var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  		window.onscroll = function(){
+    		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(scrolltop>100){
+				oTop.style.display ="block";
+			}else{
+				oTop.style.display ="none";
+			}
+  		}
+  		oTop.onclick = function(){
+    		document.documentElement.scrollTop = document.body.scrollTop =0;
+  		}
+	}
+	
+iv.prorecord();
+var pad = Request["pad"];//参数为no 隐藏cont
+$(function(){
+      if(title=="no"){
+          $("header").hide();
+      }
+	  if (pad == "no") {
+        $("#pad_nav").hide();
+      }
+  })
+		</script>
+		
+		
+	</body>
+</html>

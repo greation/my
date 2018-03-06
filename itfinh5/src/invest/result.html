@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>投资结果</title>
+	<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script type="text/javascript" src="/js/zepto.min.js"></script>
+	<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		var redId = '';
+		function shareSuc() {
+			$.ajax({
+				url: Helper.basePath + 'sharePacket/shareRedPackage.htm',
+				type: 'POST',
+				dataType: 'json',
+				async: false,
+				xhrFields: {
+					withCredentials: true
+				},
+				data: {
+					redPacketId: redId
+				}
+			}).done(function (data) {
+				var data = JSON.parse(data);
+				console.log(data);
+			})
+		}
+		
+	</script>
+</head>
+
+<body class="result">
+	<header>
+		<div class="item back">
+		</div>
+		<div class="item title">投资结果</div>
+		<div class="item operation">
+			<a href="/src/account/my_invest.html">完成</a>
+		</div>
+	</header>
+	<div id="result">
+		<div class="successicon text-center pad-t-30">
+			<img src="/skins/default/images/success.png" />
+			<br /> 恭喜您，投资成功
+		</div>
+		<div class="successign mar-t-20">
+
+			<a class="text-center cf bg_blue" @click="goInvest">继续投资</a>
+
+		</div>
+		<div class="successign mar-t-20">
+			<a class="text-center c9 bg-white" @click="goInvest_two">查看投资项目</a>
+		</div>
+		<!--banner-->
+		<div class="banner" v-if="data.banner.imgUrl">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<a target="_blank" @click="gobanner">
+							<img v-bind:src="data.banner.imgUrl" alt="">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="successimg mar-t-20">
+			<a class="bg-white"><img src="/images/banner2.jpg"/></a>
+		</div>-->
+		<!--<div class="ggk ">
+			<div class="scratcherContainer" id="scratcherContainerId">
+				<div class="show-gg" id="defautShowId"></div>
+
+				<div class="show-gg-out" id="showOutId">
+					<p class="text-center gx" >恭喜您！</p>
+					<p class="text-center">获得${rewardName}</p>
+				</div>
+    		</div>
+    		<img id="tulip"  src="/skins/default/images/tc.jpg" style="display:none;"/>
+		</div>-->
+
+	</div>
+	<div class="send_red_layer hide">
+		<div class="layer_flex_box">
+			<div class="relative">
+				<img src="/src/activity/share_red/images/red_layer.png" alt="">
+				<input type="button" class="btn_close_layer">
+				<input type="button" class="btn_share">
+			</div>
+		</div>
+
+	</div>
+	<div class="side_red_tip hide">
+		<img src="/src/activity/share_red/images/side_red_layer.png" alt="">
+	</div>
+	<div class="wxmask">
+		<img src="/images/share_tf.png">
+	</div>
+	<style>
+		.send_red_layer {
+			position: fixed;
+			max-width: 100%;
+			height: 100%;
+			top: 0%;
+			left: 0%;
+			z-index: 3;
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+
+		.layer_flex_box {
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+
+		.side_red_tip {
+			position: fixed;
+			width: 16%;
+			right: 0%;
+			top: 13%;
+			z-index: 2;
+			animation: threedou 3s ease infinite;
+		}
+
+		@keyframes threedou {
+			0% {
+				top: 15%
+			}
+			2% {
+				top: 13%
+			}
+			4% {
+				top: 15%
+			}
+			6% {
+				top: 13%
+			}
+			8% {
+				top: 15%
+			}
+			10% {
+				top: 13%
+			}
+		}
+
+		.btn_close_layer {
+			position: absolute;
+			width: 14%;
+			height: 9%;
+			top: 20%;
+			right: 10%;
+			background: transparent;
+		}
+
+		.btn_share {
+			position: absolute;
+			width: 61%;
+			height: 9%;
+			bottom: 21%;
+			right: 20%;
+			background: transparent;
+		}
+
+		.wxmask {
+			background: rgba(0, 0, 0, 0.5);
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 99;
+			display: none;
+		}
+	</style>
+	<script>
+		$(function () {
+			if (title == "no") {
+				$("header").hide();
+			}
+		})
+	</script>
+
+	<script src="/js/result.js" charset="UTF-8"></script>
+	<script>
+		iv.result();
+		var mySwiperBanner = new Swiper('.banner .swiper-container', {
+			pagination: '.banner .swiper-pagination',
+			speed: 400,
+			autoplay: 4000,
+			spaceBetween: 0,
+			autoplayDisableOnInteraction: false
+		});
+		//红包分享逻辑
+		var hrefJson = util.hrefSplit(window.location.href);
+		$.ajax({
+			url: Helper.basePath + 'sharePacket/createRedPacket.htm',
+			type: 'POST',
+			dataType: 'json',
+			async: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			data: {
+				investId: hrefJson.investId
+			}
+		}).done(function (data) {
+			var data = JSON.parse(data);
+			if (data.code === '000') {
+				$('.send_red_layer').show();
+				redId = data.redPacketId;
+			}
+		})
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '百万红包等你瓜分',
+			desc: '好运不停歇，呼朋唤友抢红包！',
+			link: Helper.webPath + '/src/activity/share_red/receive_red.html?redPacketId=' + redId,
+			imgUrl: Helper.webPath + '/src/activity/share_red/images/wxshare.jpg',
+			successEvt: function () {
+				shareSuc();
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+		$('.btn_close_layer').click(function () {
+			$('.send_red_layer').hide();
+			$('.side_red_tip').show();
+		})
+		$('.side_red_tip').click(function () {
+			$('.send_red_layer').show();
+			$(this).hide();
+		})
+		$('.wxmask').click(function () {
+			$(this).hide();
+		})
+		$('.btn_share').click(function () {
+			if (hrefJson.app === 'IPHONE') {
+				window.webkit.messageHandlers.share.postMessage([Helper.webPath + '/src/activity/share_red/images/wxshare.jpg',
+					Helper.webPath + '/src/activity/share_red/receive_red.html?redPacketId=' + redId, '258元现金券等你来抢', '一起来抢红包雨~',
+					'SHARE_RED_PACKET',redId
+				]);
+			} else if (hrefJson.app === 'ANDROID') {
+				android.share(Helper.webPath + '/src/activity/share_red/images/wxshare.jpg', Helper.webPath +
+					'/src/activity/share_red/receive_red.html?redPacketId=' + redId, '258元现金券等你来抢', '一起来抢红包雨~', 'SHARE_RED_PACKET',redId
+				);
+			} else {
+				$('.wxmask').show();
+			}
+		})
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>邀请好友</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+	<style>
+.imgcom{width: 100%;clear: both;height: auto;}
+.imgcom img{width: 100%;display: block}
+.time{height:0px;width:100%;position:relative;top:-17px;text-align:center;}
+.time span{color:#ffc0bd;z-index:99;font-size:0.8rem;height:30px;line-height:30px;}
+.gz{height:0px;width:100%;position:relative;top:-235px;}
+.gz p{z-index:99;font-size:0.7rem;display:block;position:relative;width:70%;margin-left:-35%;left:50%;line-height: 0.9rem;}
+.e50{color:#e5004f;}
+.btn{height:0px;width:100%;position:relative;}
+.btn a{width:100%;height:80px;border-radius:50px;display:block;position:fixed;left:50%;margin-left:-45%;z-index:9;bottom:0;}
+.btn span{width:30%;height:40px;border-radius:50px;display:block;position:relative;left:50%;margin-left:-15%;z-index:9;cursor: pointer;top: -65px;}
+.mask{background: rgba(0,0,0,0.5);width: 100%;height: 100%;position: fixed;top: 0;left: 0;z-index: 99;display: none;}
+.mask img{display: block; margin: 50px auto;}
+.modal-rule {
+    position: fixed;
+    width: 86%;
+    height: 70%;
+    left: 7%;
+    top: 10%;
+    z-index: 9;
+}
+.hide{display: none;}
+.pull-right {
+    float: right;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.text-center {
+    text-align: center;
+}
+.modal-rule .txt-gz {
+    height: 90%;
+    overflow: auto;
+}
+.modal-rule .txt-cont {
+    height: 80%;
+    background: #fff;
+    padding: 15px;
+    line-height: 2.2;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    border-radius: 20px;
+}
+.share_btn{dispaly:block;position:fixed;bottom:0;left:0;}
+#yqhyznq{padding-bottom: 50px;}
+</style>
+<body >
+	@@include('../include/head.html',{
+"title":"邀请好友",
+"isback":true
+})
+
+<div id="yqhyznq">
+	<div class="img1 imgcom">
+		<img alt="" src="/images/investfriend_01.jpg">
+	</div>
+	<div class="img2 imgcom">
+		<img alt="" src="/images/investfriend_02.jpg">
+	</div>
+	
+	<div class="img3 imgcom">
+		<img alt="" src="/images/investfriend_03.jpg">
+		 
+	</div>
+	<div class="img4 imgcom">
+		<img alt="" src="/images/investfriend_04.jpg">
+	</div>
+	<div class="img5 imgcom">
+		<img alt="" src="/images/investfriend_05.jpg">
+	</div>
+	<div class="img6 imgcom">
+		<img alt="" src="/images/investfriend_06.jpg">
+	</div>
+	<div class="img7 imgcom">
+		<img alt="" src="/images/investfriend_07.jpg">
+	</div>
+	<div class="img8 imgcom">
+		<img alt="" src="/images/investfriend_08.jpg">
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_09.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_10.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_11.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_12.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_13.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_14.jpg">
+		<div class="btn btn1" >
+		 	<span @click="gorule()" style="top:-140px;"></span>
+		 </div>
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_15.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_16.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_17.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_18.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_19.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend.jpg">
+		
+	</div>
+	<div class="img9 imgcom">
+		<img alt="" src="/images/investfriend_21.jpg" class="share_btn">
+		<div class="btn btn1" >
+		 	<a @click="goshare()"></a>
+		 </div>
+	</div>
+	
+	<div class="mask" @click="mask">
+		<img src="/images/share_tf.png" />
+	</div>
+	<div class="modal-rule hide">
+	<div class="clearfix">
+		<img src="/images/btn_close.png" class="btn-close pull-right" alt=""
+			 width="44" height="44" @click="hideGz()"/>
+	</div>
+	<div class="txt-cont">
+		<!-- <h3 class="text-center">活动规则</h3> -->
+		<div class="txt-gz">
+			<h3 class="text-center">福利1-送精彩好礼</h3>
+			<h4 class="text-center">活动时间：2017年8月22号-9月10号</h4>
+			一、成功邀请定义：被邀请人注册绑卡并成功投资任意金额（体验金标除外)，认定为成功邀请；<br/><br/>
+			二、被邀请人被邀请及注册绑卡、投资等行为均需发生在活动期间内方有效。
+上述两条适用于以下规则<br/><br/>
+			被邀请人奖励：<br/>
+1、被邀请人首次投资任意金额（体验金标除外）即可获得1%加息券一张（500元起投，标的无限制）；<br/>
+2、被邀请人单笔投资>=10,000元，该被邀请人可获得格瓦拉电影票黄券2张，（不限投资次数，同下面规则中例2）。<br/><br/>
+邀请人奖励：<br/>
+1、活动期间，成功邀请第1名好友，邀请人获1%加息券一张（500元起投，标的无限制）；<br/>
+2、活动期间，成功邀请第2名好友，邀请人可再获2%加息券一张（投资金额、标的均无限制）；<br/>
+3、活动期间，成功邀请满5名好友，邀请人可再获3%加息券一张（投资金额无限制，6个月及以上标的适用）；<br/>
+只要满足每档邀请好友数量要求，加息券可叠加获得。<span style="color:red;">例：邀请人成功邀请第2名好友，可获得2%加息券一张，同时邀请第1名好友获得的1%加息券仍有效。</span><br/>
+4、活动期间，邀请人每成功邀请一位好友，邀请人可额外获得1,000积分，最高可获10,000积分；<br/>
+5、活动期间，单个被邀请人单笔投资>=10,000元，邀请人可获得格瓦拉电影票黄券2张。<span style="color:red;">(例1：A邀请B和C，B和C均满足单笔投资>=10,000元，A可获得4张格瓦拉黄券,以此类推；例2：A邀请B,B满足单笔投资>=10,000元,A将获得2张格瓦拉黄券，B如果再进行投资且满足单笔投资>=10,000元，A将再获得2张格瓦拉黄券，即不限投资次数)</span><br/>
+6、活动结束后，所有活动期间被邀请好友累计投资金额最高的邀请人，可获1,000元京东E卡经典卡一张。<br/><br/>
+奖品领取：<br/>
+加息券在我的账户-卡券中查询；积分在我的账户-我的积分中查询；格瓦拉黄券兑换码将在5个工作日内通过短信发送到投资所用的手机号，兑换券兑换如有任何问题，可直接联系格瓦拉客服：1010-1068；京东E卡经典卡以电话方式通知中奖用户，客服电话：60741604/60739278/60741594。<br/>
+<br/>备注：如出现恶意注册，故意刷量，商业贿赂，非正常投资等任何异常行为，将扣除活动期间所有奖励<br/>
+
+		</div>
+	</div>
+</div>
+	
+	
+	
+	
+	
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.yqhyznq();
+	$(function(){
+	  if(title=="no"){
+	    $("header").hide();
+	  }
+	});
+	$.ajax({
+		url: Helper.basePath+'member/share.htm',
+		type: 'POST',
+		dataType: 'json',
+		xhrFields: {
+			withCredentials: true
+		}
+	})
+	.done(function(data) {
+		var myfriends = JSON.parse(data);
+
+		//未登录un为null
+		if(myfriends.recommendCode == undefined){
+            myfriends.recommendCode='';
+		}
+
+		/*微信分享函数调用*/
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title : '邀请好友，双重福利等你来领',
+			desc : '投资返利，还有更多好礼等你来拿，快叫上你的好友吧！',
+			link : Helper.webPath+'/src/base/share_register.html?un='+myfriends.recommendCode,
+			imgUrl : Helper.webPath+'/images/share_invite.jpg',
+			successEvt:function(){
+				//
+			},
+			cancelEvt:function(){
+				//
+			}
+		});
+
+    })
+	.fail(function() {
+		console.log("error");
+	});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ac18e9e67c71a6f60a764194bb6af570";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>账号安全</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="mo as">
+	@@include('../include/head.html',{
+		"title":"账号安全",
+		"isback":true
+	})
+<div class="container" id="as">
+	<div class="center mar-t-10">
+		<a href="/src/base/change_psw.html" class="item">
+			<span>修改登录密码</span><span class="disflex justify_c alignitem_c"><span class="icon_jtright"></span></span>
+		</a>
+		<a href="javascript:void(0)" v-if="data.userInfo.isSetPayPwd!=='YES'" class="item" @click="upPayPsw('set')">
+			<span>设置支付密码</span><span class="disflex justify_c alignitem_c"><span class="c999" v-text="data.userInfo.isSetPayPwd==='YES'?'已设置':'未设置'"></span><span class="icon_jtright"></span></span>
+		</a>
+		<template v-else>
+			<a href="javascript:void(0)" class="item" @click="upPayPsw('change')">
+				<span>修改支付密码</span><span class="disflex justify_c alignitem_c"><span class="icon_jtright"></span></span>
+			</a>
+			<a href="javascript:void(0)" class="item" @click="upPayPsw('find')">
+				<span>找回支付密码</span><span class="disflex justify_c alignitem_c"><span class="icon_jtright"></span></span>
+			</a>
+		</template>
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.acsafe();
+</script>
+</body>
+</html>

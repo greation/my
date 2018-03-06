@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>累计收益</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="af">
+	@@include('../include/head.html',{
+		"title":"累计收益",
+		"isback":true
+	})
+	<div class="container" id="af">
+		<div class="pad-l-15 pad-r-15 bg-white">
+			<div class="top">
+				<p class="text-center fs60" v-text="data.totalIncomeMoney"></p>
+				<p class="text-center fs24">累计收益（元）</p>
+			</div>
+		</div>
+		<div class="fund_list">
+			<div class="bg-white item disflex justify_sb" v-for="item in receiveList">
+				<div class="disflex direc_co ">
+					<span class="c333" v-text="item.transTypeText"></span>
+					<span class="fs24 cbbb mar-t-15" v-text="item.getTime"></span>
+				</div>
+				<div class="c666 mar-t-15" v-text="item.moneyText+'元'"></div>
+			</div>
+
+			<!-- <div class="bg-white item disflex justify_sb">
+				<div class="disflex direc_co ">
+					<span class="c333">邀请返利</span>
+					<span class="fs24 cbbb mar-t-15">2016/12/1 12:11:10</span>
+				</div>
+				<div class="c666 mar-t-15">20.00</div>
+			</div> -->
+
+		</div>
+		<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.addfund();
+
+    $(function(){
+        if(title=="no"){
+            $("header").hide();
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的好友</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body class="fr">
+	@@include('../include/head.html',{
+		"title":"我的好友",
+		"isback":true
+	})
+	<div class="container" id="friends">
+		<div class="top bg-white pad-t-15 pad-b-20">
+			<img src="/images/friend_zs.png" alt="" class="img_hyzs">
+			<p class="text-center c333 fs28 mar-t-5" v-if="data.winUserPercentage==''">
+			 	<span>你现在一个好友也没有...去分享吧！</span>
+			</p>
+
+			<p class="text-center c333 fs28 mar-t-5" v-else> 
+				<span>战胜<span v-text="data.winUserPercentage" ></span>%的用户</span>
+			</p>
+			
+
+			<div class="disflex info  mar-t-20">
+				<div>
+					<span v-text="data.inviteTotalPersons" >50</span>
+					<p class="fs24 mar-t-5">邀请人数</p>
+				</div>
+				<div>
+					<span v-text="data.inviteInvestTotal" >100.00</span>
+					<p class="fs24 mar-t-5">累计返利</p>
+				</div>
+			</div>
+		</div>
+		<div class="delail_list mar-t-10">
+			<a href="friend_detail.html?grade=1" class="item disflex justify_sb alignitem_c fs28">
+				<span class="disflex alignitem_c "><i></i><span>一级邀请</span></span>
+				<span class="c666"><span v-text="data.inviteOnePersons"></span>人</span>
+				<span class="disflex alignitem_c c666"><span v-text="data.inviteInvestOne">20元</span>元<span class="icon_jtright"></span></span>
+			</a>
+
+			<a href="friend_detail.html?grade=2" class="item disflex justify_sb alignitem_c fs28">
+				<span class="disflex alignitem_c "><i></i><span>二级邀请</span></span>
+				<span class="c666"><span v-text="data.inviteTwoPersons"></span>人</span>
+				<span class="disflex alignitem_c c666"><span v-text="data.inviteInvestTwo">20元</span>元<span class="icon_jtright"></span></span>
+			</a>
+
+			<a href="friend_detail.html?grade=3" class="item disflex justify_sb alignitem_c fs28">
+				<span class="disflex alignitem_c "><i></i><span>三级邀请</span></span>
+				<span class="c666"><span v-text="data.inviteThreePersons"></span>人</span>
+				<span class="disflex alignitem_c c666"><span v-text="data.inviteInvestThree">20元</span>元<span class="icon_jtright"></span></span>
+			</a>
+			
+		</div>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script type="text/javascript">
+	vms.infoFriends();
+	$(function(){
+	  if(title=="no"){
+	    $("header").hide();
+	  }
+	})
+	var myGoodFriends  = {};
+	$.ajax({
+		url: Helper.basePath+'member/myGoodFriends.htm',
+			type: 'POST',
+			dataType: 'json',
+			async:false,
+			xhrFields: {
+      	withCredentials: true
+   		}
+		})
+		.done(function(data) {
+			var _data = JSON.parse(data);
+			myGoodFriends = _data;
+      		console.log(_data);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+	$.ajax({
+		url: Helper.basePath+'member/share.htm',
+		type: 'POST',
+		dataType: 'json',
+		xhrFields: {
+			withCredentials: true
+		}
+	})
+	.done(function(data) {
+		var myfriends = JSON.parse(data);
+		/*微信分享函数调用*/
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title : '拼人脉，攒财运！',
+			desc : '我是宜泉资本平台邀请达人，动动手指邀请好友，即可获得现金返利，一起加入我们吧！',
+			link : Helper.webPath+'/src/account/my_friend.html?un='+myfriends.recommendCode+
+				'&winUserPercentage='+myGoodFriends.winUserPercentage+'&inviteUsers='+myGoodFriends.inviteTotalPersons+'&totalRebate='+myGoodFriends.inviteInvestTotal+'&title=no',
+			imgUrl : Helper.webPath+'/images/share_friend.jpg',
+			successEvt:function(){
+				//
+			},
+			cancelEvt:function(){
+				//
+			}
+		});
+	})
+	.fail(function() {
+		console.log("error");
+	});
+</script>
+</body>
+</html>

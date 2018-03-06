@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>宜泉资本1周年，感谢“宜”路有你</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/src/activity/one_anniversary/css/activity.css"/>
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title : '宜泉资本1周年，感谢“宜”路有你',
+			desc : '持之以恒见真章，领跑一载，续繁华十里！',
+			link : Helper.webPath+'/src/activily/thank_letter.html',
+			imgUrl : Helper.webPath+'/src/activity/one_anniversary/images/wxshare.jpg',
+			successEvt:function(){
+				//
+			},
+			cancelEvt:function(){
+				//
+			}
+		});
+	</script>
+	<style>
+		html,body,.container,.swiper-container{
+			height: 100%;
+		}
+		.swiper-slide{
+			position:relative;
+		}
+		.swiper-slide img{
+			width: 100%;
+			height: 100%;
+		}
+		.color_red{
+			color:#cc131c;
+		}
+		.swiper-slide .data{
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			line-height: 1;
+		}
+		.swiper-slide .data p{
+			margin-bottom: 18px;
+		}
+		.swiper-slide .data01{
+			top:33%;
+		}
+		.swiper-slide .data02{
+			top:33%;
+		}
+		.swiper-slide .data03{
+			top:33%;
+		}
+		.swiper-slide .data04{
+			top:33%;
+		}
+	</style>
+</head>
+<body class="letter">
+	<div class="container" id="letter">
+		<div class="swiper-container swiper-letter">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide relative">
+					<img src="images/tk_01.jpg" alt=""/>
+					<span class="open_letter" @click="openLetter"></span>
+				</div>
+				<div class="swiper-slide">
+					<img src="images/tk_02.jpg" alt="">
+					<div class="data data01">
+						<p class="fs45 color_red" v-text="userData.meetingTime">2017年5月12日</p>
+						<p class="fs36">我与宜泉资本相遇</p>
+						<p class="fs36">并成为宜泉资本的</p>
+						<p class="fs36">第<span class="fs45 color_red" v-text="userData.count"></span>位会员</p>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="images/tk_03.jpg" alt="">
+					<div class="data data02">
+						<p class="fs45 color_red" v-text="userData.investTime"></p>
+						<p class="fs36">我投资了第一个理财项目</p>
+						<p class="fs36 color_red" v-text="userData.borrowName"></p>
+						<p class="fs36">带来了<span class="fs45 color_red" v-text="userData.firstIncomeMoney"></span>元收益</p>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="images/tk_04.jpg" alt="">
+					<div class="data data03">
+						<p class="fs45">在与宜泉资本</p>
+						<p class="fs36">相守的<span class="fs45 color_red" v-text="userData.days"></span>天里</p>
+						<p class="fs36">我累计投资<span class="fs45 color_red" v-text="userData.totalInvestNum"></span>次</p>
+						<p class="fs36">总共赚取收益<span class="fs45 color_red" v-text="userData.totalIncomeMoney"></span>元</p>
+						<p>待收收益<span class="fs45 color_red" v-text="userData.incomeMoneyCollect"></span>元</p>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<img src="images/tk_05.jpg" alt="">
+					<div class="data data04">
+						<p class="fs45 color_red">《我的理财日记》</p>
+						<p class="fs36">击败了平台<span class="fs45 color_red" v-text="userData.winUserPercentage"></span>的小伙伴</p>
+						<p class="fs36">获得【壕】称号</span></p>
+					</div>
+				</div>
+				<div class="swiper-slide relative">
+					<img src="images/tk_06.jpg" alt="">
+					<div class="btn_boxs">
+						<a href="/src/activity/one_anniversary/index.html" class="link_lucky fs36">点击参与</a>
+						<p class="text-center fs40 mar-t-10" style="color:#ce131b">一周年狂欢抽奖</p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="login_box hide">
+			<div class="form page relative">
+			<div class="close_login">
+				<img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+			</div>
+			<div class="disflex relative" :class="{active:inPsActive[0]}">
+				<i class="icon_user"></i>
+				<input type="tel" maxlength="11" placeholder="请输入手机号码" class="inp_phone" v-model="inpPhone" @keyUp="keyUpInp(0)" @focus="inpFocus(0)">
+				<i class="clear_phone" @click="clearText(0)" v-show="showClearPhone"></i>
+			</div>
+			<div class="disflex relative mar-t-10" :class="{active:inPsActive[1]}">
+				<i class="icon_psw"></i>
+				<input type="password" placeholder="6-16位字符，区分大小写" class="inp_psw" v-model="inpPsw" @keyUp="keyUpInp(1)" @focus="inpFocus(1)" v-if="isOpenEye"/>
+				<input type="type" placeholder="6-16位字符，区分大小写" class="inp_psw" v-model="inpPsw" @keyUp="keyUpInp(1)" @focus="inpFocus(1)" v-if="!isOpenEye"/>
+				<i class="eye" :class="{eye_open:isOpenEye}" @click="eyePsw"></i>
+				<i class="clear_psw" @click="clearText(1)" v-show="showClearPsw"></i>
+			</div>
+			<div class="">
+				<input type="button" value="登录" class="btn_next" @click="loginMain">
+			</div>
+			<p class="text-right mar-t-15"><a href="/src/base/find_psw.html" class=" fs24" style="color:#556fb5">忘记密码</a></p>
+		</div>
+		
+
+		</div>
+		<div class="music_box" id="music_box"><img src="images/icon_music.png" class="music_box_go"><img class="music_box_stop hide" src="images/icon_music.png"></div>
+	</div>
+	<audio id="bgm" controls autoplay loop src="bgm.mp3" class="hide">
+	</audio>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/one_anniversary/js/activity.js"></script>
+</body>
+<script>
+	vm.letter();
+	var mySwiperLucky = new Swiper('.swiper-letter', {
+		direction:'horizontal',
+    speed: 400,
+    spaceBetween:0
+	});
+	var bgmObj = document.getElementById("bgm");
+	 		bgmObj.play();
+	function audioAutoPlay(){
+	    document.addEventListener("WeixinJSBridgeReady", function () {
+	            bgmObj.play();
+	    }, false);
+	}
+	audioAutoPlay('bgm');
+	$('.open_letter').click(function(){
+		bgmObj.play();
+	})
+	$('#music_box').click((function(){
+		var isPlay = true;
+		return function(){
+			if(isPlay){
+				bgmObj.pause();
+				isPlay = false;
+				$('.music_box_stop').show();
+				$('.music_box_go').hide();
+				//$('.music_box').css({'-webkit-animation-play-state':'paused','animation-play-state':'paused'});
+			}else{
+				bgmObj.play();
+				isPlay = true;
+				$('.music_box_stop').hide();
+				$('.music_box_go').show();
+				//$('.music_box').css({'-webkit-animation-play-state':'running','animation-play-state':'running'});
+			}
+		}	
+	}()));
+
+	
+
+	
+	function createBg() {
+		$('body').append('<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:2"></div>');
+	}
+	function hideGz() {
+		$('.login_box').hide();
+		$('#modal-bg').remove();
+	}
+	$('.close_login').bind('click', function() {
+			hideGz();
+	})
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f390b84a083a6a898c466b03bee6799";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</html>

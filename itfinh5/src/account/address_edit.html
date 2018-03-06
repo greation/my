@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>编辑地址</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/js/city-picker.js"></script>
+</head>
+<body class="ae">
+	@@include('../include/head.html',{
+		"title":"编辑地址",
+		"isback":true
+	})
+	<div class="container" id="ae">
+		<div class="form">
+			<div class="item relative">
+				<span class="name_text">收货人</span> 
+				<input type="text" placeholder="请输入您的真实姓名" class="inp_phone inp_name" v-model="receiver">
+			</div>
+			<div class="item relative">
+				<span class="name_text">手机号码</span> 
+				<input type="text" placeholder="请输入您的真实姓名" class="inp_phone inp_name" v-model="mobile">
+			</div>
+			<div class="item relative mar-t-10">
+				<span class="name_text">所在地</span> 
+				<div class="pad-l-100">
+				<select name="" id="" @change="getCity" v-model="provinceName">
+					<option value="" v-for="(province,index) in citylist" :value="province.name" v-text="province.name"></option>
+				</select>
+				<select name="" id="" @change="getArea" v-model="cityName">
+					<option value="" v-for="(city,index) in cityData" :value="city.name" v-text="city.name"></option>
+				</select>
+				<select name="" id="" v-model="areaName">
+					<option value="" v-for="city in areaData" :value="city.name" v-text="city.name"></option>
+				</select>
+				</div>
+				<!-- <input type="text" class="inp_phone inp_name" v-model="allAddress"> -->
+			</div>
+			<div class="item relative">
+				<span class="name_text">邮政编号</span> 
+				<input type="text" placeholder="请输入邮编号" class="inp_phone inp_name" v-model="zipCode">
+			</div>
+			<div class="xidz">
+				<span class="mar-b-10">详细地址</span> 
+				<textarea name="" id="" class="fs28" v-model="detailAddress"></textarea>
+			</div>
+			<div class="item relative mar-t-10 disflex alignitem_c">
+				<span class="name_text mr_text">设为默认</span> 
+				<input class="weui-switch" type="checkbox" v-model="status">
+			</div>
+			<div class="pad-l-15 pad-r-15 mar-t-30"><input type="button" value="保存" class="btn_sub" @click="subAddress"></div>
+		</div>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.editAddress();
+	$('header .operation').html('删除');
+</script>
+</body>
+</html>

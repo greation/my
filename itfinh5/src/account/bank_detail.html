@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>银行卡详情</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="bd">
+	@@include('../include/head.html',{
+		"title":"银行卡详情",
+		"isback":true
+	})
+<div class="container" id="bd">
+	<div class="page01" v-if="!isStep">
+		<div class="center">
+			<div class="item">
+				<span>持卡人</span><span class="c999" v-text="data.cardInfo.usrName"></span>
+			</div>
+			<div class="item">
+				<span>开户银行</span><span class="c999" v-text="data.cardInfo.bankName"></span>
+			</div>
+			<div class="item">
+				<span>银行卡号</span><span class="c999" v-text="data.cardInfo.cardId"></span>
+			</div>
+		</div>
+		<div class="disflex">
+			<input type="button" class="btn_remove" value="删除" @click="removeCard">
+		</div>
+	</div>
+	<div class="page02" v-if="isStep">
+		<p class="text-center fs24 c666">验证码已发送，请注意查收</p>
+		<div class="inpCode disflex">
+			<input type="text" class="phoneCode" v-model="phoneCode" placeholder="请输入短信验证码">
+			<input type="button" v-model="countTime" class="btn_getPhoneCode fs28" :class="{ 'bg-gray': isPhoneCode }" @click="getPhoneCode">
+		</div>
+		<input type="button" value="完成" class="btn_sub" @click="unBindCard">
+	</div>
+	
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+  vms.removeBank();
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>消息提示</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/index.css" />
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<style>
+		header .operation {flex: 3 0 0px !important}
+	</style>
+	<body>
+
+		<div id="messages_list">
+			<header>
+				<div class="item back">
+					<a class="back_a" onclick="javascript:history.go(-1)"><i class="icon_back"></i></a>
+				</div>
+				<div class="item title">消息提示</div>
+				<div class="item operation" @click="readAll">一键已读</div>
+			</header>
+		<div class="pad-b-50">
+			<div class="message_card " v-for="mess in items" :id="mess.messageId" @click="messages_detail(mess.messageId)" v-cloak>
+				<div class="message_time text-center"><span v-text="mess.sendTime">2017-03-28 17:59</span></div>
+				<div class="message_cardlist bg-white ">
+					<div class="message_name">
+						<template v-if="mess.lookStatus==='N'"><i class="nored pull-left mar-r-5"></i></template>
+						<template v-else="mess.lookStatus==='Y'"></template>
+
+						<span class="pull-left" v-text="mess.title"></span></div>
+					<div class="message_content">
+						<p class="c9"  v-html="mess.context"></p>
+					</div>
+					<a>
+						<div class="message_detail">
+							<span class="pull-left fs28 pad-l-15">查看详情</span>
+							<span class="pull-right mar-r-10">></span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+		</div>
+		<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png" /></div>
+
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/index.js"></script>
+		<script>
+			window.onload = function () {
+				var oTop = document.getElementById( "toTop" );
+				var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+				var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+				window.onscroll = function () {
+					var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+					if ( scrolltop > 100 ) {
+						oTop.style.display = "block";
+					} else {
+						oTop.style.display = "none";
+					}
+				}
+				oTop.onclick = function () {
+					document.documentElement.scrollTop = document.body.scrollTop = 0;
+				}
+			}
+			ga.messages_list();
+		</script>
+	</body>
+
+</html>

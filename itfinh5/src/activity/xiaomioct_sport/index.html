@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>秋韵正浓，好礼白送</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/xiaomioct_sport/css/activity.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='js/sensore.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '秋韵正浓，好礼白送',
+			desc: '投资更送千元好礼',
+			link: Helper.webPath + '/src/activity/xiaomioct_sport/index.html',
+			imgUrl: Helper.webPath + '/src/activity/xiaomioct_sport/images/wxshare.jpg',
+			successEvt: function () {
+				window.location.href = '/src/activity/xiaomioct_sport/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div class="container" id="index">
+		<div class="t_imgs relative">
+			<img src="images/xiaomi_t.jpg" height="200" width="750" alt="">
+			<span class="btn_rule btn_rule_one" id="btn-rule"></span>
+		</div>
+		<div class="content relative">
+			<!-- 背景闪烁区域 -->
+			<div class="draw_area" :class="{two:isTwo}" class="relative">
+				<img src="images/transparent_bg.png" alt="" id="transparent_box">
+			</div>
+			<!-- 抽奖按钮 -->
+			<div class="pint_box" @click="drawGo()" id="btn_lucking"></div>
+			<!-- 摇杆 -->
+			<div class="hand_box"></div>
+			<!-- 滚动区域 -->
+			<div class="arrow_box"></div>
+			<div class="award_roll_area relative">
+				<div class="award_show_box">
+					<div class="line line1">
+						<img src="images/award01.png" alt="">
+						<img src="images/award02.png" alt="">
+						<img src="images/award03.png" alt="">
+						<img src="images/award04.png" alt="">
+					</div>
+					<div class="line line2 mar-l-10 mar-r-10">
+						<img src="images/award02.png" alt="">
+						<img src="images/award01.png" alt="">
+						<img src="images/award03.png" alt="">
+						<img src="images/award04.png" alt="">
+					</div>
+					<div class="line line3">
+						<img src="images/award04.png" alt="">
+						<img src="images/award02.png" alt="">
+						<img src="images/award01.png" alt="">
+						<img src="images/award03.png" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form logined" id="logining" v-if="isLogin">
+			<div class="text-center user_img_box pad-t-10"><img src="images/user_img.png" alt=""></div>
+			<p class="text-center mar-t-20 mar-b-30" style="color:#ffffff"><span id="welcome">尊敬的<span v-text="phoneRepalceMask(userData.userInfo.mobile,4,4)"></span>，您好！</span><a href="javascript:void(0)"
+				  class="outsign" id="outsign" @click="linkLogot()">退出</a>
+			</p>
+			<input type="button" onclick="location='/src/account/index.html'" id="link_account" value="进入个人中心" class="btn-base0">
+			<input type="button" onclick="location='http://m.ekeyfund.com/Website/download-app.jsp'" id="download" value="下载APP" class="btn-base1 mar-t-20">
+			<P class="text-center mar-t-10 fs30" style="color:#fff;font-weight:600">下载宜泉资本APP，更多精彩活动等着你！</P>
+		</div>
+		<div class="b_imgs" v-if="isLogin">
+			<div class="">
+				<img src="images/xiaomi_b_01.jpg" height="200" width="750" alt="">
+				<img src="images/xiaomi_b_02.jpg" height="200" width="750" alt="">
+				<img src="images/xiaomi_b_03.jpg" height="200" width="750" alt="">
+				<img src="images/xiaomi_b_04.jpg" height="200" width="750" alt="">
+				<img src="images/xiaomi_b_05.jpg" height="200" width="750" alt="">
+				<img src="images/xiaomi_b_06.jpg" height="200" width="750" alt="">
+			</div>
+			<div class="relative">
+				<img src="images/xiaomi_b_07.jpg" height="200" width="750" alt="">
+				<a href="/src/invest/list.html" class="link_invest" id="link_invest_list"></a>
+			</div>
+			<div>
+			</div>
+			<img src="images/xiaomi_b_08.jpg" height="200" width="750" alt="">
+			<img src="images/xiaomi_b_09.jpg" height="200" width="750" alt="">
+		</div>
+		<div v-if="!isLogin"><img src="images/xiaomi_b_out.jpg" height="200" width="750" alt="" class="show"></div>
+		<div class="modal-rule hide">
+			<div class="clearfix">
+				<img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+			</div>
+			<div class="txt-cont">
+				<h3 class="text-center">活动规则</h3>
+				<div class="txt-gz hide">
+					一、2017年10月16日-10月30日，通过本页面注册即可参与抽奖，奖品包含：价值3499元九号平衡车Plus、爱奇艺黄金VIP会员3个月、喜马拉雅46喜点及宜泉资本288元现金礼包。
+					<br/>二、2017年10月16日-10月30日，通过本活动页面注册的用户成功投资相应金额，即可免费获得相应奖品（投资金额为实际支付金额，不包含体验金、现金券、加息券）。
+					<br/>
+					<div class="color-red">
+						1. 单笔投资≥500元，可获得格瓦拉免费电影票通兑券黄券1张（数量仅限200份，抢完为止）；
+						<br/>2.单笔投资≥6000元，可获得价值149元【小米运动蓝牙耳机】一个；
+						<br/>3.单笔投资≥12000元，可获得价值349元【米家行车记录仪】一个；
+						<br/>4.单笔投资≥20000元，可获得价值699元【小米空气净化器 2】一个；
+						<br/>5. 单笔投资≥50000元，可获得价值2499元【小米6全网通版64GB】一个；
+						<br/>6. 单笔投资≥70000元，可获得价值3599元【小米笔记本Air 12.5英寸128G】一台。
+						<br/>每个ID(手机号)每档限参与1次。投资时，按投资金额最接近的档次获得相应的奖品。
+						<br/>
+					</div>
+					三、本次活动仅供投资房月盈及车满盈产品的用户参与，体验金标及预约标不参与本次活动。
+					<br/> 四、如出现恶意注册，故意刷量，商业贿赂，非正常投资等任何异常行为，将扣除活动期间所有奖励。
+					<br/> 五、活动仅针对2017年10月16日-10月30日期间通过本活动页面注册的用户。
+					<br/> 六、格瓦拉免费电影票通兑券黄券、爱奇艺黄金VIP会员3个月、喜马拉雅46喜点及小米商品均以兑换码的方式在投资成功后10个工作日内通过短信的形式发送至投资所绑定的手机。宜泉资本平台现金券可在用户账户“我的卡券”中查询。
+					<br/> 七、格瓦拉免费电影票通兑券黄券仅限在格瓦拉上兑换，爱奇艺黄金VIP会员仅限在爱奇艺上兑换，喜马拉雅喜点仅限在喜马拉雅上兑换；小米商品兑换码请登录/注册【哟虎商城】使用，兑换流程：进入哟虎商城-首页搜索相应奖品-点击“立即购买”-核对后点击“去结算”-输入优惠券点击“使用”-核对金额后“提交订单”-等待奖品发放。
+					<br/> 八、奖品一经发放，不可退换，不可折现，请用户谨慎操作。友情提示：选择兑换商品并使用兑换码后，不可申请退款。小米商品兑换产生的运费需用户根据哟虎商城的运费规则自行支付。
+					<br/> 九、小米商品兑换码如有任何问题，可直接联系哟虎商城客服400-892-9898。
+				</div>
+			</div>
+		</div>
+		<div class="bot_box" v-show="!isLogin">
+			<div class="reg_one" v-if="!checkPhoneYes">
+				<span class="text_box js-text inp_phone01 pad-l-12 header_top" v-text="inpPhone===''?'请您输入手机号码':inpPhone"></span>
+				<input type="tel" class="inp_phone01 pad-l-12 header_fixed" placeholder="请您输入手机号码" id="inpPhone_qq" v-model="inpPhone" maxlength="11">
+				<input type="button" value="立即抽奖" class="btn_next" @click="check_phone" id="checkPhone">
+			</div>
+			<div class="reg_two hide" v-show="checkPhoneYes">
+				<div class="clearfix mar-t-10 mar-b-10" v-if="checkPhoneYes"><img src="images/btn_close.png" alt="" width="44" height="44" class="btn-close-register pull-right" @click="closeRegisBox()"></div>
+				<div class="form page">
+					<div class="disflex relative">
+						<i class="icon_user"></i>
+						<input type="tel" v-model="inpPhone" placeholder="请输入手机号码" class="inp_phone" maxlength="11">
+					</div>
+					<div class="code disflex justify_sb mar-t-15 bg-white relative">
+						<i class="icon_picture"></i>
+						<input type="text" placeholder="输入图片验证码" class="inp_code outline_no" v-model="pictureCode" maxlength="4">
+						<img v-bind:src="pictureUrl" class="picture_code_img" @click="refreshPicture()" id="checkcode_img">
+					</div>
+					<div class="code disflex justify_sb mar-t-15 relative">
+						<i class="phone_code"></i>
+						<input type="text" placeholder="手机验证码" class="inp_code outline_no" v-model="phoneCode" maxlength="4">
+						<span type="button" v-text="countTime" id="sms_validCode_btn_id" class="fs24 disflex justify_c alignitem_c btn_getcode" :class="{ 'bg-gray': isPhoneCode }"
+						  @click="getPhoneCode"></span>
+					</div>
+					<div class="disflex relative mar-t-10">
+						<i class="icon_psw" v-cloak></i>
+						<input type="password" placeholder="6-16位字符，区分大小写" class="inp_psw" v-model="inpPsw">
+					</div>
+					<p class="disflex alignitem_c color-white mar-t-10 mar-b-10">
+						<input type="checkbox" name="xieyi" id="xieyi" v-model="isXieYi">
+						<label for="xieyi" class="fs24">我已阅读并同意</label><span class="fs24 c999 color-white btn_xieyi" @click="openXieyi()">《宜泉资本注册服务及隐私保护协议》</span>
+
+					</p>
+					<div class="">
+						<input type="button" value="确认抽奖" id="register_btn_id" class="btn_register" @click="regisMain()">
+					</div>
+					<p class="text-center fs20 mar-t-10"><a href="/src/base/login.html?bUrl=/src/activity/xiaomioct_sport/transfer_page.html" class="color-white">已是宜泉用户</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="xieyi_box" >
+			<div id="xieyi_box">
+
+			</div>
+			<div class="close_xieyi"></div>
+		</div>
+
+	</div>
+
+	<div class="mask1"></div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/xiaomioct_sport/js/activity.js"></script>
+	<script src="/src/activity/xiaomioct_sport/js/fastclick.min.js"></script>
+	<script>
+		window.addEventListener('load', function () {
+			FastClick.attach(document.body);
+		}, false);
+		
+		window.onload = function () {
+			var awardImgHeight = $('.award_show_box').height();
+			$('.line img').height(awardImgHeight);
+				var $html = document.querySelector('html'),
+					$headerTop = document.querySelector('.header_top'),
+					$headerFixed = document.querySelector('.header_fixed'),
+					$input = document.querySelector('.header_fixed'),
+					$mask = document.querySelector('.mask1');
+				document.querySelector('.js-text').onclick = function () {
+					$html.classList.add('win_lock');
+					$headerTop.classList.add('hide');
+					$headerFixed.classList.add('show');
+					$input.focus();
+					$mask.classList.add('show');
+				}
+				$input.onblur = function () {
+					$html.classList.remove('win_lock');
+					$headerTop.classList.remove('hide');
+					$headerFixed.classList.remove('show');
+					$mask.classList.remove('show');
+				}
+				//加载活动规则
+				$('#xieyi_box').load('/src/base/rigisterxy.html #container',function(){
+					$('header .back').html('<a class="back_a show" href="javascript:history.go(-1)"><span class="icon_back">&nbsp;</span></a>');
+				});
+			}
+
+		vm.index();
+		function createBg() {
+			$('body').append(
+				'<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:8"></div>'
+			);
+		}
+		function showGz(num) {
+			createBg();
+			$('.modal-rule').show();
+			$('.modal-rule .txt-gz').eq(num).show();
+			$('html,body').addClass('ovfHiden');
+		}
+
+		function hideGz() {
+			$('.modal-rule').hide();
+			$('.modal-rule .txt-gz').hide();
+			$('#modal-bg').remove();
+			$('html,body').removeClass('ovfHiden');
+		}
+		$('.btn_rule_one').bind('click', function () {
+			showGz(0);
+		})
+		$('.btn-close').bind('click', function () {
+			hideGz();
+		})
+		//悬浮层 注册协议
+		$('.close_xieyi').click(function () {
+			$('.xieyi_box').css('left','200%');
+		})
+		//安卓下注册第二部bug处理
+		if (!util.isOsType()) {
+			$('.inp_phone,.inp_code,.icon_psw').focus(function () {
+				setTimeout(function () {
+					$('.reg_two').height($(window).height() - 40);
+				}, 1000)
+
+			})
+		}
+	</script>
+</body>
+
+</html>

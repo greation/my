@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>258元现金券等你来抢</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/share_red/css/activity.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='/js/act_sensore_sdk.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		var hrefJson = util.hrefSplit(window.location.href);
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '258元现金券等你来抢',
+			desc: '一起来抢红包雨~',
+			link: Helper.webPath + '/src/activity/share_red/receive_red.html?redPacketId='+hrefJson.redPacketId,
+			imgUrl: Helper.webPath + '/src/activity/share_red/images/wxshare2.jpg',
+			successEvt: function () {
+				//window.location.href = '/src/activity/share_red/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container" id="receive_suc">
+		<div class="imgs">
+			<img src="images/suc_t_01.jpg" alt="">
+			<img src="images/suc_t_02.jpg" alt="">
+			<img src="images/suc_t_03.jpg" alt="">
+      <img src="images/suc_t_04.jpg" alt="">
+      <div class="reward_box text_style01" v-text="receivePhone">
+        13500000075
+      </div>
+      <div class="relative">
+        <img src="images/suc_c.jpg" alt="">
+        <a href="http://m.ekeyfund.com/Website/download-app.jsp" class="link_downapp" id="download"></a>
+      </div>
+      <img src="images/rule_box_imgt.jpg" alt="">
+      <div class="receive_list_box">
+        <div class="list_box">
+          <ul class="fs24">
+            <li class="relative">已领取<span v-text="receiveList.length"></span>/5个 <img src="images/kawayi.png" alt="" class="kawayi"></li>
+            <template v-for="receiveItem in receiveList">
+                <li class="list_item">
+                  <span class="phone" v-text="receiveItem.mobile"></span>
+                  <span class="text_reward" v-text="receiveItem.rewardName"></span>
+                </li>
+            </template>  
+          </ul>
+        </div>
+      </div>
+      <img src="images/rule_box_img.jpg" alt="">
+			<img src="images/suc_b.jpg" alt="">
+		</div>
+  </div>
+  <script src="/js/vue.min.js"></script>
+	<script src="js/activity.js"></script>
+	<script>
+		vms.receiveSuc();
+	</script>
+</body>
+
+</html>

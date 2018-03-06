@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="bg-white">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>提示详情</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/index.css" />
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+
+	<body class="bg-white">
+		@@include('../include/head.html',{
+		"title":"提示详情",
+		"isback":true
+	})
+		<div id="messagesTip" v-cloak>
+		<div class="tips_detail text-center">
+			<div class="tips_title" v-text="data.title"></div>
+			<div class="tips_time c9 fs24" v-text="data.sendTime"></div>
+		</div>
+		<div class="tips_content">
+			<p class="c6 fs28"  v-html="data.context"></p>
+		</div>
+		</div>
+			<script src="/js/vue.min.js"></script>
+			<script src="/js/index.js"></script>
+			<script>
+                ga.messagesTip();
+
+                $(function(){
+                    if(title=="no"){
+                        $("header").hide();
+                    }
+                })
+			</script>
+
+	</body>
+</html>

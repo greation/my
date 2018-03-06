@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>资金明细</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="fd">
+	@@include('../include/head.html',{
+		"title":"资金明细",
+		"isback":true
+	})
+	<div class="container pad-b-15" id="fd">
+		<div class="nav disflex bg-white alignitem_c mar-b-10">
+			<div :class="{active:blockArr[0]}" @click="pageActive(0)">资金明细</div>
+			<div :class="{active:blockArr[1]}" @click="pageActive(1)">充值明细</div>
+			<div :class="{active:blockArr[2]}" @click="pageActive(2)">提现明细</div>
+		</div>
+		<div class="fund_list">
+			<div class="bg-white item disflex direc_co justify_c" v-for="item in fundList">
+				<div class="disflex justify_sb"><span class="c333" v-text="item.transTypeText">账户充值</span><span class="color-orange"><span class="fs24" v-text="item.tradeModeText">转入</span><span v-text="item.moneyText">1200</span></span></div>
+				<div class="disflex justify_sb cbbb fs24 mar-t-15"><span><span>可用余额：</span><span v-text="item.remnantBaseMoneyText"></span></span><span v-text="item.getTime">2016/12/1 12:11:10</span></div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.myfund();
+
+    $(function(){
+        if(title=="no"){
+            $("header").hide();
+        }
+    })
+</script>
+</body>
+</html>

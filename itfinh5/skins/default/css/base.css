@@ -1,0 +1,283 @@
+@charset "UTF-8";
+/* CSS Document */
+/*注册*/
+.re .form{
+	padding: 40px 15px 0 15px;
+}
+
+.re .inp_phone,.re .inp_psw,.re .active .inp_phone,.re .active .inp_psw{
+	display: block;
+	-webkit-box-flex:1;
+	    -ms-flex:auto;
+	        flex:auto;
+	border:#e5e5e5 1px solid;
+	border-radius:5px;
+	height: 45px;
+	padding-left: 40px;
+	-webkit-appearance:none;
+}
+
+.re .active .inp_phone,.re .active .inp_psw{
+	border:#508CF0 1px solid;
+	-webkit-box-shadow:0px 2px 11px #ccddf7;
+	box-shadow:0px 2px 11px #ccddf7;
+}
+.re .btn_next{
+	width: 100%;
+	height: 46px;
+	background: #1e82ff;
+	color:#fff;
+	margin-top:26px;
+	border-radius:5px;
+	-webkit-appearance:none;
+}
+.re .link_login{
+	width: 100%;
+	margin-top: 60px;
+}
+.re .logo_box{
+	width:27%;
+	margin:0 auto;
+}
+.re .icon_user,.re .icon_psw,.re .icon_yqm{
+	position: absolute;
+  left: 12px;
+  top: 14px;
+  width: 18px; 
+  height: 18px;
+  background-size: 100% 100%!important;
+}
+.re .icon_user{
+	background:url(../images/icon_user_gray.png) no-repeat center center;
+}
+.re .page .active .icon_user{
+	background:url(../images/icon_user.png) no-repeat center center;
+}
+.re .icon_psw{
+	background:url(../images/icon_psw_gray.png) no-repeat center center;
+}
+.re .page .active .icon_psw{
+	background:url(../images/icon_psw.png) no-repeat center center;
+}
+.re .icon_yqm{
+	background: url(../images/icon_yq_gray.png) no-repeat center center;
+}
+.re .page .active .icon_yqm{
+	background:url(../images/icon_yq.png) no-repeat center center;
+}
+.re .two {
+	padding: 0 15px;
+}
+.re .eye{
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  width: 18px;
+  height: 18px;
+  background: url(../images/eye_close.png);
+  background-size: 100% 100%;
+}
+.re .clear_psw{
+  position: absolute;
+  right: 42px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(../images/clear_text.png);
+  background-size: 100% 100%;
+}
+.re .clear_phone{
+  position: absolute;
+  right: 12px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(../images/clear_text.png);
+  background-size: 100% 100%;
+}
+.re .eye.eye_open{
+  background: url(../images/eye_open.png);
+  background-size: 100% 100%;
+}
+.re .two .btn_sub{
+	width: 100%;
+	height: 46px;
+	background: #1e82ff;
+	color:#fff;
+	margin-top:26px;
+	border-radius:5px;
+}
+.re .two .code>input[type="text"]{
+	display: block;
+	width:0;
+	-webkit-box-flex:6;
+	    -ms-flex:6 0 0px;
+	        flex:6 0 0px;
+	border-radius: 0px;
+	border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border:#e5e5e5 1px solid;
+	padding-left: 40px;
+	
+}
+.re .two .code .btn_getcode{
+	width:0;
+	display: block;
+	-webkit-box-flex:3;
+	    -ms-flex:3 0 0px;
+	        flex:3 0 0;
+	height: 45px;
+	line-height: 45px;
+	background: #1e82ff;
+	color:#fff;
+	text-align: center;
+	border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.re .two .inp_yqm{
+	-webkit-box-flex:1;
+	    -ms-flex:auto;
+	        flex:auto;
+	height: 45px;
+	border:#e5e5e5 1px solid;
+	border-radius: 5px;
+	padding-left: 15px;
+	-webkit-box-sizing:border-box;
+	        box-sizing:border-box;
+	padding-left: 40px;
+}
+/*分享注册*/
+.sr .btn_register{
+	width: 100%;
+	height: 46px;
+	background: #fff;
+	color:#1e82ff;
+	margin-top:26px;
+	border-radius:5px;
+}
+.sr .two .code .btn_getcode{
+	-webkit-box-flex:3;
+	    -ms-flex:3 0 0px;
+	        flex:3 0 0;
+	height: 45px;
+	line-height: 45px;
+	background: #FCC601;
+	color:#fff;
+	text-align: center;
+	border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.sr .form {
+  padding: 20px 15px 0 15px;
+}
+.sr .color01{
+	color:#8abeff;
+}
+.sr .two .code input[type="button"] {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  text-align:center;
+}
+.sr .two .code>input[type="text"] {
+	width:0;
+	display: block;
+  -webkit-box-flex:6;
+      -ms-flex:6 0 0px;
+          flex:6 0 0px;
+	border-radius: 0px;
+  border:#e5e5e5 1px solid;
+  padding-left: 40px;
+}
+.sr .picture_code_img{
+	width:0;
+	display: block;
+	-webkit-box-flex:3;
+	    -ms-flex:3 0 0px;
+	        flex:3 0 0;
+	height: 45px;
+	background: #508CF0;
+	color:#fff;
+}
+.re .active .inp_phone,.re .active .inp_psw{
+	border:#508CF0 1px solid;
+	-webkit-box-shadow:0px 2px 11px #ccddf7;
+	box-shadow:0px 2px 11px #ccddf7;
+}
+/*忘记密码&修改密码*/
+.fp .form div .inp_phone{
+	display: block;
+	width:0;
+	-webkit-box-flex:6 !important;
+	    -ms-flex:6 0 0px !important;
+	        flex:6 0 0px !important;
+	border-radius: 0px !important;
+	border-bottom-left-radius: 5px !important;
+  border-top-left-radius: 5px !important;
+}
+.fp .form{
+	padding-top: 20px;
+}
+.fp .get_code{
+	display: block;
+	width:0;
+	-webkit-box-flex:3;
+	    -ms-flex:3 0 0px;
+	        flex:3 0 0;
+	background: #508CF0;
+	color:#fff;
+	border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/*实名认证*/
+.rn .icons{
+	height: 150px;
+}
+.rn .icons>div{
+	-webkit-box-flex:1;
+	    -ms-flex:1 0 0px;
+	        flex:1 0 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:vertical;
+	-webkit-box-direction:normal;
+	    -ms-flex-direction:column;
+	        flex-direction:column;
+	-webkit-box-pack:center;
+	    -ms-flex-pack:center;
+	        justify-content:center;
+	-webkit-box-align:center;
+	    -ms-flex-align:center;
+	        align-items:center;
+}
+.rn .icons img{
+	width: 54px;
+	height: 60px;
+}
+.rn .icons>div:nth-child(2) img{
+	width: 80px;
+	height: 60px;
+}
+.rn .form{
+	padding:15px 0;
+}
+.rn .inp_name,.rn .inp_id{
+	padding-left: 80px;
+	border-radius:0;
+	border-left:0;
+	border-right:0;
+}
+.rn .name_text,.rn .id_text{
+	position: absolute;
+	left:15px;
+	top:12px;
+	color:#666666;
+}
+.succ_pop{
+	height: 60px;
+	background:url(../images/success.png) no-repeat center;
+	background-size: 60px;
+	-webkit-background-size: 60px;
+	margin-bottom: 5px;
+}

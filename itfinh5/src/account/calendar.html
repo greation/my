@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>回款日历</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+</head>
+<body class="ca">
+	@@include('../include/head.html',{
+		"title":"回款日历",
+		"isback":true
+	})
+<div class="container pad-b-15" id="ca">
+	<div class="top">
+		<p class="text-center" v-text="curYearText+'年'+curMonthText+'月'"></p>
+		<div class="fund_info">
+			<div class="chart">
+				<div id="calendarChart"></div>
+			</div>
+			<div class="detail">
+				<p class="fs28"><i class="color01 mar-r-10">●</i><span>本月待收</span><span class="color01 mar-l-5" v-text="calendarData.recBaseMoney"></span></p>
+				<p class="fs28 mar-t-10"><i class="color02 mar-r-10">●</i><span>本月已收</span><span class="color02 mar-l-5" v-text="calendarData.receivedMoney"></span></p>
+			</div>
+		</div>
+	</div>
+	<div class="calendar center">
+		<div class="week_num">
+			<span>日</span>
+			<span>一</span>
+			<span>二</span>
+			<span>三</span>
+			<span>四</span>
+			<span>五</span>
+			<span>六</span>
+		</div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" v-for ="month in calendarView">
+					<div class="page">
+						<div class="calendar_num">
+							<div class="box relative" v-for="item in month" :class="{isreceive:item.isreceive}" @click="chooseDate(item)">
+								<span class="calendarItem" v-text="item.date" :class="{cur_day:item.curDate}"></span>
+								<span class="point">●</span>
+							</div>
+							<!-- <div class="box" ><span class="cur_day">1</span></div>
+							<div class="box"><span class="cur_day">2</span></div> -->
+						</div>
+					</div>
+				</div>	
+			</div>
+			<!-- 分页器 -->
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="item" v-for="receivePlan in receivePlanList" @click="linkDetail(receivePlan.investId)">
+			<div class="pro_name">
+				<p class="fs28 c666" v-text="receivePlan.categoryName">房月盈</p>
+				<p class="fs24 cbbb mar-t-5 tr_split_two" style="width:80%" v-text="receivePlan.borrowName">SHAL3360</p>
+			</div>
+			<div class="fund_info">
+				<p class="c666">
+					<template v-if="receivePlan.status==='WAITREC'">
+						<span class="fs24">应收利息</span>
+					</template>
+					<template v-if="receivePlan.status==='RECEIVED'">
+						<span class="fs24">已收利息</span>
+					</template>
+					<span class="color-theme mar-l-20" v-text="receivePlan.recInterestMoney"></span></p>
+				<p class="c666 mar-t-5">
+					<template v-if="receivePlan.status==='WAITREC'">
+						<span class="fs24">应收本金</span>
+					</template>
+					<template v-if="receivePlan.status==='RECEIVED'">
+						<span class="fs24">已收本金</span>
+					</template>
+					
+					<span class="color-theme mar-l-20" v-text="receivePlan.recBaseMoney"></span></p>
+			</div>
+			<div class="period"><span class="fs24 c666" v-text="receivePlan.curRecNum+'/'+receivePlan.totalRecNum"></span></div>
+		</div>
+		<div v-show="receivePlanList.length<1">
+			<p class="text-center c999 mar-t-20 font12">今日无回款计划</p>
+			<a href="/src/invest/list.html" class="btn_link_invest">马上去投资</a>
+		</div>
+		
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script src="/plugins/swiper/swiper.min.js"></script>
+<script src="/plugins/echarts/echarts.min.js"></script>
+<script src="/js/public.js"></script>
+<script>
+	vms.calendar();
+	$('.calendar_num .box').css({
+		'width':$('.week_num span').eq(0).width()-1/*,
+		'height':$('.week_num span').eq(0).width(),
+		'line-height':$('.week_num span').eq(0).width()+'px'*/
+	});
+</script>
+</body>
+</html>

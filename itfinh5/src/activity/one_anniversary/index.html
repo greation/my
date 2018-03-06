@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>宜泉资本1周年，感谢“宜”路有你</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/src/activity/one_anniversary/css/activity.css"/>
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src=http://libs.baidu.com/jquery/2.1.1/jquery.min.js></script>
+	<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title : '宜泉资本1周年，感谢“宜”路有你',
+			desc : '狂欢周年庆，感恩大派送。千万红包雨来袭、更有京东E卡、携程旅行卡等众多豪礼领到手软！',
+			link : Helper.webPath+'/src/activity/one_anniversary/index.html',
+			imgUrl : Helper.webPath+'/src/activity/one_anniversary/images/wxshare.jpg',
+			successEvt:function(){
+				shareed();
+			},
+			cancelEvt:function(){
+				//
+			}
+		});
+	</script>
+</head>
+<body>
+	<div class="container" id="index">
+		<div class="t_imgs">
+			<img src="images/znq_t_01.jpg" height="200" width="750" alt="">
+			<img src="images/znq_t_02.jpg" height="200" width="750" alt="">
+			<img src="images/znq_t_03.jpg" height="200" width="750" alt="">
+		</div>
+		<div class="content">
+			<div><input type="button" value="活动规则" class="btn_rule btn_rule_one fs28"/></div>
+			<div class="draw_area" :class="{two:isTwo}">
+				<div class="pint_box" @click="drawGo()"><img src="images/pointer.png" alt=""></div>
+				<div class="icon_hand"><img src="images/hand.png" alt=""></div>
+			</div>
+			<div class="btn_share_box mar-t-10" @click="goShare()"><img src="images/share.png" alt=""></div>
+			<div class="lucky_box">
+				<div><img src="images/text01.jpg" alt="" style="width:70%;display:block;margin:0 auto;"></div>
+				<div class="lucky_user mar-t-15">
+					<div class="swiper-container swiper-lucky">
+						<div class="swiper-wrapper fs28">
+							<div class="swiper-slide" v-for="list in luckyUser">
+								<ul>
+									<li v-for="user in list"><span class="user_phone" v-text="user[0]"></span><span v-text="'抽中'+user[1]"></span> </li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="b_imgs">
+			<img src="images/znq_b_01.jpg" height="200" width="750" alt="">
+			<div class="relative">
+				<img src="images/znq_b_02.jpg" height="200" width="750" alt="">
+				<input type="button" class="btn_rule_two"/>
+			</div>
+			<div class="relative">
+				<img src="images/znq_b_03.jpg" height="200" width="750" alt="">
+				<input type="button" class="btn_yuebiao" @click="ybLink(1)"/>
+			</div>
+			<div class="relative">
+				<img src="images/znq_b_04.jpg" height="200" width="750" alt="">
+				<input type="button" class="btn_yuebiao" @click="ybLink(2)"/>
+			</div>
+			<div class="relative">
+				<img src="images/znq_b_05.jpg" height="200" width="750" alt="">
+				<input type="button" class="btn_yuebiao" @click="ybLink(3)"/>
+			</div>
+			<img src="images/znq_b_06.jpg" height="200" width="750" alt="">
+			<img src="images/znq_b_07.jpg" height="200" width="750" alt="">
+		</div>
+		<div class="mask"><img src="/images/share_tf.png"></div>
+	</div>
+	<div class="modal-rule hide">
+		<div class="clearfix">
+			<img src="images/btn_close.png" class="btn-close pull-right" alt=""
+				 width="44" height="44">
+		</div>
+		<div class="txt-cont">
+			<h3 class="text-center">活动规则</h3>
+			<div class="txt-gz hide">
+				一、2017年7月14日10:00-8月15日10:00，实名用户每日成功登录即可获得一次幸运大转盘抽奖机会，100%中奖。幸运大转盘对应奖品包含【宜泉资本】平台加息券、现金券、爱奇艺黄金VIP会员、喜马拉雅喜点、格瓦拉电影券红券；<br/>
+				二、本活动仅限宜泉资本平台的实名认证用户参加；<br/>
+				三、用户登录并成功分享当前活动页至朋友圈或发送至微信好友，每天可额外获得一次幸运大转盘抽奖机会；<br/>
+				四、所获奖品一经发放，不可折现，不可退换，请用户谨慎操作；<br/>
+				五、如出现恶意注册，故意刷量，商业贿赂，非正常投资等任何异常行为，将扣除活动期间所有奖励；<br/>
+				六、用户成功参与活动获得的【宜泉资本】平台加息券、现金券可在用户账户“我的卡券”中查询；爱奇艺黄金VIP会员激活码、喜马拉雅喜点兑换码和格瓦拉电影券红券兑换码将会在抽中奖品后的2个工作日内以短信形式发送到注册实名所绑定的手机上。
+			</div>
+			<div class="txt-gz hide">
+				一、2017年7月14日10:00-8月15日10:00，通过约标并成功投资相应金额的投资用户，即可免费获得相应奖品，投资金额为实际支付金额，不包含体验金、现金券、加息券。<br/>
+				<img src="images/aword_tip.jpg" alt="">
+				二、本次活动仅限通过约标方式的用户参与，其他线上产品不参与此次活动；<br/>
+				三、如出现恶意注册，故意刷量，商业贿赂，非正常投资等任何异常行为，将扣除活动期间所有奖励；<br/>
+				四、以上奖品均以短信的方式在投资成功后10个工作日内发送至投资用户所绑定的手机；用户可点击领取奖品短信中的链接填写收货信息领取奖品或关注【宜泉资本】官方服务号，对话框回复关键词“周年庆”，点击链接进入奖品领取页面；奖品领取流程：领取页面-投资手机号码登录-确认选择商品-提交收件地址-等待奖品发放；<br/>
+				五、奖品一经发放，不可退换，不可折现，请用户谨慎操作。
+			</div>
+		</div>
+	</div>
+	<div class="borwser_tip hide">
+		<img src="images/borrow_tip.png" alt="">
+		<img src="images/btn_close_tip.png" class="btn_close_browser" alt="">
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/one_anniversary/js/activity.js"></script>
+	<script>
+		vm.index();
+		/*if(!localStorage.showHand){
+			$('.icon_hand').removeClass('hide');
+			localStorage.showHand = 'Y';
+		}*/
+		//神策
+		sa.track('$pageview',{
+	    page_type: '站内活动页面'
+	  })  		
+		function createBg() {
+			$('body').append('<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:2"></div>');
+		}
+		$('.mask').click(function(){
+			$(this).hide();
+		})
+		function showGz(num) {
+			createBg();
+			$('.modal-rule').show();
+			$('.modal-rule .txt-gz').eq(num).show();
+			$('html,body').addClass('ovfHiden');
+		}
+		function hideGz() {
+			$('.modal-rule').hide();
+			$('.modal-rule .txt-gz').hide();
+			$('#modal-bg').remove();
+			$('html,body').removeClass('ovfHiden');
+		}
+		$('.btn_rule_one').bind('click', function() {
+			showGz(0);
+		})
+		$('.btn_rule_two').bind('click', function() {
+			showGz(1);
+		})
+		$('.btn-close').bind('click', function() {
+			hideGz();
+		})
+
+		$('.btn_close_browser').click(function(){
+			$('#modal-bg').remove();
+			$('.borwser_tip').hide();
+		})
+		setTimeout(function(){
+			$('.icon_hand').fadeOut(280);
+		},2900);
+		
+  	function shareed(){
+  		$.ajax({
+  			url: Helper.basePath+'turntable/shareSuccess.htm',
+  			type: 'POST',
+  			dataType: 'json',
+  			xhrFields: {withCredentials: true}
+  		})
+  		.done(function(data) {
+  			var data=JSON.parse(data);
+  			if(data.message==='分享成功，您已获得一次抽奖机会！'){
+  				util.toast('您已获得一次抽奖机会！');
+  			}else{
+  				util.toast('分享成功');
+  			}
+  		})
+  	}
+  	/*$('.btn_share_box').click(function(event) {
+  		shareed();
+  	});*/
+	</script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e28a0a8351b678d3922a1d9d01dbaaff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>资产总额</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="pt">
+@@include('../include/head.html',{
+"title":"资产总额",
+"isback":true
+})
+<div class="container" id="pt">
+	<div class="top">
+		<p class="fs60" v-text="data.totalAssets">0.00</p>
+		<span class="fs28 disflex justify_c alignitem_c mar-t-5">
+			<span>总资产（元）</span><i class="icon_eye mar-l-5" :class="{close:isHideProperty}" @click="hideProperty"></i>
+		</span>
+	</div>
+	<div class="center">
+		<div class="property_list">
+			<p class="fs28"><i class="color01 mar-r-10">●</i><span class="mar-r-5">待收本金</span><span class="color01" v-text="data.recMoney">0.00</span></p>
+			<p class="fs28"><i class="color02 mar-r-10">●</i><span class="mar-r-5">待收利息</span><span class="color02"  v-text="data.incomeMoneyCollect">0.00</span></p>
+			<p class="fs28"><i class="color03 mar-r-10">●</i><span class="mar-r-5">待收返利</span><span class="color03"  v-text="data.redwardRebatesAmount">0.00</span></p>
+			<p class="fs28"><i class="color04 mar-r-10">●</i><span class="mar-r-5">存钱罐</span><span class="color04"  v-text="data.baseMoney">0.00</span></p>
+			<p class="fs28"><i class="color05 mar-r-10"></i><span class="mar-r-5">冻结金额</span><span class="color05"  v-text="data.freezeMoney">0.00</span></p>
+			<p class="fs28"><i class="color05 mar-r-10"></i><span class="mar-r-5">可用余额</span><span class="color05" v-text="data.canuseMoney">0.00</span></p>
+		</div>
+		<div class="list_chart">
+			<div class="charts" id="propertyCharts"></div>
+		</div>
+	</div>
+	<div class="delail_list mar-t-10">
+		<a href="/src/article/integral/my_integral.html" class="item fs28">
+			<span class="disflex alignitem_c "><i class="icon_integral"></i><span>积分</span></span>
+			<span class="disflex alignitem_c c666"><span v-text="data.integral">0</span><span v-text="isHideProperty?'*':'个'"></span><span class="icon_jtright"></span></span>
+		</a>
+		<a href="coupon.html" class="item fs28">
+			<span class="disflex alignitem_c"><i class="icon_coupon"></i><span>卡券</span></span>
+			<span class="disflex alignitem_c c666"><span v-text="data.voucherCount">10</span><span v-text="isHideProperty?'*':'张'"></span><span class="icon_jtright"></span></span>
+		</a>
+	</div>
+</div>
+
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script src="/plugins/echarts/echarts.min.js"></script>
+<script>
+    vms.myprototal();
+</script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>关于宜泉</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/vue-resource.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+
+	<body>
+		@@include('../include/head.html',{ "title":"一分钟了解宜泉资本", "isback":true })
+
+		<style>
+			html,
+			body {
+				background: #FFFFFF;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: 690px
+			}
+			
+			.swiper-rw {
+				width: 100%;
+				height:550px
+			}
+			
+			.logo_about {
+				display: block;
+				margin: 50px auto 30px auto;
+				width: 60%;
+			}
+			
+			.img_about img{
+				display: block;
+				margin: 20px auto;
+				width: 90%;
+				border-radius: 12px;
+			}
+			
+			.leader_arrow {
+				display: block;
+				width: 30px;
+				height: 60px;
+				position: fixed;
+				left: 50%;
+				bottom: -10px;
+				margin-left: -15px;
+				z-index: 999;
+				-webkit-animation: start 1.5s infinite ease-in-out;
+				animation: start 1.5s infinite ease-in-out;
+			}
+			
+			.about_intr {
+				padding: 15px;
+			}
+			
+			.bghx {
+				background: url(../../images/about_bg.jpg)no-repeat;
+				width: 100%;
+				height: 720px;
+				background-size: 100% 100%;
+			}
+			
+			.teamN {
+				height:80px;padding-top: 20px;
+			}
+			
+			.cf {
+				color: #fff;
+			}
+			
+			.positionMS {
+				width: 84%;
+				margin: 20px auto;
+				background: #1e80ff;
+				border-radius: 12px;
+				padding: 10px;
+			}
+			.tx_img{width: 50%;display: block;margin: 10px auto;}
+			.js_img img{}
+	
+	.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    position: relative;
+    bottom: 70px;
+    left: 0;
+    width: 100%;}
+    .img_dot{
+    	position: relative;
+    bottom:3rem !important;
+    left: 0;
+    width: 100%;}
+    .img_dot .swiper-pagination-bullet{ width:10px;
+    height: 4px;
+    display: inline-block;
+    border-radius:0;
+    background: #000;
+    opacity: .2;}
+    .img_dot .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #ffffff;
+}
+    .zszz{background: url(../../images/zs.jpg)no-repeat;height: 690px;width: 100%;background-size:100% 100% ;display: block;}
+    .zsbg{background: #c9dbe5;width: 86%;padding: 10px;height: 360px;display: block;margin: 140px auto;border-radius: 12px;overflow: hidden;}
+    .minimg{width:100%;}
+	.minimg li{float:left;position:relative;cursor:pointer;box-sizing:border-box;overflow:hidden;}
+	.minimg li .bg-box{position:absolute;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.5;}
+	.minimg li.active .bg-box{display:none;}
+	.minimg li img{height: 100px;}
+	.zsbgnm img{height:100%;width: 100%;}
+    .w_img1{width: 24%;margin-left: 5px;}
+    .w_img2{width: 22%;margin-left: 5px;}
+    .w_img3{width: 11%;margin-left: 5px;}
+    .zsbgnm{overflow: hidden;height: 240px;margin-bottom: 20px;}
+		</style>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+
+				<div class="swiper-slide">
+					<img src="/images/about_logo.png" class="logo_about" />
+					<p class="about_intr fs28">宜泉资本是上海响泉金融信息服务有限公司旗下的金融信息服务平台，它专注于上海的不动产细分领域，致力于为广大投资人提供“低风险、易理解、全透明”的一站式理财服务。<br /> 凭借“互联网+金融+不动产”三者结合的创新模式，打造跨界与融合的领先金融模式，坚决贯彻普惠自由的投资理念，其灵活、专业、安全的理财产品，在为大家带来稳定的收益同时，更提供安全、快乐的理财体验。
+					</p>
+					<div class="swiper-img">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide img_about">
+								<img src="/images/about_img_01.jpg"/>
+							</div>
+							<div class="swiper-slide img_about">
+								<img src="/images/about_img_02.jpg"/>
+							</div>
+							<div class="swiper-slide img_about">
+								<img src="/images/about_img_05.jpg"/>
+							</div>
+							<div class="swiper-slide img_about">
+								<img src="/images/about_img_06.jpg"/>
+
+							</div>
+						</div>
+						<div class="swiper-pagination-img img_dot" style="text-align:center;position: relative;
+    z-index: 333;"></div>
+					</div>
+					
+				</div>
+				<div class="swiper-slide">
+
+					<div class="teamN">
+						<p class="fs48 text-center pad-t-20">核心团队</p>
+					</div>
+					<div class="bghx cf">
+						<div class="swiper-rw">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+
+									<img src="/images/cy.png" class="tx_img"/>
+									<p class="text-center fs48">曹毅<br />
+										<span class="fs28">CEO-首席执行官</span>
+									</p>
+									<div class="positionMS fs28">
+										11年大型企业运营管理及金融投资管理经验，曾就职于多家知名跨国企业，担任大陆贸易事业部总监、公司副总经理等重要职位，期间屡创卓绩，成功帮助公司引入贸易股东资金、实体战略合作伙伴、成立专项基金。以其“天道酬勤，商道酬信”的理念，带领宜泉资本踏入互联网金融的领域。
+									</div>
+
+								</div>
+								<div class="swiper-slide">
+
+									<img src="/images/zq.png" class="tx_img" />
+									<p class="text-center fs48">朱倩<br />
+										<span class="fs28">CMO－首席营销官</span>
+									</p>
+									<div class="positionMS fs28">
+										10余年互联网营销经验，曾就职于纽交所上市公司等多家全球知名企业，担任市场策略营销等重要职务，并创造多个知名品牌营销成功案例。深谙互联网营销之道，对于各种市场营销手段、产品运营、品牌管理有其敏锐的洞察与见解。
+									</div>
+
+								</div>
+								<div class="swiper-slide">
+
+									<img src="/images/xf.png" class="tx_img" />
+									<p class="text-center fs48">彭雪锋<br />
+										<span class="fs28">CTO－首席技术官</span>
+									</p>
+									<div class="positionMS fs28">
+										12年软件及互联网IT从业经验，曾先后就职于东交所上市公司（日经255 5332:JP），Alexander Group，时任技术经理和技术总监，期间主导设计并开发ERP、CRM、电商平台、金融平台，同时专注于数据安全技术和应用安全防护技术，对信息架构、互联网及移动互联网的产品研发有充分的经验，对金融互联网的新技术有深入了解和见解。
+
+									</div>
+
+								</div>
+								<div class="swiper-slide">
+
+									<img src="/images/zf.png" class="tx_img"/>
+									<p class="text-center fs48">张子房<br />
+										<span class="fs28">CRO－首席风控官</span>
+									</p>
+									<div class="positionMS fs28">
+										8年银行风险管理经验，曾就职于国内知名外资银行总行风险管理部。获得过“Risk Recognition”等多项殊荣。期间负责过PBOC Regulation、Excess & Pastdue、ASTAR、EAR等多个重要项目。曾代表中国区风险管理部参与并负责全球业务监测系统的开发测试及完善。拥有丰富的风险管理及流程把控经验，并对互联网金融领域的风险管理方式具有独到见解。
+									</div>
+
+								</div>
+							</div>
+							<div class="swiper-pagination_rw" style="text-align:center;margin:0 auto;"></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="swiper-slide js_img">
+					<img src="/images/fk.jpg" />
+					
+				</div>
+				<div class="swiper-slide js_img"><img src="/images/lx.jpg?v=20171103" /></div>
+				<div class="swiper-slide zszz">
+					<div class="zsbg">
+						<div class="zsbgnm">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="/images/1.png"/>
+								</div>
+								<div class="swiper-slide">
+									<img src="/images/2.png"/>
+								</div>
+								<div class="swiper-slide">
+									<img src="/images/3.png"/>
+								</div>
+								<div class="swiper-slide">
+									<img src="/images/4.png"/>
+								</div>
+								<div class="swiper-slide">
+									<img src="/images/5.png"/>
+								</div>
+							</div>
+						</div>
+						<div style="width: 100%;clear: both;height:100px;">
+							<ul class="minimg">
+								<li class="active w_img1"><div class="bg-box"></div><img src="/images/l1.png" alt=""></li>
+								<li class="w_img2"><div class="bg-box"></div><img src="/images/l2.png" alt=""></li>
+								<li class="w_img2"><div class="bg-box"></div><img src="/images/l3.png" alt=""></li>
+								<li class="w_img3"><div class="bg-box"></div><img src="/images/l4.png" alt=""></li>
+								<li class="w_img3"><div class="bg-box"></div><img src="/images/l5.png" alt=""></li>
+							</ul>
+						</div>
+
+					</div>
+					
+				</div>
+				<div class="swiper-slide js_img"><img src="/images/wecode.jpg" /></div>
+			</div>
+			<div class="swiper-pagination"></div>
+			<div class="swiper-scrollbar"></div>
+			<div class="leader_arrow"><img src="/images/leader_arrow.png" /></div>
+		</div>
+
+		<script>
+			var mySwiper = new Swiper( '.swiper-container', {
+				direction: 'vertical',
+				loop: true,
+				spaceBetween: 0,
+				scrollbar: '.swiper-scrollbar',
+				pagination : '.swiper-pagination',
+			} )
+			var mySwiperbimg = new Swiper( '.swiper-img', {
+				direction: 'horizontal',
+				loop: true,
+				spaceBetween: 0,
+				scrollbar: '.swiper-scrollbar',
+				pagination : '.swiper-pagination-img',
+			} )
+			var mySwiperPerson = new Swiper( '.swiper-rw', {
+				direction: 'horizontal',
+				loop: true,
+				spaceBetween: 0,
+				scrollbar: '.swiper-scrollbar',
+				pagination : '.swiper-pagination_rw',
+			} )
+			var mySwiperImg = new Swiper( '.zsbgnm', {
+				direction: 'horizontal',
+				speed: 400,
+			    loop : true,
+				onSlideChangeEnd: function(swiper){
+		      //Swiper初始化了
+		      if(swiper.activeIndex==6) swiper.activeIndex=1;
+		      $('.minimg li').eq(swiper.activeIndex-1).addClass('active').siblings().removeClass('active');
+		    }
+
+			} )
+			$('.minimg li').each(function(index){
+				$(this).click(function(){
+					mySwiperImg.slideTo(index+1);
+				})
+			});
+
+			
+		</script>
+
+        <script>
+        $(function(){
+            if(title=="no"){
+                $("header").hide();
+            }
+        })
+		</script>
+	</body>
+
+</html>

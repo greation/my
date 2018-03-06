@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>发现</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/article.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/base.js"></script>
+</head>
+<body class="pb60 activity">
+	@@include('../include/head.html',{
+		"title":"活动介绍",
+		"isback":true
+	})
+	<style>
+		body,html{background: #FFFFFF !important;}
+	</style>
+	<div id="acdetail">
+		<div class="container bg-white"  :id="data.activity.activityId">
+			<div class="hgray"></div>
+			 <div class="">
+			 		<div class="c3 fs28 wa90 pad-b-10 pad-t-10 text-center" v-text="data.activity.activityName"></div>
+			 		<div class="wa90 art_img clearfix">
+			 			<img :src="data.activity.activityImg" />
+			 		</div>
+			 		<div class="disflex alignitem_c justify_sb wa90 pad-t-10 pad-b-10">
+			 			<span class="fs26 statusing" v-if="data.activity.activityStatus=='ACTIVE'">进行中</span>
+			 			<span class="fs26 starting" v-if="data.activity.activityStatus=='NOSTART'">即将开始</span>
+			 			<span class="fs26 overing" v-if="data.activity.activityStatus=='END'">已结束</span>
+			 			<span class="fs26" v-if="data.activityStatus==='ACTIVE'" v-show="isChuli" v-html="data.activity.endDate"></span>
+			 		</div>
+			 </div>
+			 <div class="wa90 clearfix c6 fs26 pad-t-10 ">
+			 	<p v-text="data.activity.summary"></p>
+			 </div>
+			 
+			 <div>
+			 	<!--:href="data.activity.activityUrl"-->
+			 	<a class="join text-center pad-t-10 pad-b-10 fs28" v-if="data.activity.activityStatus=='ACTIVE'"  @click="joinActict">立即参与</a>
+			 	<a class="joinc text-center pad-t-10 pad-b-10 fs28" v-if="data.activity.activityStatus=='END'" >已结束</a>
+			 </div>
+			 
+			 
+		</div>
+	</div>
+	</body>
+	
+	<script src="/js/article.js"></script>
+	<script type="text/javascript">
+		active.acdetail();
+		 $(function(){
+            if(title=="no"){
+                $("header").hide();
+            }
+        })
+	</script>
+</html>

@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+/dist
+/node_modules
+gulpfile.js
+package.json
+../.idea
+writeConfigJs.htm

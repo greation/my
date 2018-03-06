@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>银行卡</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="bc">
+	@@include('../include/head.html',{
+		"title":"银行卡",
+		"isback":true
+	})
+<div class="container" id="bc">
+	<div class="center">
+		<a :href="'bank_detail.html?id='+card.sinaCardId" class="item" v-for="card in data.cardList">
+			<div class="bank_type">
+				<div class="bank_icon"><img :src="'http://source.ekeyfund.com/upload/bank/'+card.bankId+'.jpg'" alt=""></div>
+				<div class="bank_name">
+					<p class="fs26" v-text="card.bankName">中国建设银行</p>
+					<span class="fs20">储蓄卡</span>
+				</div>
+				<div class="bank_type fs20" v-text="card.isSafetyCard==='Y'?'安全卡':'普通卡'"></div>
+			</div>
+			<div class="bank_num" v-text="card.cardId">	
+			</div>
+		</a>
+		<!-- <a class="item">
+			<div class="bank_type">
+				<div class="bank_icon"><img src="/images/icon_bank.png" alt=""></div>
+				<div class="bank_name">
+					<p class="fs26">中国建设银行</p>
+					<span class="fs20">储蓄卡</span>
+				</div>
+				<div class="bank_type fs20">安全卡</div>
+			</div>
+			<div class="bank_num">
+				****  ******    ********  9527
+			</div>
+		</a> -->
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+  vms.bankList();
+</script>
+</body>
+</html>

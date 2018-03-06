@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>热门资讯</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/article.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	</head>
+	<body class="in pb60">
+		@@include('../include/head.html',{
+		"title":"热门资讯",
+		"isback":true
+	})
+		<div id="hotNew">
+			<div class="articles">
+				<template v-for="re in items" >
+			 	<div class="article_style ar01" @click="newin(re.noticeId)" v-if="re.imgUrl.length===1">
+			 		<div class="content">
+			 			<p class="fs28 c000 tr_split_two" v-text="re.title"></p>
+			 			<p class="fs20 cbbb mar-t-10">时间：<font v-text="re.publishTime"></font></p>
+			 		</div>
+			 		<div class="img" v-if="re.imgUrl===''">
+			 			<img src="/images/no_img.png" alt="">
+			 		</div>
+					<div class="img" v-else>
+						<img v-bind:src="re.imgUrl[0]">
+					</div>
+		 		</div>
+			 	<div class="article_style ar02" @click="newin(re.noticeId)" v-else>
+			 		<div class="content">
+			 			<p class="fs28 c000" v-text="re.title"></p>
+			 		</div>
+			 		<div class="img" v-if="re.imgUrl===''">
+			 			<img src="/images/no_img.png" alt="">
+			 		</div>
+					<div class="img" v-else>
+						<div v-for="(imgitem,index) in re.imgUrl" :class="{'mar-l-8':index===1,'mar-r-8':index===1}">
+							<img v-bind:src="imgitem">
+						</div>
+					</div>
+			 		<p class="fs20 cbbb mar-t-10"><font v-text="re.publishTime"></font></p>
+			 	</div>
+		 	</template>
+		</div>
+		<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png"/></div>
+		</div>
+		
+		
+		
+		
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/article.js"></script>
+	<script>
+		window.onload=function(){
+		var oTop = document.getElementById("toTop");
+  		var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  		var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  		window.onscroll = function(){
+    		var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(scrolltop>100){
+				oTop.style.display ="block";
+			}else{
+				oTop.style.display ="none";
+			}
+  		}
+  		oTop.onclick = function(){
+    		document.documentElement.scrollTop = document.body.scrollTop =0;
+  		}
+	}
+		active.hoteNew();
+		 $(function(){
+		      if(title=="no"){
+		          $("header").hide();
+		      }
+  		})
+	</script>
+</html>

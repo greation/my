@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>修改用户名</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="mo cu">
+	@@include('../include/head.html',{
+		"title":"修改用户名",
+		"isback":true
+	})
+<div class="container" id="cu">
+	<input type="text" placeholder="请输入心仪的用户名" class="inp_username" v-model="inpUserName">
+	<p class="fs24 cbbb mar-t-10 pad-l-15">用户名30天内只能修改一次</p>
+	<input type="button" value="完成" class="btn_sub" @click="changeUserName">
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+  vms.changeUserName();
+</script>
+</body>
+</html>

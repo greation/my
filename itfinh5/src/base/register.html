@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>注册</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/base.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/tongdun.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+	<style>
+		html,body{
+			height: 100%;
+		}
+	</style>
+</head>
+<body class="re bg-white">
+	@@include('../include/head.html',{
+		"title":"注册",
+		"isback":true
+	})
+	<div class="container" id="re">
+		<div class="one" v-show="isStep">
+			<div class="banner mar-t-10">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="banner in bannerList" onclick="SaFun.banner('','注册benner')">
+							<a :href="banner.linkUrl">
+								<img :src="banner.imgUrl" alt="" width="100%">
+							</a>
+						</div>
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="form page">
+				<div class="disflex relative" :class="{active:inPsActive[0]}">
+					<i class="icon_user"></i>
+
+					<input type="tel" v-model="inpPhone" @focus="inpFocus(0)" placeholder="请输入手机号码" class="inp_phone" maxlength="11">
+				</div>
+				<div class="disflex relative mar-t-10" :class="{active:inPsActive[1]}"><i class="icon_psw" v-cloak></i>
+					<input type="password" placeholder="6-16位数字字母组合，区分大小写" class="inp_psw" v-show="isOpenEye" @focus="inpFocus(1)" v-model="inpPsw">
+					<input type="text" placeholder="6-16位数字字母组合，区分大小写" class="inp_psw" v-show="!isOpenEye" @focus="inpFocus(1)" v-model="inpPsw">
+					<i class="eye" :class="{eye_open:isOpenEye}" @click="eyePsw"></i>
+				</div>
+			</div>
+			<p class="pad-l-15 disflex alignitem_c mar-t-20">
+				<input type="checkbox"  name="xieyi" id="xieyi" v-model="isXieYi">
+				<label for="xieyi" class="fs24">我已阅读并同意<a href="/src/base/rigisterxy.html" class="fs24 c999">《宜泉资本注册服务及隐私保护协议》</a>
+				</label>
+			</p>
+			<div class="pad-l-15 pad-r-15">
+				<input type="button" value="下一步" class="btn_next" v-on:click="regisNext">
+			</div>
+		</div>
+		<div class="two hide page" v-show="!isStep">
+			<p class="fs24 text-center mar-t-15 mar-b-15">短信验证码已发送至 <span class="color-theme fs28" v-text="inpPhone"></span>，请注意查收。</p>
+			<div class="code disflex justify_sb bg-white relative" :class="{active:inPsActive[2]}">
+				<i class="icon_psw"></i>
+				<input type="text" placeholder="请输入短信验证码" class="inp_code outline_no" v-model="phoneCode" @focus="inpFocus(2)">
+				<span type="button" v-text="countTime" class="fs24 disflex justify_c alignitem_c btn_getcode" :class="{ 'bg-gray': isPhoneCode }" @click="getPhoneCode"></span>
+			</div>
+			<div class="yqm_box disflex mar-t-10 relative" :class="{active:inPsActive[3]}">
+				<i class="icon_yqm"></i>
+				<input type="text" placeholder="邀请码（选填）" class="inp_yqm" v-model="inviteCode" @focus="inpFocus(3)">
+			</div>
+			<div class="">
+				<input type="button" value="完成" class="btn_sub" @click="regisMain">
+			</div>
+		</div>
+		<p class="text-center c999 link_login fs28">已有账号？<a href="login.html" class="color-theme fs28">立即登录</a></p>
+	</div>
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/base.js"></script>
+	<script>
+	vms.regis();
+	var mySwiperBanner = new Swiper('.banner .swiper-container', {
+		pagination : '.banner .swiper-pagination',
+		speed: 400,
+		loop : true,
+		autoplay : 4000,
+		spaceBetween: 0,
+		autoplayDisableOnInteraction : false
+	});
+</script>
+
+
+</html>

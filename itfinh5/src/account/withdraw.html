@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>提现</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/tongdun.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="ch wi">
+	@@include('../include/head.html',{
+		"title":"提现",
+		"isback":true
+	})
+	<div class="container" id="wi">
+		<div class="card_info mar-t-15 bg-white">
+			<img :src="'http://source.ekeyfund.com/upload/bank/'+data.cardInfo.bankId+'.jpg'" alt="" class="icon_bank">
+			<span class="bank_name mar-l-20" v-text="data.cardInfo.bankName"></span>
+			<span class="c999">尾号(<span v-text="data.cardInfo.cardId"></span>)</span>
+		</div>
+		<!-- <div class="phone_info mar-t-10 bg-white">
+			<span>手机号码</span>
+			<span class="pull-right c999" v-text="data.mobile"></span>
+		</div> -->
+		<div class="ti_money mar-t-10 disflex bg-white">
+			<p>提现金额</p>
+			<div class="disflex mar-t-10 mar-b-10">
+				<span class="fs50 lh50">￥</span>
+				<input type="text" class="draw_num fs50 lh50" v-model='inpMoney'>
+			</div>
+			<div class="fs24" style="color:#bbb;border-top:1px solid #f0f0f0;padding-top:15px;">
+				<span class="c999">可用余额：<span v-text="data.canusMoney"></span></span>
+				<span class="color-theme pull-right" @click="withAll">全部提现</span>
+			</div>
+		</div>
+		<div class="tip fs24 mar-t-20 pad-l-15 pad-r-15 cbbb">
+			<p>预计到账时间：</p>
+			<p>当日14:45前，T+1到账；</p>
+			<p>当日14:45后，T+2到账。（节假日顺延）</p>
+			<p>每笔提现由上海银行收取手续费2元。</p>
+		</div>
+		<div class="disflex">
+			<input type="button" style="margin-top:15px;" value="提现" class="btn_withdrwa flexauto" @click="linkWithdrawBt">
+		</div>
+	</div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/account.js"></script>
+	<script>
+    vms.withdrwa();
+	</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html class="bg-white">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>新闻详情</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/index.css" />
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/public.js"></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+	</head>
+
+	<body class="bg-white">
+		@@include('../include/head.html',{
+		"title":"新闻详情",
+		"isback":true
+	})
+
+		<div id="newDetail">
+			<div class="tips_detail text-center">
+				<div class="tips_title" v-text="data.noticeVo.title"></div>
+				<div class="tips_time c9 fs24 mar-t-10 mar-b-10" ><span v-text="'来自'+data.noticeVo.noticeSource"></span><span class="mar-l-10" v-text="data.noticeVo.publishTime"></span></div>
+			</div>
+			<div class="tips_content">
+				<p class="c6 fs28 pad-b-10" v-html="data.noticeVo.context"></p>
+			</div>
+		</div>
+
+	</body>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/article.js"></script>
+		<script>
+			active.newDetail();
+			 $(function(){
+      if(title=="no"){
+          $("header").hide();
+      }
+  })
+		</script>
+		
+<script type="text/javascript">
+		var wxshare  = {};
+		var appId = '';
+		$.ajax({
+			url:Helper.basePath +'/weixinCore/getjsapiTikcet.htm',
+			type: 'POST',
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			},
+			async:false,
+			data: {
+			url : window.location.href
+			},
+			success:function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				wxshare = data;
+			},
+			error:function(data){
+				console.log("error");
+			}
+		})
+
+		
+		var notice  = {};
+		var _this =this;
+	    var nowurl = document.URL;
+		    nowurl=location.href;
+	    var noticeId=util.getRequest(nowurl,"noticeId");
+		$.ajax({
+			url:Helper.basePath + 'article/detail.htm?noticeId='+noticeId,
+				type: 'POST',
+				dataType: 'json',
+				data:{
+	                	articleId:noticeId
+	                },
+				xhrFields: {
+		      	withCredentials: true
+		   		}
+			})
+			.done(function(data) {
+				var _data = JSON.parse(data);
+				notice = _data;
+				console.log(notice);
+				//console.log(notice_summ.recommendCode);
+			})
+			.fail(function() {
+				console.log("error");
+			})
+
+	wx.config({
+		debug : false, //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+		appId : wxshare.appId,
+		timestamp :  wxshare.timestamp,
+		nonceStr :  wxshare.nonceStr,
+		signature :  wxshare.signature,
+		jsApiList : [ //需要使用的网页服务接口
+		      		'onMenuShareTimeline',
+		      		'onMenuShareAppMessage',
+		    		'showMenuItems',
+		    		'hideMenuItems'
+		]
+	});
+
+	wx.ready(function() {
+		// 批量隐藏菜单项
+		wx.hideMenuItems({
+			menuList : [ 'menuItem:readMode', // 阅读模式
+			'menuItem:copyUrl',// 复制链接
+			'menuItem:openWithSafari', 'menuItem:share:email',
+					'menuItem:openWithQQBrowser', 'menuItem:delete',
+					'menuItem:share:qq', 'menuItem:share:weiboApp',
+					'menuItem:share:facebook', 'menuItem:share:QZone',
+					'menuItem:exposeArticle', 'menuItem:share:appMessage',
+					'menuItem:share:timeline', 'menuItem:setFont' ],
+			success : function(res) {
+
+			},
+			fail : function(res) {
+
+			}
+		});
+		// 批量显示菜单项
+		wx.showMenuItems({
+			menuList : [
+			"menuItem:share:timeline",//分享到朋友圈
+			"menuItem:share:appMessage",//分享给好友
+			'menuItem:favorite', // 收藏
+			'menuItem:profile', // 查看公众号（已添加）
+			'menuItem:addContact' // 查看公众号（未添加）
+			],
+			success : function(res) {
+			},
+			fail : function(res) {
+			}
+		});
+
+	});
+	
+	 wx.ready(function() {
+			wx.onMenuShareAppMessage({
+				title : notice.noticeVo.title,
+				desc : notice.noticeVo.summary,
+				link : Helper.webPath+'/src/article/news_detail.html?noticeId='+notice.noticeVo.noticeId,
+				imgUrl : notice.noticeVo.imgUrl,
+				success : function(res) {
+
+				},
+				cancel : function(res) {
+					alert('已取消');
+				}
+			});
+
+			//2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+			wx.onMenuShareTimeline({
+				title : notice.noticeVo.title,
+				link : Helper.webPath+'/src/article/news_detail.html?noticeId='+notice.noticeVo.noticeId,
+				imgUrl : notice.noticeVo.imgUrl,
+				success : function(res) {
+
+						},
+						cancel : function(res) {
+							alert('已取消');
+						}
+					});
+			});
+
+</script>
+		
+</html>

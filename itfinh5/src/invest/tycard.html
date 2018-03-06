@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>房月盈</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"房月盈",
+		"isback":true
+	})
+		<div class="pad-b-60" id="card">
+			<div class="tips_invest">
+				<div >
+					<span class="c9 fs28 mar-l-20 wa90 ma db">只可使用一张体验金券，卡券不可叠加使用。</span>
+				</div>
+			</div>
+			<div class="cardc bg-white">
+				<div class="wa90 ma">
+					<span class="c9 fs34 pull-left">选择卡券</span>
+					<a class="pull-right c9 fs28">20元现金券&nbsp;></a>
+				</div>
+			</div>
+			<div class="tips_invest">
+				<div class="wa90 ma">
+					<input type="checkbox" v-model="isXieYi"/>
+					<a class="c9 fs28" href="/">同意《宜泉资本投资协议》</a>
+				</div>
+			</div>
+			<a class="btn_invest fs34 text-center ma" @click="sureBtn">确认投资</a>
+		</div>
+		<script src="/js/invest.js"></script>
+		<script>
+			iv.card();
+			
+		</script>
+		
+		
+	</body>
+</html>

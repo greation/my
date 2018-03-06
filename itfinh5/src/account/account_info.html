@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>账户信息</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="mo ai">
+	@@include('../include/head.html',{
+		"title":"账户信息",
+		"isback":"true;/src/account/index.html"
+	})
+<div class="container" id="ac" v-cloak>
+	<div >
+	<div class="center mar-t-10"><!--v-text="data.personSex"-->
+		<a class="item">
+			<span>头像</span><span class="disflex justify_c alignitem_c">
+
+			<template v-if="data.userInfo.photo"><img :src="data.userInfo.photo" class="user_photo"></template>
+			<template v-else-if="data.userInfo.photo==null"><img src="/images/user_img.png" class="user_photo"></template>
+
+			</span>
+		</a>
+		<a href="javascript:void(0)" class="item">
+			<span>手机号码</span><span class="c999" v-text="data.userInfo.mobile"></span>
+		</a>
+		<a href="change_username.html" class="item">
+			<span>用户名</span><span class="c999">
+			<div>
+				<span v-text="data.userInfo.shortName"></span>
+				<span class="icon_jtright"></span>
+			</div>
+			
+		</a>
+		<a href="user_info.html" class="item">
+			<span>个人资料</span><span class="icon_jtright"></span>
+		</a>
+	</div>
+	<div class="center mar-t-10">
+		<a href="/src/base/real_name.html" class="item " v-if="data.userInfo.isRealNameCheck==='NO'">
+			<span>实名认证</span><span class="disflex justify_c alignitem_c c999"><span class="blue">送88元现金券+128元现金券</span><span class="icon_jtright"></span></span>
+		</a>
+
+		<a href="javascript:void(0)" class="item " v-else>
+			<span>实名认证</span><span class="disflex justify_c alignitem_c c999"><span><span v-text="_self.realName"></span> (<span v-text="_self.cardNumber"></span>)</span><span class="icon_jtright"></span></span>
+		</a>
+
+
+		<a href="javaScript:void(0)" class="item" v-if="data.userInfo.isBindCard==='NO'" @click="bindCard">
+			<span>银行卡</span><span class="disflex justify_c alignitem_c"><span class="blue">送218元现金券+518元现金券</span><span class="icon_jtright"></span></span>
+		</a>
+
+		<a href="bank_card.html" class="item " v-else="data.userInfo.isBindCard==='YES'">
+			<span>银行卡</span><span class="disflex justify_c alignitem_c"><span class="icon_jtright"></span></span>
+		</a>
+
+
+		<a href="account_safety.html" class="item">
+			<span>账户与安全</span><span class="icon_jtright"></span>
+		</a>
+	</div>
+	<div class="center mar-t-10">
+		<a href="address.html" class="item">
+			<span>收货地址</span><span class="disflex justify_c alignitem_c"><span class="icon_jtright"></span>
+		</a>
+	</div>
+    <div class="disflex"><input type="button" value="退出登录" @click="linkLogot()" class="btn_logout flexauto"></div>
+	</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+  vms.infoIndex();
+</script>
+</body>
+</html>

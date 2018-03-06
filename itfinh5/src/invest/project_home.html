@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>标的详情</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+	<body>
+		@@include('../include/head.html',{
+		"title":"标的详情",
+		"isback":true
+	})
+
+
+	<div id="bdetail" v-cloak>
+	 <div v-title>{{data.borrow.borrowName}}</div>
+		<div  :id="data.borrow.borrowId">
+			<div class="project_exhibition bg-white">
+				<div class="exhibition_title text-center">
+					<template v-if="data.borrow.borrowActivityIcon==''||data.borrow.borrowActivityIcon===null"></template>
+					<template v-else><img :src="data.borrow.borrowActivityIcon" class="yb_img" alt="" style="float:right"></template>
+					<span class="yb_name fs34" v-text="data.borrow.borrowName">房月盈(月标)</span>
+				</div>
+				<div class="exhibition_data">
+					<div class="exhibition_data_left">
+						<div class="cblue">
+							<span class="font05rem" >{{data.borrow.borrowRate-data.borrow.addRate|capitalizeg}}</span>%
+							<span v-text="data.borrow.addRate==='0.0'?'':'+'+data.borrow.addRate+'%'"></span>
+						</div>
+						<div class="c9">约定年化收益率</div>
+					</div>
+					<div class="exhibition_data_right">
+						<div class="cblue"> 
+							<span class="font05rem">{{data.borrow.borrowDuration}}</span>
+							<span>个月</span>
+						</div>
+						<div class="c9">投资期限</div>
+					</div>
+				</div>
+				<div class="data_progress" style="width:90%">
+					<div class="progressin" :style="{width:data.borrow.raiseRate +'%'}"></div>
+				</div>
+				<div class="kt_data c9">
+					<span class="pull-left">剩余可投：{{(data.borrow.borrowMoney-data.borrow.raiseMoney)/100 | capitalizeq}}元</span>
+					<span class="pull-right">{{data.borrow.raiseRate | capitalizeb}}</span>
+				</div>
+			</div>
+			<div class="express bg-white">
+				<div class="express_name">
+					<div class="fs34">
+						<span class="c9 pull-left">剩余可投</span>
+						<span class="pull-right mar-r-15 c3">{{(data.borrow.borrowMoney-data.borrow.raiseMoney)/100 | capitalizeq}}元</span>
+					</div>
+				</div>
+				<div class="express_name">
+					<div class="fs34">
+						<span class="c9 pull-left">募集总额</span>
+						<span class="pull-right mar-r-15 c3">{{data.borrow.borrowMoney/100 | capitalizeq}}元</span>
+					</div>
+				</div>
+				<div class="express_name">
+					<div class="fs34">
+						<span class="c9 pull-left">最大可投</span>
+						<span class="pull-right mar-r-15 c3">{{data.borrow.maxInvest/100 | capitalizeq}}元</span>
+					</div>
+				</div>
+				<div class="express_name">
+					<div class="fs34">
+						<span class="c9 pull-left">起投金额</span>
+						<input class="pull-right mar-r-15 c3 qtmoney" type="text" name="" id=""   step="100" :value="(data.borrow.minInvest)/100 +'元'"/>
+					</div>
+				</div>
+				<div class="express_name">
+					<div class="fs34">
+						<span class="c9 pull-left">起息方式</span>
+						<span class="pull-right mar-r-15 c3">T(放款当日)</span>
+					</div>
+				</div>
+				<div class="express_name">
+					<div class="fs34 nob_border">
+						<span class="c9 pull-left">回款方式</span>
+						<span class="pull-right mar-r-15 c3" v-text="data.borrow.repaymentType"></span>
+					</div>
+				</div>
+			</div>
+				
+		
+		</div>
+		<div class="text-center dragup " @click="getMore(data.borrow.borrowId)"><a class="c9">试试向上拖动，查看更多</a></div>
+		
+		<template v-if="data.borrow.borrowStatus==='END'">
+			<a href="javascript:void(0)" class="invest_btngray fs30 text-center">筹款结束</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='REPAYMENTED'">
+			<a href="javascript:void(0)" class="invest_btngray fs30 text-center">已还清</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='REPAYMENTING'">
+			<a href="javascript:void(0)" class="invest_btngray fs30 text-center">还款中</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='LOSSED'">
+			<a href="javascript:void(0)" class="invest_btngray fs30 text-center">已流标</a>
+		</template>
+
+		<template v-if="data.borrow.borrowStatus==='RAISE'">
+			<a class="invest_btn fs30 text-center" @click="btnLj(data.borrow.borrowId)">立即投资</a>
+		</template>
+		<!-- <a class="invest_btn fs30 text-center" @click="btnLj(data.borrow.borrowId)">立即投资</a> -->
+
+		
+		</div>
+		
+		
+		
+		<script src="/js/invest.js" charset="UTF-8"></script>
+		<script>
+			iv.bDetail();
+      $(function(){
+          if(title=="no"){
+              $("header").hide();
+          }
+      })   
+		</script>
+	</body>
+</html>

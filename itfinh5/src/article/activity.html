@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>发现</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/article.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="activity">
+	@@include('../include/head.html',{
+		"title":"活动专区",
+		"isback":"true"
+	})
+	<div class="container" id="list">
+		 <div class="bg-white mar-t-10" v-for="item in listData" :id="item.activityId">
+		 	<!--<a v-bind:href= "'/src/article/activity_detail.html?id='+item.activityId+''" @click="activitylink">-->
+		 	<a  @click="activitylink(item.activityId)">
+		 		<div class="c3 fs28 wa90 pad-b-10 pad-t-10" v-text="item.activityName"></div>
+		 		<div class="wa90 art_img clearfix">
+		 			<img v-bind:src="item.activityImg" />
+		 		</div>
+		 		<div class="disflex alignitem_c justify_sb wa90 pad-t-10 pad-b-10">
+		 			<span class="fs26 statusing" v-if="item.activityStatus=='ACTIVE'">进行中</span>
+		 			<span class="fs26 starting" v-if="item.activityStatus=='NOSTART'">即将开始</span>
+		 			<span class="fs26 overing" v-if="item.activityStatus=='END'">已结束</span>
+		 			<span class="fs26" v-if="item.activityStatus==='ACTIVE'" v-show="isChuli" v-html="item.endDate"></span>
+		 		</div>
+		 	</a>
+		 </div>
+		 <input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		 <!-- <div class="bg-white mar-t-10">
+			 <a class="" href="activity_detail.html">
+		 		<div class="c3 fs28 wa90 pad-b-10 pad-t-10">母亲节为妈妈献爱心</div>
+		 		<div class="wa90 art_img clearfix">
+		 			<img src="/images/activityimglist1.jpg" />
+		 		</div>
+		 		<div class="disflex alignitem_c justify_sb wa90 pad-t-10 pad-b-10">
+		 			<span class="fs26 starting">即将开始</span>
+		 			<span class="fs26">17天20小时10分<span class="cfa">53秒 </span></span>
+		 		</div>
+		 	</a>
+		 </div>
+		 <div class="bg-white mar-t-10">
+			 <a class="" href="activity_detail.html">
+		 		<div class="c3 fs28 wa90 pad-b-10 pad-t-10">母亲节为妈妈献爱心</div>
+		 		<div class="wa90 art_img clearfix">
+		 			<img src="/images/activityimglist2.jpg" />
+		 		</div>
+		 		<div class="disflex alignitem_c justify_sb wa90 pad-t-10 pad-b-10">
+		 			<span class="fs26 overing">已结束</span>
+		 			<span class="fs26">17天20小时10分<span class="cfa">53秒 </span></span>
+		 		</div>
+		 	</a>
+		 </div> -->
+	</div>
+	<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png"/></div>
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/base.js"></script>
+	<script src="/js/article.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oTop = document.getElementById("toTop");
+			var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+			var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+			window.onscroll = function(){
+				var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+				if(scrolltop>100){
+					oTop.style.display ="block";
+				}else{
+					oTop.style.display ="none";
+				}
+			}
+			oTop.onclick = function(){
+				document.documentElement.scrollTop = document.body.scrollTop =0;
+			}
+		}	
+		active.list();
+	</script>
+
+</html>

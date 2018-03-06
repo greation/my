@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>个人中心</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="in pb60">
+	<div class="container" id="in" v-cloak>
+	<div class="top">
+		<div class="head">
+			<div class="img-box" v-cloak><a  v-show="login" href="javascript:void(0)" @click="linkUserCenter" class="disflex mar-l-10">
+			<template v-if="userInfo.photo"><img :src="userInfo.photo" class="user_photo"></template>
+			<template v-else-if="userInfo.photo==null"><img src="/images/user_img.png" class="user_photo"></template>
+			<!-- <template v-else="userInfo.photo=='WOMAN'"><img src="/images/woman.png" class="user_photo"></template> -->
+			</a></div>
+			<div class="title fs36 color-white" v-show="login">我的账户</div>
+			<div class="operation"  v-show="login">
+				<a href="calendar.html" class="btn-calendar"></a>
+				<a href="javascript:void(0)" class="btn-ewm mar-l-10 mar-r-10" @click="linkEwm"></a>
+			</div>
+		</div>
+		<div class="property">
+			<div class="login_in" v-show="login">
+				<div class="text"><span class="color-white fs24">资产总额（元）</span><i class="icon_eye mar-l-5" :class="{close:isHideProperty}" @click="hideProperty"></i></div>
+				<div class="balance mar-t-40">
+					<p class="total text-center">
+						<a href="property_total.html" class=" color-white fs60" v-text="data.totalAssets===0?'暂无资产':data.totalAssets"></a>
+					</p>
+					<ul class="num mar-t-40">
+						<li>
+							<a href="fund_detail.html">
+								<p class="fs24 color-white">可用余额（元）</p>
+								<p class="color-white mar-t-5 h20_style" v-text="data.canuseMoney">0</p>
+							</a>
+						</li>
+						<li>
+							<a href="add_fund.html">
+								<p class="fs24 color-white">累计收益（元）</p>
+								<p class="color-white mar-t-5 h20_style" v-text="data.totalIncomeMoney">0</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="login_no"  v-cloak v-show="!login">
+				<a href="/src/base/login.html?bUrl=/src/account/index.html" class="link_login">登录</a>
+			</div>
+	</div>
+	</div>
+	<div class="conter bg-white">
+		<ul class="property_operetion">
+			<li>
+					<a href="javascript:void(0)" @click="linkChargeWith()"><i class="icon_charge"></i><span>充值</span></a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" @click="linkWithdraw()">
+					<i class="icon_withdraw"></i><span>提现</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="bottom bg-white">
+		<ul class="nav">
+			<li @click="myInvest()"><i class="icon"></i><a ><span class="text">我的投资</span><span class="icon_jtright pull-right"></span></a></li>
+			<li><i class="icon"></i><a href="coupon.html"><span class="text">我的卡券</span><span class="msg fs24 pull-right" v-show="login" v-text="data.myCount"></span>
+			<span class="icon_jtright pull-right"></span></a></li>
+
+			<li><i class="icon"></i><a href="/src/article/integral/my_integral.html"><span class="text">我的积分</span><span class="icon_jtright pull-right"></span></a></li>
+			
+			<li><i class="icon"></i><a href="javascript:void()" @click="lindFriends()"><span class="text">我的好友</span><span class="icon_jtright pull-right"></span></a></li>
+			<li><i class="icon"></i><a href="help.html"><span class="text">帮助中心</span><span class="icon_jtright pull-right"></span></a></li>
+			<li><i class="icon"></i><a href="opinion.html"><span class="text">意见反馈</span><span class="icon_jtright pull-right"></span></a></li>
+			<li><i class="icon"></i><a href="more.html"><span class="text">更多</span><span class="icon_jtright pull-right"></span></a></li>
+		</ul>
+	</div>
+	</div>
+	<!-- 这里写网页内容 -->
+
+	@@include('../include/foot.html',{
+		"curMenu":"3"
+	})
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/account.js"></script>
+	<script>
+		vms.index();
+	</script>
+</body>
+

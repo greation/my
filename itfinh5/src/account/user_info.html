@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>个人资料</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/city-picker.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+<body class="mo ui">
+	@@include('../include/head.html',{
+		"title":"个人资料",
+		"isback":"true;/src/account/account_info.html"
+	})
+<div class="container pad-b-15" id="ui">
+	<div class="center mar-t-10">
+		<a class="item">
+			<span>姓名</span><span class="c999" v-text="userData.userInfo.realName"></span>
+		</a>
+		<a class="item">
+			<span>性别</span><span class="c999" v-text="userData.userInfo.personSex==='MAN'?'男':userData.userInfo.personSex==='WOMAN'?'女':'未实名认证'"></span>
+		</a>
+		<a class="item">
+			<span>生日</span><span class="c999" v-text="userData.userInfo.birthday">1997-10-10</span>
+		</a>
+		<a class="item">
+			<span>星座</span><span class="c999" v-text="userData.userInfo.constellation">处女座</span>
+		</a>
+	</div>
+	<div class="center mar-t-10">
+		<a class="item" href="#none">
+			<span>户籍地址</span>
+			<span v-text="userData.userInfo.permanentAddress" v-show="!isEditH" @click="editH"></span>
+			<div class="sel_address" v-show="isEditH">
+				<select name="" id="" v-model="hProvinceName" @change="getCity01">
+					<option v-for='province in hProvinceData' :value="province.name" v-text="province.name"></option>
+				</select>
+				<select name="" id="" v-model="hCityName" @change="getArea01">
+					<option v-for = 'city in hCityData' :value="city.name" v-text="city.name"></option>
+				</select>
+				<select name="" id="" v-model="hAreaName">
+					<option v-for = 'area in hAreaData' :value="area.name" v-text="area.name"></option>
+				</select>
+			</div>
+		</a>
+		<a class="item">
+			<span>常驻地址</span>
+			<span v-text="userData.userInfo.consigneeAddress" v-show="!isEditC" @click="editC"></span>
+			<div class="sel_address" v-show="isEditC">
+				<select name="" id="" v-model="cProvinceName" @change="getCity02">
+					<option v-for='province in cProvinceData' :value="province.name" v-text="province.name"></option>
+				</select>
+				<select name="" id="" v-model="cCityName" @change="getArea02">
+					<option v-for = 'city in cCityData' :value="city.name" v-text="city.name"></option>
+				</select>
+				<select name="" id="" v-model="cAreaName">
+					<option v-for = 'area in cAreaData' :value="area.name" v-text="area.name"></option>
+				</select>
+			</div>
+		</a>
+	</div>
+	<div class="center mar-t-10">
+		<a class="item">
+			<span>学历</span>
+			<div>
+				<select class="c999 fs32" v-model="userData.userInfo.educational">
+					<option value="请选择">请选择</option>
+					<option value="小学">小学</option>
+					<option value="初中">初中</option>
+					<option value="中专">中专</option>
+					<option value="高中">高中</option>
+					<option value="大专">大专</option>
+					<option value="本科">本科</option>
+					<option value="硕士">硕士</option>
+					<option value="博士">博士</option>
+				</select>
+				<span class="icon_jtright"></span>
+			</div>
+			
+		</a>
+		<a class="item">
+			<span>月收入</span>
+			<div>
+				<select class="c999 fs32" v-model="userData.userInfo.income">
+					<option value="请选择">请选择</option>
+					<option value="1000元以上">1000元以上</option>
+					<option value="3000元以上">3000元以上</option>
+					<option value="5000元以上">5000元以上</option>	
+					<option value="10000元以上">10000元以上</option>
+					<option value="15000元以上">15000元以上</option>
+					<option value="20000元以上">20000元以上</option>
+					<option value="50000元以上">50000元以上</option>
+				</select>
+				<span class="icon_jtright"></span>
+			</div>
+			
+		</a>
+		<a class="item">
+			<span>职业</span>
+			<div>
+				<select class="c999 fs32" v-model="userData.userInfo.profession">
+					<option value="请选择">请选择</option>
+					<option value="企业主">企业主</option>
+					<option value="个体户">个体户</option>
+					<option value="白领">白领</option>
+					<option value="蓝领">蓝领</option>
+					<option value="学生">学生</option>
+					<option value="自由职业">自由职业</option>
+				</select>
+				<span class="icon_jtright"></span>
+			</div>
+			
+		</a>
+		
+	</div>
+	<div class="disflex">
+			<input type="button" class="btn_sub" value="保存" @click="updateUserInfo">
+		</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.userInfo();
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>房月盈</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css"/>
+    <script src="/js/zepto.min.js"></script>
+    <script src="/js/vue.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body class="hor">
+@@include('../include/head.html',{
+"title":"房月盈",
+"isback":true
+})
+<style>
+    body,html{background: #FFFFFF;} 
+    .kuai-box{display: inline-block;width: 28px;height: 24px;line-height: 24px;text-align: center;color: #fff;margin-right: 10px;background: #00a0ea;font-size: 0.87rem;position: relative;}
+.kuai-box b {position: absolute;bottom: -12px;left: 6px;margin-left: -6px;border-right: solid 6px transparent;border-bottom: solid 6px transparent;border-top: solid 6px #00a0ea;}
+.tab_honor{width: 90%;margin: 0 auto;}
+.bg_gray{height: 10px;background: #f0eff5;width: 100%;}
+.tab_honor table{width: 100%;font-size: 0.875rem;}
+table tr td{padding: 10px;}
+</style>
+<div id="honor">
+    
+        <div class="pad-b-60">
+            <div class="nav_bar bg-white">
+                <div class="wa90">
+                    <a class="col-xs-4 c9 text-left"  @click="ProLink()">项目描述</a>
+                    <a class="col-xs-4 c9 text-center" @click="RecLink()">投资记录</a>
+                    <a class="col-xs-4 cblue text-right" @click="HorLink()">荣誉榜</a>
+                </div>
+            </div>
+            <div class="bg-white mar-t-10"><div class="bg_gray"></div>
+            <div class="wa90 pad-b-10 pad-t-20">
+               <span class="kuai-box">
+               	01<b></b></span> <span class="c3 mar-l-20 fs34">快投奖</span>
+            </div>
+            <div class="tab_honor pad-b-10 pad-t-10 c9">
+                <table cellpadding="0" cellspacing="0" border="1" bordercolor="f0eff5">
+                    <tbody>
+                    <tr v-for="item in data.borrow.fastList">
+                        <td v-text="item.userName"></td>
+                        <td v-text="'荣获'+item.awardlevel+'，获得额外积分' +item.awardintegral+'分'"></td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+            <div class=" wa90 pad-b-10 pad-t-30 ">
+               <span class="kuai-box">
+               	02<b></b></span> <span class="c3 mar-l-20 fs34">额度奖</span>
+            </div>
+            <div class="tab_honor pad-t-10 c9">
+                <table cellpadding="0" cellspacing="0" border="1" bordercolor="f0eff5">
+                    <tbody>
+                    <tr v-for="item in data.borrow.maxList">
+                        <td v-text="item.userName"></td>
+                        <td v-text="'投资'+item.investMoney+'元，获得额外积分' +item.awardintegral+'分'"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="wa90 pad-b-10 pad-t-30">
+               <span class="kuai-box">
+               	03<b></b></span> <span class="c3 mar-l-20 fs34">满标奖</span>
+            </div>
+            <div class="tab_honor pad-t-10 c9">
+                <table cellpadding="0" cellspacing="0" border="1" bordercolor="f0eff5">
+                    <tbody>
+                    <tr v-for="item in data.borrow.lastList">
+                        <td v-text="item.userName"></td>
+                        <td v-text="'投资'+item.investMoney+'元，获得额外积分' +item.awardintegral+'分'"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/invest.js"></script>
+<script>
+    iv.honor();
+</script>
+</body>
+</html>

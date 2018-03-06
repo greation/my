@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>我的订单</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/integral.css"/>
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/public.js"></script>
+		
+	</head>
+	<body>
+		
+		@@include('../../include/head.html',{
+		"title":"我的订单",
+		"isback":true
+	})
+	<div class="index_box" id="myOrder" v-cloak>
+		<div class="bg-white">
+			<div class="order_nav disflex alignitem_c justify_sb ">
+				<a v-bind:class="{'cblue':odcls=='WAIT'}" @click="orderNav('WAIT')">待发货</a>
+				<a v-bind:class="{'cblue':odcls=='SHIPPED'}" @click="orderNav('SHIPPED')">待收货</a>
+				<a v-bind:class="{'cblue':odcls=='SUCCESS'}" @click="orderNav('SUCCESS')">已完成</a>
+			</div>
+		</div>
+		<div class="bg-white mar-t-10" v-for="item in listData">
+			<div class="order_detail disflex alignitem_c justify_sb ">
+				<span class="c6 fs28">订单编号:<font v-text="item.orderId"></font></span>
+				<span class="sh_btn fs28" @click="confirm(item)" v-if="odcls=='SHIPPED'">确认收货</span>
+			</div>
+			
+<!-- v-bind:href= "'/src/article/integral/order_detail.html?id='+item.orderId+''" -->
+
+			<div class="my_order disflex alignitem_c  mar-t-10" v-cloak @click="order_detail(item.orderId)">
+				<span class="list_class1"><a><img v-bind:src="item.detailImgUrl"/></a></span>
+				<span class="list_class2 fs28">
+					<p class="c6 pad-l-12 " v-text="item.goodsName"></p>
+					<p class="c9 pad-l-12" v-text="item.orderTime"></p>
+					
+					<p class="disflex alignitem_c justify_sb ">
+						<span class="c9 mar-l-10">积分兑换：<span v-text="item.usepointNum/item.buyNum"></span>×<span v-text="item.buyNum"></span></span>
+					</p>
+					<p class="disflex alignitem_c justify_sb ">
+						<span class="cblue mar-l-10">兑换总积分：<span v-text="item.usepointNum"></span></span>
+					</p>
+				</span>
+			</div>
+			
+		</div>
+		<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+	</div>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/my_order.js"></script>
+	</body>
+</html>

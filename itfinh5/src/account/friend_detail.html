@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>邀请记录</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css">
+	<link rel="stylesheet" href="/skins/default/css/account.css">
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body class="fd fd01">
+	@@include('../include/head.html',{
+		"title":"",
+		"isback":true
+	})
+	<div class="container" id="fd01">
+		<div class="nav disflex bg-white alignitem_c mar-b-10 c999">
+			<div>手机号码</div>
+			<div>累计返利（元）</div>
+		</div>
+		<div class="fund_list">
+			<div class="bg-white item disflex direc_co justify_c" v-for="item in friendList">
+				<div class="disflex justify_sb"><span class="c333" v-text="item.mobile"></span><span class="color-theme"><span class="fs24"></span><span v-text="item.money/100"></span>元</span></div>
+				<div class="disflex justify_sb cbbb fs24 mar-t-15"><span><span>注册：</span><span v-text="item.registerTime"></span></span><span><span>最近返利：</span><span v-text="item.rebateTime">2016/12/1 12:11:10</span></span></div>
+			</div>
+			<input type="button" :value="loadTxt" v-if="data.list.length>0" class="btn_load_more" @click="loadMore">
+			<p class="text-center c999 mar-t-80" v-if="data.list.length<1">暂无邀请投资记录!</p>
+		</div>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script>
+	vms.firenddetail();
+</script>
+</body>
+</html>

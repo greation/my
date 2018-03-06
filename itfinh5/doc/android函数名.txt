@@ -1,0 +1,111 @@
+
+//1.登录
+android.login()
+
+
+//2.注册
+android.goRegister()
+
+
+//3.实名认证
+goAuthentication()
+
+
+//4.绑定安全卡
+android.bandCard()
+
+
+//5.设置支付密码
+android.setPayPwd()
+
+
+//6.充值
+android.goRecharge()
+
+
+//7.提现
+android.goWithdrawals()
+
+
+//8.投资列表
+android.goInvest()
+
+
+//9.具体标的 borrowId:标的ID    borrowCategory:标的类型
+android.goBorrow(String borrowId,int borrowCategory)
+
+
+//10.积分商城首页（弃用）
+android.goProductsHome()
+
+
+//11.跳到积分商城具体列表  categoryId:分类ID     categoryName:分类名称
+android.goProductsList(String categoryId, String categoryName)
+
+
+//12.跳到积分商城商品详情页  detailsUrl:商品详情URL    productName:产品名称
+android.goProductDetails(String detailsUrl,String productName)
+
+
+//13.兑换   stockId：库存ID  exchangeNum:兑换数量   goodsType:商品类别
+android.exchange(String stockId, int exchangeNum, String goodsType)
+
+
+//14.发现首页
+android.goFind()
+
+
+//15.分享  
+imageUrl:图片地址   linkUrl:点击跳转地址  title：标题   content:摘要
+android.share(String imageUrl, String linkUrl, String title,
+                  String content) 
+
+
+
+//16.分享到朋友圈   
+imageUrl:图片地址   linkUrl:点击跳转地址  title：标题   content:摘要
+android.shareToWXMoments(String imageUrl, String linkUrl, String title,
+                  String content)
+
+
+
+//17.分享到好友   
+imageUrl:图片地址   linkUrl:点击跳转地址  title：标题   content:摘要
+android.shareToFriends(String imageUrl, String linkUrl, String title,
+                             String content)
+
+
+//18.个人中心
+android.goMyCenter()
+
+
+//19.关闭商城
+android.closeMall()
+
+//20.返回首页
+android.goIndex()
+
+
+//21.积分商城新版本---首页
+android.openShoppingMall()
+
+
+
+
+方法使用：
+android.openShoppingMall('参数名称')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

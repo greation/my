@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no" />
+  <title>loading</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css"/>
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+</head>
+<body>
+  <p class="text-center mar-t-20">正在处理中。。。</p>
+
+</body>
+<script>
+  var hrefData=util.hrefSplit(window.location.href);
+  var timeSpan = 0;
+  console.log(hrefData);
+  if(hrefData.type==='setPayPsw'){
+    var interval = setInterval(function(){
+      getPayPswResult();
+      if(++timeSpan>=6){
+        alert('处理超时，稍后自行查看是否成功')
+        window.location.href = Helper.webPath+'src/account/index.html';
+      }
+    }, 1000);
+  }else if(hrefData.transType==='IMPREST'){
+    var interval = setInterval(function(){
+      getChargeResult();
+      if(++timeSpan>=6){
+        alert('处理超时，稍后自行查看是否成功')
+        window.location.href = Helper.webPath+'src/account/index.html';
+      }
+    }, 1000);
+    
+  }else if(hrefData.transType==='DRAW'){
+    var interval = setInterval(function(){
+      getWithdrawResult();
+      if(++timeSpan>=6){
+        alert('处理超时，稍后自行查看是否成功')
+        window.location.href = Helper.webPath+'src/account/index.html';
+      }
+    }, 1000);
+    
+  }else if(hrefData.transType==='INVEST'){
+    var interval = setInterval(function(){
+      getInvestResult();
+      if(++timeSpan>=100){
+        alert('处理超时，稍后自行查看是否成功')
+        window.location.href = Helper.webPath+'src/account/index.html';
+      }
+    }, 1000);
+    
+  }
+  function getPayPswResult(){
+    $.ajax({
+      url: Helper.basePath+'queryModitySinaPwd.htm',
+      type: 'POST',
+      dataType: 'json',
+      xhrFields: {
+        withCredentials: true
+      },
+      data:{transType:'set_pay_password',userId:hrefData.uid}
+    })
+    .done(function(data) {
+      var data = JSON.parse(data);
+      if(data.code==='000'){
+        alert('支付密码设置成功');
+        window.location.href = Helper.webPath+'src/account/bind_bank.html';
+      }
+    })
+  }
+  function getChargeResult(){
+    $.ajax({
+      url: Helper.basePath+'checkSinaResult.htm',
+      type: 'POST',
+      dataType: 'json',
+      xhrFields: {
+        withCredentials: true
+      },
+      data:{transType:'IMPREST',orderId:hrefData.orderId}
+    })
+    .done(function(data) {
+      var data = JSON.parse(data);
+      if(data.code==='2001'){
+        alert('充值处理成功');
+        window.location.href = Helper.webPath+'src/account/index.html';
+      }
+    })
+  }
+  function getWithdrawResult(){
+    $.ajax({
+      url: Helper.basePath+'checkSinaResult.htm',
+      type: 'POST',
+      dataType: 'json',
+      xhrFields: {
+        withCredentials: true
+      },
+      data:{transType:'DRAW',orderId:hrefData.orderId}
+    })
+    .done(function(data) {
+      var data = JSON.parse(data);
+      if(data.code==='1001'){
+        alert('提现处理成功');
+        window.location.href = Helper.webPath+'src/account/index.html';
+      }
+    })
+  }
+  function getInvestResult(){
+    $.ajax({
+      url: Helper.basePath+'checkSinaResult.htm',
+      type: 'POST',
+      dataType: 'json',
+      xhrFields: {
+        withCredentials: true
+      },
+      data:{transType:'INVEST',orderId:hrefData.orderId}
+    })
+    .done(function(data) {
+      var data = JSON.parse(data);
+      if(data.code==='3001'){
+//      alert('投资处理成功');
+      window.location.href = Helper.webPath+'src/invest/result.html?investId='+hrefData.orderId;//新浪处理结束后的返回页面
+      }
+    })
+  }
+</script>
+</html>

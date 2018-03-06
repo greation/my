@@ -1,0 +1,330 @@
+.modal-rule{
+	position: fixed;
+	width: 86%;
+	height: 70%;
+	left: 7%;
+	top: 10%;
+	z-index: 9;
+}
+.modal-rule .txt-cont{
+	height: 80%;
+	background: #fff;
+	padding: 15px;
+	line-height: 2.2;
+	margin-top: 5px;
+	font-size: 0.875rem;
+}
+.modal-rule .txt-gz{
+	height: 90%;
+	overflow: auto;
+}
+.t_imgs img,.b_imgs img{
+	display:block;
+}
+.mask {
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}
+.content{
+	background: url(images/znq_c.jpg) no-repeat center center;
+	background-size: 100% 100%;
+}
+.btn_rule{
+	width: 85px;
+	height: 26px;
+	background: #fff100;
+	color:#e74244;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-left: -5px;
+}
+.btn_rule_two{
+	position:absolute;
+  width: 95px;
+	height: 30px;
+	right:0;
+	top:0;
+	background: transparent;
+}
+.btn_yuebiao{
+  position: absolute;
+  width: 36%;
+  height: 32%;
+  background: transparent;
+}
+.b_imgs .relative:nth-of-type(2) .btn_yuebiao{
+	top: 25%;
+  left: 6%;
+}
+.b_imgs .relative:nth-of-type(3) .btn_yuebiao{
+	top: 28%;
+  right: 6%;
+}
+.b_imgs .relative:nth-of-type(4) .btn_yuebiao{
+	top: 40%;
+  left: 6%;
+}
+.draw_area{
+	width: 280px;
+	height: 280px;
+	margin:0 auto;
+	position: relative;
+	background: url(images/turntable01.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.draw_area.two{
+	background: url(images/turntable02.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.ovfHiden{
+	overflow: hidden;
+	height: 100%;
+}
+.util_toast_box{bottom: 40%;}
+.pint_box{
+	width: 80px;
+	height: 96px;
+	position: absolute;
+	top:50%;
+	margin-top:-57px;
+	left:50%;
+	margin-left:-40px;
+	-webkit-transform-origin:40px 57px;
+	        transform-origin:40px 57px;
+	-webkit-transition:-webkit-transform 3s ease-out .1s;
+	transition:-webkit-transform 3s ease-out .1s;
+	transition:transform 3s ease-out .1s;
+	transition:transform 3s ease-out .1s, -webkit-transform 3s ease-out .1s;
+	/* transform: rotate(80deg); */
+}
+.pint_box img{
+	width: 100%;
+	height: 100%;
+}
+.btn_share_box img{
+	width: 60%;
+	display: block;
+	margin:0 auto;
+}
+.icon_hand{
+	position: absolute;
+	top:55%;
+	left:55%;
+	width: 20%;
+	-webkit-animation:animations 1s linear 0s 3;
+	        animation:animations 1s linear 0s 3;
+}
+@-webkit-keyframes animations{
+  0%{-webkit-transform:translate(0px,0px);transform:translate(0px,0px);}
+  50%{-webkit-transform:translate(-10px,-10px);transform:translate(-10px,-10px);}
+  100%{-webkit-transform:translate(0px,0px);transform:translate(0px,0px);}
+}
+.lucky_box{
+	width: 70%;
+	padding:10px 20px;
+	background: #fff;
+	margin:0 auto;
+	margin-top:20px;
+	border-radius: 8px;
+}
+.lucky_user ul li{
+	height: 30px;
+}
+.lucky_user ul li .user_phone{
+	margin-right: 20px;
+}
+.lucky_user{
+	color:#707070;
+}
+.swiper-lucky{
+	height: 90px;
+}
+.music_box{
+	position: fixed;
+  right: 28px;
+  top: 28px;
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+  
+}
+.music_box>img{
+	vertical-align: baseline;
+}
+.music_box_stop{
+	position: fixed;
+  right: 28px;
+  top: 28px;
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+}
+.music_box .music_box_go{
+	transform-origin:center center;
+  -webkit-transform-origin:center center;
+	-webkit-animation:musicRota 2s linear 0s infinite;
+	        animation:musicRota 2s linear 0s infinite;
+}
+@-webkit-keyframes musicRota{
+  0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+  100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+.login_box{
+	position: fixed;
+	width:80%;
+	left:10%;
+	top:20%;
+	z-index: 3;
+	background: #fffef3;
+  padding-bottom: 30px;
+  
+}
+.close_login{
+	position: absolute;
+	right: 0;
+	top: -45px;
+}
+.letter .form{
+	padding: 40px 15px 0 15px;
+}
+
+.letter .inp_phone,.letter .inp_psw,.letter .active .inp_phone,.letter .active .inp_psw{
+	-webkit-box-flex:1;
+	    -ms-flex:auto;
+	        flex:auto;
+	border:#ffb400 2px solid;
+	height: 45px;
+	padding-left: 40px;
+	-webkit-appearance:none;
+}
+
+.letter .active .inp_phone,.letter .active .inp_psw{
+	border:#fb5859 2px solid;
+}
+.letter .btn_next{
+	width: 100%;
+	height: 46px;
+	background: #fb5859;
+	color:#fff;
+	margin-top:26px;
+	border-radius:25px;
+	-webkit-appearance:none;
+}
+.letter .link_login{
+	width: 100%;
+	margin-top: 60px;
+}
+.letter .logo_box{
+	width:27%;
+	margin:0 auto;
+}
+.letter .icon_user,.letter .icon_psw,.letter .icon_yqm{
+	position: absolute;
+  left: 12px;
+  top: 11px;
+  width: 21px; 
+  height: 25px;
+  background-size: 100% 100%!important;
+}
+.letter .icon_user{
+	background:url(images/icon_user.png) no-repeat center center;
+}
+.letter .icon_psw{
+	background:url(images/icon_psw.png) no-repeat center center;
+}
+.letter .two {
+	padding: 0 15px;
+}
+.letter .eye{
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  width: 18px;
+  height: 18px;
+  background: url(images/eye_open.png);
+  background-size: 100% 100%;
+}
+.letter .clear_psw{
+  position: absolute;
+  right: 42px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(images/clear_text.png);
+  background-size: 100% 100%;
+}
+.letter .clear_phone{
+  position: absolute;
+  right: 12px;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background: url(images/clear_text.png);
+  background-size: 100% 100%;
+}
+.letter .eye.eye_open{
+  background: url(images/eye_close.png);
+  background-size: 100% 100%;
+}
+.letter .two .btn_sub{
+	width: 100%;
+	height: 46px;
+	background: #1e82ff;
+	color:#fff;
+	margin-top:26px;
+	border-radius:5px;
+}
+.letter .two .code>input[type="text"]{
+	-webkit-box-flex:6;
+	    -ms-flex:6 0 0px;
+	        flex:6 0 0px;
+	border-radius: 0px;
+	border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border:#e5e5e5 1px solid;
+  padding-left: 40px;
+}
+.open_letter{
+	position: absolute;
+  width: 70%;
+  height: 5%;
+  left: 15%;
+  bottom: 17%;
+}
+.btn_boxs{
+	position: absolute;
+  left: 28%;
+  bottom: 23%;
+  width: 44%;
+  height: 6%;
+}
+.link_lucky{
+	width:100%;
+	height:40px;
+  background: url(images/btn_canyu.png?v=e133b36) no-repeat center center;
+  background-size: 100% 100%;
+  display: flex;
+  line-height: 40px;
+  justify-content: center;
+  color: #fff !important;
+  text-align: center;
+}
+.borwser_tip{
+	width:80%;
+	position: fixed;
+	left:10%;
+	top:22%;
+	text-align: center;
+	z-index: 3;
+}
+.btn_close_browser{
+	width: 20%;
+	margin-top: 15%;
+
+}

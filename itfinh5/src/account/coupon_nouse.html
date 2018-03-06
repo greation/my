@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的卡券</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+</head>
+<body class="co">
+	@@include('../include/head.html',{
+		"title":"我的卡券",
+		"isback":true
+	})
+	<div class="container pad-b-15" id="co_no">
+		<div class="list pad-l-15 pad-r-15">
+		 <div class="coupon disflex alignitem_c xian" v-for="coupon in couponList" :class="coupon.rewardType">
+				<i class="icon"></i>
+				<div class="info">
+					<p class="fs28 color-theme mar-b-5" v-text="coupon.rewardName"></p>
+					<p class="fs24 c666" v-if="coupon.rewardType==='ti'">仅用于体验金标</p>
+					<p v-else-if="coupon.minInvest==='-1'" class="fs24 c666">投资金额无限制</p>
+					<p v-else class="fs24 c666">单笔满<span v-text="coupon.minInvest"></span>元可用</p>
+					<p class="fs24 c666">投资期限<span v-text="coupon.rewardUseDuration=='-1'? '无限制' : coupon.durType==='DAY'?coupon.rewardUseDuration+'天':'满'+coupon.rewardUseDuration+'个月可用'"></span>
+					</p>
+					<p class="fs20 cbbb mar-t-5" v-text="'使用期限至：'+(coupon.endtime).substr(0,10)"></p>
+				</div>
+				<div class="num" :class="coupon.status==='USEED'?'useed':'date_out'"><span class="fs28 color-theme"><span class="fs48" v-text="coupon.val"></span></span></div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+		</div>
+		<p class="pad-l-15 mar-t-10 fs24 c999"><a href="coupon.html" class="color-theme fs24">查看可使用卡券》</a></p>
+	</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/account.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/js/public.js"></script>
+<script>
+	vms.couponNo();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>安全保障</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+		<script type="text/javascript" src="/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/vue-resource.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+
+	<body>
+	@@include('../include/head.html',{
+		"title":"安全保障",
+		"isback":true
+	})
+
+		<style>
+			html,body{
+				height: 100%;
+			}
+			.swiper-container {
+				width: 100%;
+				height: 100%;
+			}
+			.swiper-slide img{height: 100%;width: 100%;z-index: 99;}
+			.leader_arrow{display: block;width: 79px;height: 70px;position: fixed;left: 50%;bottom: 3px; margin-left: -39px;z-index: 999;-webkit-animation: start 1.5s infinite ease-in-out;
+    animation: start 1.5s infinite ease-in-out;}
+		</style>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				
+				<div class="swiper-slide"><img src="/images/1-01.jpg" />
+					
+				</div>
+				<div class="swiper-slide"><img src="/images/2-01.jpg" /></div>
+				<div class="swiper-slide"><img src="/images/3-01.jpg" /></div>
+				<div class="swiper-slide"><img src="/images/4-01.jpg" /></div>
+				<div class="swiper-slide"><img src="/images/5-01.jpg" /></div>
+				<div class="swiper-slide"><img src="/images/6-01.jpg" /></div>
+			</div>
+			
+			<div class="leader_arrow"><img src="/images/leader_arrow.png"/></div>
+		</div>
+
+		<script>
+			var mySwiper = new Swiper( '.swiper-container', {
+				direction: 'vertical',
+				loop: true,
+				spaceBetween:0,
+				
+			})
+            $(function(){
+                if(title=="no"){
+                    $("header").hide();
+                }
+            })
+		</script>
+	</body>
+
+</html>

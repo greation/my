@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>投资</title>
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/skins/default/css/invest.css" />
+		<script src="/js/zepto.min.js"></script>
+		<script src="/js/vue.min.js"></script>
+		<script src="/js/public.js"></script>
+	</head>
+
+	<body>
+		<div id="appList" v-cloak>
+			<header>
+				<div class="item back">
+				</div>
+				<div class="item title c3">
+					<a href="/src/invest/list.html">房月盈</a>
+					<a href="" class="mar-l-20 blue">车满盈</a>
+				</div>
+				<a class="item operation c6" @click="yb()">约标</a>
+			</header>
+
+			<div class="list_invest pad-b-60">
+				<div class="nav_list bg-white">
+					<a class="col-xs-3 text-center cblue fs30 zh" @click="commenRank">综合排序<i></i></a>
+					<a class="col-xs-3 text-left fs30 c9 ly" @click="rateRank">&nbsp;利率<i class="px_icon"></i></a>
+					<a class="col-xs-3 text-left fs30 c9 qx" @click="dateRank">&nbsp;期限 <i class="px_icon"></i></a>
+					<a class="col-xs-3 text-left fs30 c9 jd" @click="progressRank">&nbsp;进度 <i class="px_icon"></i></a>
+				</div>
+
+				<div class=""  v-for="listBorrow in list" :id="listBorrow.borrowId" @click="projectLink(listBorrow.borrowId,listBorrow.borrowType)">
+					<!--非体验金-->
+					<template v-if="listBorrow.borrowStatus==='RAISE'">
+						<template v-if="listBorrow.borrowMoney===listBorrow.raiseMoney">
+							<div class="listActive project_ls mar-t-10">
+							<div class="top disflex">
+								<span class="fs28 title c6" v-text="listBorrow.borrowName"></span>
+								<span class="time fs24 c999"></span>
+								<template v-if="listBorrow.borrowActivityIcon==''||listBorrow.borrowActivityIcon===null"></template>
+								<template v-else><img :src="listBorrow.borrowActivityIcon" class="activ_tag" alt=""></template>
+							</div>
+							<div class="center disflex">
+								<div class="rate">
+									<p class="fs28 color-theme">
+										<template v-if="listBorrow.borrowRate==='0.0'">
+											<span class="fs48" >0</span>
+										</template>
+										<template v-else>
+											<span class="fs48" >{{listBorrow.borrowRate-listBorrow.addRate | capitalizeg}}%</span>
+                    </template><span v-text="listBorrow.addRate==='0.0'?'':'+'+listBorrow.addRate+'%'"></span>
+                  </p>
+									<span class="c999 fs24 mar-t-5">约定年化收益率</span>
+								</div>
+								<div class="time_span">
+									
+									<template v-if="listBorrow.borrowType==='EXPERIENCE'">
+										<p class="fs24 mar-b-5 mar-t-10 c999"><span v-text="listBorrow.borrowDuration"></span>天投资期限</p>
+										<span class="jx fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHEXPERIENCE'">体验金券</span>
+									</template>
+									<template v-else>
+										<p class="fs24 mar-b-5 mar-t-10 c999"><span v-text="listBorrow.borrowDuration"></span>个月投资期限</p>
+										<span class="jx fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHCOUPON'">加息券</span>
+										<span class="xj mar-l-5 fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHVOCHER'">现金券</span>
+									</template>
+									
+									
+								</div>
+								<div class="time_span text-right">
+									<p class="mar-b-10"></p>
+									<p class="c999 fs24" v-text="listBorrow.borrowerDesc">回款中</p>
+								</div>
+							</div>
+							<div class="bottom bg-white">
+								<template v-if="listBorrow.borrowType==='EXPERIENCE'">
+								</template>
+								<template v-else>
+									<div class="data_progress">
+										<div class="progressin" :style="{width:(listBorrow.raiseMoney/listBorrow.borrowMoney*100).toFixed(2) +'%'}"></div>
+									</div>
+									<p class="fs24 c999 mar-t-10 disflex justify_sb"><span>剩余可投{{(listBorrow.borrowMoney-listBorrow.raiseMoney)/100 | capitalizeq }}元</span>
+									<span>{{listBorrow.raiseRate | capitalizeb}}</span></p>
+								</template>
+							</div>
+						</div>
+						</template>
+						<template v-else>
+							<div class="project_ls mar-t-10">
+							<div class="top disflex">
+								<span class="fs28 title" v-text="listBorrow.borrowName">房月盈SHAO3366</span>
+								<span class="time fs24 c999"></span>
+								<template v-if="listBorrow.borrowActivityIcon==''||listBorrow.borrowActivityIcon===null"></template>
+								<template v-else><img :src="listBorrow.borrowActivityIcon" class="activ_tag" alt=""></template>
+							</div>
+							<div class="center disflex">
+								<div class="rate">
+									<p class="fs28 color-theme"><span class="fs48" >
+									<template v-if="listBorrow.borrowRate==='0.0'">
+											<span class="fs48" >0</span>
+										</template>
+										<template v-else>
+											<span class="fs48" >{{listBorrow.borrowRate-listBorrow.addRate|capitalizeg}}</span>
+										</template>
+
+									%<span v-text="listBorrow.addRate==='0.0'?'':'+'+listBorrow.addRate+'%'"></span></p>
+									<span class="c999 fs24 mar-t-5">约定年化收益率</span>
+								</div>
+								<div class="time_span">
+									
+									<template v-if="listBorrow.borrowType==='EXPERIENCE'">
+										<p class="fs24 mar-b-10"><span v-text="listBorrow.borrowDuration"></span>天投资期限</p>
+										<span class="jx fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHEXPERIENCE'">体验金券</span>
+									</template>
+									<template v-else>
+										<p class="fs24 mar-b-10"><span v-text="listBorrow.borrowDuration"></span>个月投资期限</p>
+										<span class="jx fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHCOUPON'">加息券</span>
+										<span class="xj mar-l-5 fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHVOCHER'">现金券</span>
+									</template>
+									
+									
+								</div>
+								<div class="time_span text-right">
+									<p class="mar-b-10"></p>
+									<p class="c999 fs24" v-text="listBorrow.borrowerDesc">回款中</p>
+								</div>
+							</div>
+							<div class="bottom bg-white">
+								<template v-if="listBorrow.borrowType==='EXPERIENCE'">
+								</template>
+								<template v-else>
+									<div class="data_progress">
+										<div class="progressin" :style="{width:(listBorrow.raiseMoney/listBorrow.borrowMoney*100).toFixed(2) +'%'}"></div>
+									</div>
+									<p class="fs24 c999 mar-t-10 disflex justify_sb"><span>剩余可投{{(listBorrow.borrowMoney-listBorrow.raiseMoney)/100 | capitalizeq }}元</span>
+									<span>{{listBorrow.raiseRate | capitalizeb}}</span></p>
+								</template>
+							</div>
+						</div>
+						</template>
+					</template>
+					<template v-else>
+						<div class="listActive project_ls mar-t-10">
+							<div class="top disflex">
+								<span class="fs28 title" v-text="listBorrow.borrowName"></span>
+								<span class="time fs24 c999"></span>
+								<template v-if="listBorrow.borrowActivityIcon==''||listBorrow.borrowActivityIcon===null"></template>
+								<template v-else><img :src="listBorrow.borrowActivityIcon" class="activ_tag" alt=""></template>
+							</div>
+							<div class="center disflex">
+								<div class="rate">
+									<p class="fs28 color-theme">
+										<template v-if="listBorrow.borrowType==='TEST'">
+											<span class="fs48" >0.0</span>
+										</template>
+										<template v-else>
+											<span class="fs48" >{{listBorrow.borrowRate-listBorrow.addRate | capitalizeg}}</span>
+										</template>
+										
+										%<span v-text="listBorrow.addRate==='0.0'?'':'+'+listBorrow.addRate+'%'"></span></p>
+									<span class="c999 fs24 mar-t-5">约定年化收益率</span>
+								</div>
+								<div class="time_span">
+									
+									<template v-if="listBorrow.borrowType==='EXPERIENCE'">
+										<p class="fs24 mar-b-10"><span v-text="listBorrow.borrowDuration"></span>天投资期限</p>
+										<span class="jx fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHEXPERIENCE'">体验金券</span>
+									</template>
+									<template v-else>
+										<p class="fs24 mar-b-10"><span v-text="listBorrow.borrowDuration"></span>个月投资期限</p>
+										<span class="jx fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHCOUPON'">加息券</span>
+										<span class="xj mar-l-5 fs22" v-if="listBorrow.useVoucher==='CANUSE'||listBorrow.useVoucher==='CASHVOCHER'">现金券</span>
+									</template>
+									
+									
+								</div>
+								<div class="time_span text-right">
+									<p class="mar-b-10"></p>
+									<p class="c999 fs24" v-text="listBorrow.borrowerDesc">回款中</p>
+								</div>
+							</div>
+							<div class="bottom bg-white">
+								<template v-if="listBorrow.borrowType==='EXPERIENCE'">
+								</template>
+								<template v-else>
+									<div class="data_progress">
+										<div class="progressin" :style="{width:(listBorrow.raiseMoney/listBorrow.borrowMoney*100).toFixed(2) +'%'}"></div>
+									</div>
+									<p class="fs24 c999 mar-t-10 disflex justify_sb"><span>剩余可投{{(listBorrow.borrowMoney-listBorrow.raiseMoney)/100 | capitalizeq }}元</span>
+									<span>{{listBorrow.raiseRate | capitalizeb}}</span></p>
+								</template>
+							</div>
+						</div>
+					</template>
+					
+				</div>
+				
+				<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+				<a class="look_more">查看更多标的请登录电脑版<span style="color: #1E82FF;">www.ekeyfund.com</span></a>
+				<!--约标password-->
+				<div class="modal-bg hide"></div>
+				<div class="yb-psw hide">
+					<p class="text-center fs28">请输入约标密码</p>
+					<div class="ipswbox relative" id="inputPwd" @click="pwdIn">
+						<i></i>
+						<i></i>
+						<i></i>
+						<i></i>
+						<i></i>
+						<i></i>
+						<input type="text" maxlength="6" v-model="pwdYb" class="pswbtn" id="pswbtn" autocomplete="off" />
+					</div>
+
+					<p id="message" class="color-red  hide">你输入的密码错误</p>
+					<div class="psw_btn">
+						<button class="pswcancle" @click="pswCancle">取消</button>
+						<button class="pswsure" @click="pswSure">确认</button>
+					</div>
+				</div>
+				<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png" /></div>
+			</div>
+		</div>
+
+		@@include('../include/foot.html',{ "curMenu":"1" })
+		<script src="/js/invest.js"></script>
+		<script>
+			window.onload = function () {
+				var oTop = document.getElementById( "toTop" );
+				var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+				var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+				window.onscroll = function () {
+					var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+					if ( scrolltop > 100 ) {
+						oTop.style.display = "block";
+					} else {
+						oTop.style.display = "none";
+					}
+				}
+				oTop.onclick = function () {
+					document.documentElement.scrollTop = document.body.scrollTop = 0;
+				}
+			}
+			iv.invest({borrowType:1});
+		</script>
+	</body>
+
+</html>
